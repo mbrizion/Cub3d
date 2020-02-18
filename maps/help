@@ -1,0 +1,13 @@
+R 848 480
+NO ./path_to_the_north_texture
+SO ./path_to_the_south_texture
+WE ./path_to_the_west_texture
+EA ./path_to_the_east_texture
+
+S ./path_to_the_sprite_texture
+F 17,156,45
+C 116,184,252
+
+111
+111
+111

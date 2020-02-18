@@ -1,0 +1,16 @@
+     NO      ./pics/eagle.xpm  
+	                 EA ./pics/greystone.xpm    
+              SO ./pics/redbrick.xpm        
+   WE ./pics/wood.xpm  
+
+
+            R      1280          720
+F                       17,156,45               
+C     116,184,252                   
+S                               ./path_to_the_sprite_texture                    
+
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 0 1 0 0 1 0 0 1 0 1 0 1 0 1 0 0 1
+1 0 E 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1
+1 0 1 0 0 1 0 0 1 0 1 0 1 0 0 0 0 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
