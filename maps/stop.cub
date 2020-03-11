@@ -1,13 +1,12 @@
-R 848 480
-NO textures/sky_1.xpm
-SO textures/sky_1.xpm
-WE textures/sky_1.xpm
-EA textures/sky_1.xpm
-S textures/sprite_1.xpm
-SU textures/sprite_2.xpm
-SC textures/sprite_3.xpm
-F 184,113,39
-C 51,198,227
+R 1280 720
+NO ./pics/eagle.xpm
+SO ./pics/greystone.xpm
+WE ./pics/redbrick.xpm
+EA ./pics/wood.xpm
+
+S ./pics/wood.xpm
+F 17,156,45
+C 116,184,252
 111
 111
 111

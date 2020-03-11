@@ -6,7 +6,7 @@
 /*   By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 12:24:01 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/02/12 13:41:18 by mbrizion         ###   ########.fr       */
+/*   Updated: 2020/03/05 02:36:27 by mbrizion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,5 @@ int			ft_printf_error(const char *str, ...)
 	va_end(ap);
 	free(toprint);
 	free(conv);
-	return (ret);
+	return (-1);
 }

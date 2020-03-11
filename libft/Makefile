@@ -43,4 +43,4 @@ re: 	fclean all
 GREEN	= '\033[0;32m'
 END		= '\033[0m'
 
-.PHONY: re fclean clean bonus .c.o all
+.PHONY: re fclean clean .c.o all

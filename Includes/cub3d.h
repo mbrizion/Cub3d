@@ -6,7 +6,7 @@
 /*   By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 22:44:34 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/02/17 02:38:55 by mbrizion         ###   ########.fr       */
+/*   Updated: 2020/03/11 04:24:29 by mbrizion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,36 @@
 # define KeyRelease 3
 # define KeyReleaseMask 1L<<1
 
+typedef struct s_sprite_pos
+{
+	double	pos_x;
+	double	pos_y;
+}				t_sprite_pos;
+
 typedef struct s_sprite
 {
-	int nb_sprite;
-	double sprite_loc_x;
-	double sprite_loc_y;
+	void 	*test_p;
+	char	*ftexel_p;
+	char 	*sprite_path;
+	int		spriteScreenX;
+	int		spriteHeight;
+	int		spriteWidth;
+	double	spriteX;
+	double	spriteY;
+	double	transformX;
+	double	transformY;
+	double	invDet;
+	int		drawStartX;
+	int		drawStartY;
+	int		drawEndX;
+	int		drawEndY;
+	int		texX;
+	int		texY;
+	int		d;
+	unsigned int color;
+	unsigned char *color_c;
+	double *wall_dist;
+	
 }				t_sprite;
 
 typedef struct s_tex
@@ -58,10 +83,14 @@ typedef struct s_tex
 	void *text_e;
 	void *text_s;
 	void *text_w;
+	void *text_f;
+	void *text_c;
 	void *ftexel_n;
 	void *ftexel_e;
 	void *ftexel_s;
 	void *ftexel_w;
+	void *ftexel_f;
+	void *ftexel_c;
 }				t_tex;
 
 typedef struct s_ray
@@ -93,6 +122,8 @@ typedef struct s_move
 	int	backward;
 	int	left;
 	int	right;
+	int up;
+	int down;
 	double	rot;
 	double	v_rot;
 	double	speed;
@@ -109,6 +140,8 @@ typedef struct s_ptr
 typedef	struct s_info
 {
 	t_sprite sprite;
+	t_sprite_pos sprite_pos;
+	t_list *sprite_list;
 	double 	res_x;
 	double 	res_y;
 	double		pos_x;
@@ -118,9 +151,8 @@ typedef	struct s_info
 	char 	*south_path;
 	char 	*weast_path;
 	char 	*east_path;
-	char 	*sprite_path;
 	char	*floor_rgb;
-	char	*celling_rgb;
+	char	*cieling_rgb;
 	int		**map;
 	int 	file_len;
 	int		len_line;
@@ -128,7 +160,7 @@ typedef	struct s_info
 	int		bpp;
 	int		size_line;
 	int		floor_color;
-	int		celling_color;
+	int		cieling_color;
 	int		map_len;
 }				t_info;
 
@@ -148,16 +180,20 @@ int		parser(t_info *info, char *path);
 int		ft_nbrlen(int n);
 int		ft_atoi_cub(const char *str);
 char	*ft_strjoin_charset(char const *s1, char const *s2, char charset);
-int		charcmp(char c, char c2);
-int		check_map(t_info info);
+int		check_map(t_info *info, char **map);
 void 	raycasting(t_game *game);
+void	raycasting2(t_game *game, t_ray *ray, int x, int y);
 void	color_pixel(int x, int y, int color, t_game *game);
 int 	keypress(int keycode, t_game *game);
 int 	keyrelease(int keycode, t_game *game);
 int		move(t_game *game);
 int		get_rgb(char *str);
-int 	error(char c, int error_id);
+void 	error(int error_id);
 int		ft_printf_error(char *str, ...);
 size_t	strlen_spaces(const char *s);
+int		sprite_raycast(t_game *game, double *wall_dist);
+int		close_window(void);
+int		map_checker(char **map, t_info *info);
+char	*ft_strdup_len(const char *s1, int len);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 05:04:21 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/02/17 01:15:16 by mbrizion         ###   ########.fr       */
+/*   Updated: 2020/03/09 05:26:02 by mbrizion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,33 @@ int		ft_nbrlen(int n)
 	return (len);
 }
 
-size_t	strlen_spaces(const char *s)
+char	*ft_strdup_len(const char *s1, int len)
 {
-	int len;
-	int spaces;
+	char	*cpy;
+	int		i;
 
-	len = 0;
-	spaces = 0;
-	while (s[len])
-	{
-		if (s[len] == ' ')
-			spaces++;
-		len++;
-	}
-	return (len - spaces);
+	if (!(cpy = malloc(len + 1 * sizeof(char))))
+		return (0);
+	i = 0;
+	ft_strlcpy(cpy, s1, len);
+	return (cpy);
+}
+
+int		get_rgb(char *str)
+{
+	char	**tmp;
+	int		color;
+
+	color = 0;
+	tmp = ft_split(str, ',');
+	color += ft_atoi(tmp[0]) << 16;
+	color += ft_atoi(tmp[1]) << 8;
+	color += ft_atoi(tmp[2]);
+	free(tmp);
+	return (color);
+}
+
+int		close_window(void)
+{
+	exit(0);
 }

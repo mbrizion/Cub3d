@@ -5,17 +5,17 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/04 05:03:39 by mbrizion          #+#    #+#             */
-/*   forwarddated: 2020/02/05 16:04:43 by mbrizion         ###   ########.fr       */
+/*   Created: 2020/03/03 01:20:20 by mbrizion          #+#    #+#             */
+/*   Updated: 2020/03/04 23:30:16 by mbrizion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Includes/cub3d.h"
 
-int 	keypress(int keycode, t_game *game)
+int		keypress(int keycode, t_game *game)
 {
 	if (keycode == KEY_ESC)
-		exit (0);
+		exit(0);
 	else if (keycode == KEY_W)
 		game->move.forward = 1;
 	else if (keycode == KEY_S)
@@ -37,10 +37,10 @@ int 	keypress(int keycode, t_game *game)
 	return (0);
 }
 
-int 	keyrelease(int keycode, t_game *game)
+int		keyrelease(int keycode, t_game *game)
 {
 	if (keycode == KEY_ESC)
-		exit (0);
+		exit(0);
 	else if (keycode == KEY_W)
 		game->move.forward = 0;
 	else if (keycode == KEY_S)

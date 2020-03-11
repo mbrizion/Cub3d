@@ -1,13 +1,13 @@
-R 848 480
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+R 1280 720
+NO ./pics/eagle.xpm
+SO ./pics/greystone.xpm
+WE ./pics/redbrick.xpm
+EA ./pics/wood.xpm
 
-S ./path_to_the_sprite_texture
+S ./pics/wood.xpm
 F 17,156,45
 C 116,184,252
 
-1 1 1
-1 N 1
-1 1 1
+111
+1N1111
+111

@@ -3,10 +3,12 @@ SRCS	= 	srcs/main.c \
 			GNL/get_next_line.c \
 			GNL/get_next_line_utils.c \
 			srcs/tools.c \
-			srcs/map_checker.c \
 			srcs/raycasting.c \
 			srcs/move.c \
-			srcs/keypress.c 
+			srcs/keypress.c \
+			srcs/sprite_raycast.c \
+			srcs/raycasting2.c \
+			srcs/map_checker.c
 
 OBJS	= ${SRCS:.c=.o}
 
