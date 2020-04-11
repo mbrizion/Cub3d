@@ -16,7 +16,7 @@ RM		= rm -rf
 
 $(NAME): ${OBJS}
 	ar rc ${NAME} ${OBJS}
-	@echo ${GREEN}[ft_printf_error.a DONE]${END} ../libft/libft.a
+	@echo ${GREEN}[ft_printf_error.a DONE]${END}
 
 .c.o:
 	@${CC} ${CFLAGS} -c $< -o $@

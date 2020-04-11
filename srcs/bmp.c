@@ -1,0 +1,64 @@
+/*
+** HEADER
+*/
+
+#include "../Includes/cub3d.h"
+
+void conv_char(unsigned char *start, int size)
+{
+	start[0] = (unsigned char)(size);
+	start[1] = (unsigned char)(size >> 8);
+	start[2] = (unsigned char)(size >> 16);
+	start[3] = (unsigned char)(size >> 24);
+}
+
+
+int fill_bmp(t_game *game, int fd)
+{
+	char *first_pixel;
+	int i,j;
+	int endian;
+
+	first_pixel = mlx_get_data_addr(game->ptr.buffer, &game->info.bpp, &game->info.size_line, &endian);
+	i = 0;
+	while (i < (int)game->info.res_y)
+	{
+		j = 0;
+		while (j < (int)game->info.res_x)
+		{
+			write(fd, &first_pixel[j], 1);
+			j++;	
+		}
+		i++;
+	}
+}
+
+int		screenshot(t_game *game)
+{
+	int fd;
+	unsigned char header[54];
+	unsigned int filesize;
+	int tmp;
+	int pad;
+
+
+	pad = (4 - ((int)game->info.res_x * 3) % 4) % 4;
+	filesize = 54 + (3 * ((int)game->info.res_x + pad) * (int)game->info.res_y);
+	ft_bzero(header, 54);
+	fd = open("save.bmp", O_CREAT | O_RDWR | O_TRUNC, 0666);
+    header[0] = 'B';
+	header[1] = 'M';
+	conv_char(header + 2, filesize);
+	header[10] = (unsigned char)(54);
+	header[14] = (unsigned char)(40);
+	tmp = game->info.res_x;
+	conv_char(header + 18, tmp);
+	tmp = game->info.res_y;
+	conv_char(header + 22, tmp);
+	header[27] = (unsigned char)(1);
+	header[28] = (unsigned char)(24);
+	write(fd, header, 54);
+	fill_bmp(game, fd);
+	close (fd);
+	return (0);
+}

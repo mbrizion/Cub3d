@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jacktatoume <jacktatoume@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 22:28:30 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/03/11 07:40:09 by mbrizion         ###   ########.fr       */
+/*   Updated: 2020/03/29 11:46:20 by jacktatoume      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,43 +66,26 @@ void	move_init(t_game *game)
 	}
 }
 
-int		screenshot()
-{
-	int fd;
-
-	if ((fd = open("save.bpm", O_WRONLY | O_TRUNC)) > 0)
-	{
-		write (fd, "5", 1);
-	}
-	else
-		fd = open("save.bpm", O_CREAT | O_RDWR, 0666);
-	write (fd, "Test", 4);
-	close (fd);
-	return (0);
-}
-
 int 	main(int argc, char **argv)
 {
 	t_game game;
-	int arg = 1;
-	if (ft_strnstr(argv[arg], "--save", 6))
-	{
-		screenshot();
-		arg = 2;
-	}
-	if (!(ft_strnstr(((argv[arg]) + ft_strlen(argv[arg]) - 4), ".cub", 4)))
+	
+	if (!(ft_strnstr(((argv[1]) + ft_strlen(argv[1]) - 4), ".cub", 4)))
 		error(-7);
-	if (parser(&game.info, argv[arg]) < 0)
+	if (parser(&game.info, argv[1]) < 0)
 		return (-1);
 	move_init(&game);
-	// game.ptr.mlx_ptr = mlx_init();
-	// if ((game.ptr.win_ptr = mlx_new_window(game.ptr.mlx_ptr, game.info.res_x, game.info.res_y, "Cub3D")) == 0)
-	// 	return (-1);
-	// mlx_hook(game.ptr.win_ptr, DestroyNotify, StructureNotifyMask, close_window, 0);
-	// mlx_hook(game.ptr.win_ptr, KeyPress, KeyPressMask, &keypress, &game);
-	// mlx_hook(game.ptr.win_ptr, KeyRelease, KeyReleaseMask, &keyrelease, &game);
-	// mlx_loop_hook(game.ptr.mlx_ptr, &loop, &game);
-	// raycasting(&game);
-	// mlx_loop(game.ptr.mlx_ptr);
+	game.ptr.mlx_ptr = mlx_init();
+	if ((game.ptr.win_ptr = mlx_new_window(game.ptr.mlx_ptr, game.info.res_x, game.info.res_y, "Cub3D")) == 0)
+		return (-1);
+	raycasting(&game);
+	if (ft_strnstr(argv[2], "--save", 6))
+		screenshot(&game);
+	mlx_hook(game.ptr.win_ptr, DestroyNotify, StructureNotifyMask, close_window, 0);
+	mlx_hook(game.ptr.win_ptr, KeyPress, KeyPressMask, &keypress, &game);
+	mlx_hook(game.ptr.win_ptr, KeyRelease, KeyReleaseMask, &keyrelease, &game);
+	mlx_loop_hook(game.ptr.mlx_ptr, &loop, &game);
+	raycasting(&game);
+	mlx_loop(game.ptr.mlx_ptr);
 	return (0);
 }

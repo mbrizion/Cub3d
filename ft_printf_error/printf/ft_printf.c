@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jacktatoume <jacktatoume@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 12:24:01 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/03/05 02:36:27 by mbrizion         ###   ########.fr       */
+/*   Updated: 2020/03/13 09:24:17 by jacktatoume      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ int			ft_printf_error(const char *str, ...)
 	t_convert	*conv;
 	t_toprint	*toprint;
 	va_list		ap;
-	int			ret;
 
 	va_start(ap, str);
 	if (!(ft_strchr(str, '%')))
@@ -84,7 +83,7 @@ int			ft_printf_error(const char *str, ...)
 	}
 	toprint->c = '\0';
 	toprint->len = 0;
-	ret = conv_locator(str, conv, ap, toprint);
+	conv_locator(str, conv, ap, toprint);
 	va_end(ap);
 	free(toprint);
 	free(conv);

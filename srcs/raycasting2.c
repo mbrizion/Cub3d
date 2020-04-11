@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jacktatoume <jacktatoume@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 01:26:21 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/03/05 03:43:16 by mbrizion         ###   ########.fr       */
+/*   Updated: 2020/03/16 09:41:46 by jacktatoume      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,22 +43,26 @@ void	wall_texturing(t_ray *ray, t_game *game, int y, int x)
 {
 	game->tex.tex_y = (y * 2 - game->info.res_y + ray->line_height)
 	* (game->tex.tex_h / 2) / ray->line_height;
-	if (ray->side == 0)
+	if (ray->side == 0)\
+		// color_pixel(x, y, BLEU, game);
 		ft_memcpy(&game->ptr.fpixel_add[(y * game->info.size_line + x
 		* (game->info.bpp / 8))], &game->tex.ftexel_s[(game->tex.tex_y *
 		game->tex.tex_len_size + game->tex.tex_x * game->info.bpp / 8)],
 		game->tex.tex_bpp / 8);
 	else if (ray->side == 1)
+		// color_pixel(x, y, BLANC, game);
 		ft_memcpy(&game->ptr.fpixel_add[(y * game->info.size_line + x
 		* (game->info.bpp / 8))], &game->tex.ftexel_n[(game->tex.tex_y *
 		game->tex.tex_len_size + game->tex.tex_x * game->info.bpp / 8)],
 		game->tex.tex_bpp / 8);
 	else if (ray->side == 2)
+		// color_pixel(x, y, ROUGE, game);
 		ft_memcpy(&game->ptr.fpixel_add[(y * game->info.size_line + x
 		* (game->info.bpp / 8))], &game->tex.ftexel_e[(game->tex.tex_y *
 		game->tex.tex_len_size + game->tex.tex_x * game->info.bpp / 8)],
 		game->tex.tex_bpp / 8);
 	else
+		// color_pixel(x, y, JAUNE, game);
 		ft_memcpy(&game->ptr.fpixel_add[(y * game->info.size_line + x
 		* (game->info.bpp / 8))], &game->tex.ftexel_w[(game->tex.tex_y *
 		game->tex.tex_len_size + game->tex.tex_x * game->info.bpp / 8)],

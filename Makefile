@@ -8,13 +8,14 @@ SRCS	= 	srcs/main.c \
 			srcs/keypress.c \
 			srcs/sprite_raycast.c \
 			srcs/raycasting2.c \
-			srcs/map_checker.c
+			srcs/map_checker.c \
+			srcs/bmp.c
 
 OBJS	= ${SRCS:.c=.o}
 
 NAME	= Cub3D
 
-CC		= gcc #-fsanitize=address
+CC		= gcc -fsanitize=address
 
 CFLAGS	= #-Wall -Wextra -Werror 
 
@@ -23,7 +24,7 @@ RM		= rm -rf
 $(NAME): ${OBJS}
 	make -C libft
 	make -C ft_printf_error
-	${CC} -lmlx -framework OpenGL -framework AppKit ${SRCS} -o ${NAME} libft/libft.a ft_printf_error/ft_printf_error.a
+	${CC} -lbsd -lm -lmlx -lXext -lX11 ${SRCS} -o ${NAME} libft/libft.a ft_printf_error/ft_printf_error.a /home/jacktatoume/minilibx_linux/libmlx.a
 	echo ${GREEN}[Comp.DONE]${END}
 
 .c.o:

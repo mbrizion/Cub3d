@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jacktatoume <jacktatoume@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 22:44:34 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/03/11 04:24:29 by mbrizion         ###   ########.fr       */
+/*   Updated: 2020/03/19 16:05:47 by jacktatoume      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,20 @@
 #include "get_next_line.h"
 #include <math.h>
 
-# define KEY_ESC 53
-# define KEY_W 13
-# define KEY_S 1
-# define KEY_A 0
-# define KEY_D 2
-# define KEY_LA 123
-# define KEY_RA 124
+// # define KEY_ESC 53
+// # define KEY_W 13
+// # define KEY_S 1
+// # define KEY_A 0
+// # define KEY_D 2
+// # define KEY_LA 123
+// # define KEY_RA 124
+# define KEY_ESC 65307
+# define KEY_W 119
+# define KEY_S 115
+# define KEY_A 97
+# define KEY_D 100
+# define KEY_LA 65361
+# define KEY_RA 65363
 # define BLANC 0xE0E0E0
 # define BLEU  0x607EBD
 # define ROUGE 0xAD4B4B
@@ -195,5 +202,6 @@ int		sprite_raycast(t_game *game, double *wall_dist);
 int		close_window(void);
 int		map_checker(char **map, t_info *info);
 char	*ft_strdup_len(const char *s1, int len);
+int		screenshot(t_game *game);
 
 #endif

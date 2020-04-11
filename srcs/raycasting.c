@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jacktatoume <jacktatoume@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 01:33:14 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/03/05 23:35:31 by mbrizion         ###   ########.fr       */
+/*   Updated: 2020/03/29 11:50:56 by jacktatoume      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ void	raycasting(t_game *game)
 	sprite_raycast(game, game->info.sprite.wall_dist);
 	mlx_put_image_to_window(game->ptr.mlx_ptr, game->ptr.win_ptr,
 	game->ptr.buffer, 0, 0);
-	
+
 	// *******************************
 	// void *test_img;
 	// int test_x;

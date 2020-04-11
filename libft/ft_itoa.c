@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbrizion <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jacktatoume <jacktatoume@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 16:41:44 by mbrizion          #+#    #+#             */
-/*   Updated: 2019/11/19 16:49:13 by mbrizion         ###   ########.fr       */
+/*   Updated: 2020/03/13 09:23:54 by jacktatoume      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 
 int		ft_nbrlen(int n)
 {
-	int			i;
 	int			len;
 	long int	nb;
 
-	i = 0;
 	len = 0;
 	nb = n;
 	if (nb == 0)

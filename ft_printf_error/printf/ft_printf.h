@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jacktatoume <jacktatoume@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 12:27:19 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/02/12 13:41:26 by mbrizion         ###   ########.fr       */
+/*   Updated: 2020/03/16 09:26:53 by jacktatoume      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,8 @@ t_toprint		*conv_c(const char *str, va_list ap, t_toprint *toprint);
 int				conv_locator(const char *str,
 				t_convert *conv, va_list ap, t_toprint *toprint);
 int				prec_assign(const char *str, int index, char c);
+int				ft_isalpha(int c);
+void			ft_putstr_fd(char *s, int fd);
+
 
 #endif
