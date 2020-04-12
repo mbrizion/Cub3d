@@ -19,13 +19,13 @@ static int	fill_bmp(int fd, t_game *game)
 	int y;
 	int		color;
 
-	y = (int)game->info.res_x;
+	y = (int)game->info.res_y;
 	while (y > 0)
 	{
 		x = 0;
-		while (x < (int)game->info.res_y)
+		while (x < (int)game->info.res_x)
 		{
-			color = (*(int*)(game->ptr.fpixel_add + ((x + (y * (int)game->info.res_y)) * (game->info.bpp / 8))));
+			color = (*(int*)(game->ptr.fpixel_add + ((x + (y * (int)game->info.res_x)) * (game->info.bpp / 8))));
 			if (write(fd, &color, 3) < 0)
 				return (0);
 			x++;
@@ -48,7 +48,7 @@ int		screenshot(t_game *game)
 	pad = (4 - ((int)game->info.res_x * 3) % 4) % 4;
 	filesize = 54 + (3 * ((int)game->info.res_x + pad) * (int)game->info.res_y);
 	ft_bzero(header, 54);
-	fd = open("save.bmp", O_CREAT | O_RDWR | O_TRUNC);
+	fd = open("screenshot.bmp", O_CREAT | O_RDWR | O_TRUNC);
     header[0] = (unsigned char)('B');
 	header[1] = (unsigned char)('M');
 	conv_char(header + 2, filesize);
