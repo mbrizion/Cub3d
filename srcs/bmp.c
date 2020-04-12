@@ -13,25 +13,28 @@ void conv_char(unsigned char *start, int size)
 }
 
 
-int fill_bmp(t_game *game, int fd)
+static int	fill_bmp(int fd, t_game *game)
 {
-	char *first_pixel;
-	int i,j;
-	int endian;
+	int x;
+	int y;
+	int		color;
 
-	first_pixel = mlx_get_data_addr(game->ptr.buffer, &game->info.bpp, &game->info.size_line, &endian);
-	i = 0;
-	while (i < (int)game->info.res_y)
+	y = (int)game->info.res_x;
+	while (y > 0)
 	{
-		j = 0;
-		while (j < (int)game->info.res_x)
+		x = 0;
+		while (x < (int)game->info.res_y)
 		{
-			write(fd, &first_pixel[j], 1);
-			j++;	
+			color = (*(int*)(game->ptr.fpixel_add + ((x + (y * (int)game->info.res_y)) * (game->info.bpp / 8))));
+			if (write(fd, &color, 3) < 0)
+				return (0);
+			x++;
 		}
-		i++;
+		y--;
 	}
+	return (1);
 }
+
 
 int		screenshot(t_game *game)
 {
@@ -45,9 +48,9 @@ int		screenshot(t_game *game)
 	pad = (4 - ((int)game->info.res_x * 3) % 4) % 4;
 	filesize = 54 + (3 * ((int)game->info.res_x + pad) * (int)game->info.res_y);
 	ft_bzero(header, 54);
-	fd = open("save.bmp", O_CREAT | O_RDWR | O_TRUNC, 0666);
-    header[0] = 'B';
-	header[1] = 'M';
+	fd = open("save.bmp", O_CREAT | O_RDWR | O_TRUNC);
+    header[0] = (unsigned char)('B');
+	header[1] = (unsigned char)('M');
 	conv_char(header + 2, filesize);
 	header[10] = (unsigned char)(54);
 	header[14] = (unsigned char)(40);
@@ -58,7 +61,7 @@ int		screenshot(t_game *game)
 	header[27] = (unsigned char)(1);
 	header[28] = (unsigned char)(24);
 	write(fd, header, 54);
-	fill_bmp(game, fd);
+	fill_bmp(fd, game);
 	close (fd);
 	return (0);
 }

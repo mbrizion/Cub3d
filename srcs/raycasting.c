@@ -6,7 +6,7 @@
 /*   By: jacktatoume <jacktatoume@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 01:33:14 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/03/29 11:50:56 by jacktatoume      ###   ########.fr       */
+/*   Updated: 2020/04/12 13:04:18 by jacktatoume      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,4 +133,5 @@ void	raycasting(t_game *game)
 	// 	printf ("Nop3\n");
 	// mlx_put_image_to_window(game->ptr.mlx_ptr, game->ptr.win_ptr,test_img, game->info.res_x / 2, ((game->info.res_y / 2) - (50 / game->info.res_y)));
 	// *************************************************
+	free (game->info.sprite.wall_dist);
 }

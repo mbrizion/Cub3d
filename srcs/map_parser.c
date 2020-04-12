@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jacktatoume <jacktatoume@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 03:37:38 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/03/11 04:27:28 by mbrizion         ###   ########.fr       */
+/*   Updated: 2020/04/12 13:07:56 by jacktatoume      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,20 +114,6 @@ int	get_map(t_info *info, char **map)
 		j = 0;
 		i++;
 	}
-	// AFFICHE MAP
-	i = 0;
-	j = 0;
-	// while (i < info->map_len + 1)
-	// {
-	// 	j = 0;
-	// 	while (j < info->len_line)
-	// 	{
-	// 		printf ("%d", info->map[i][j]);
-	// 		j++;
-	// 	}
-	// 	printf ("\n");
-	// 	i++;
-	// }
 	return (0);
 }
 
@@ -311,7 +297,6 @@ int	parser(t_info *info, char *path)
 	while (i)
 		free(tmp[i--]);
 	free(tmp);
-
 
 	close (fd);
 	return (0);
