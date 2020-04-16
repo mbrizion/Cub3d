@@ -4,9 +4,11 @@ SO ./pics/greystone.xpm
 WE ./pics/redbrick.xpm
 EA ./pics/wood.xpm
 
-S ./pics/wood.xpm
+S ./pics/barrel.xpm
 F 17,156,45
 C 116,184,252
-111
-111
-111
+111111
+100001
+10E201
+100001
+111111

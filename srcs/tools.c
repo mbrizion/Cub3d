@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jacktatoume <jacktatoume@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 05:04:21 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/03/09 05:26:02 by mbrizion         ###   ########.fr       */
+/*   Updated: 2020/04/12 20:32:11 by jacktatoume      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,9 @@ int		get_rgb(char *str)
 	color += ft_atoi(tmp[0]) << 16;
 	color += ft_atoi(tmp[1]) << 8;
 	color += ft_atoi(tmp[2]);
-	free(tmp);
+	free(tmp[0]);
+	free(tmp[1]);
+	free(tmp[2]);
 	return (color);
 }
 

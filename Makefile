@@ -9,11 +9,14 @@ SRCS	= 	srcs/main.c \
 			srcs/sprite_raycast.c \
 			srcs/raycasting2.c \
 			srcs/map_checker.c \
-			srcs/bmp.c
+			srcs/bmp.c \
+			srcs/free_all.c
 
 OBJS	= ${SRCS:.c=.o}
 
 NAME	= Cub3D
+
+LIB		= libft/libft.a ft_printf_error/ft_printf_error.a -lbsd -lm -lmlx -lXext -lX11
 
 CC		= gcc -fsanitize=address
 
@@ -24,7 +27,7 @@ RM		= rm -rf
 $(NAME): ${OBJS}
 	make -C libft
 	make -C ft_printf_error
-	${CC} -lbsd -lm -lmlx -lXext -lX11 ${SRCS} -o ${NAME} libft/libft.a ft_printf_error/ft_printf_error.a /home/jacktatoume/minilibx_linux/libmlx.a
+	${CC} ${SRCS} -o ${NAME} ${LIB} ${INC} /home/jacktatoume/minilibx_linux/libmlx.a
 	echo ${GREEN}[Comp.DONE]${END}
 
 .c.o:
@@ -33,7 +36,7 @@ $(NAME): ${OBJS}
 all:	${NAME}
 
 clean: 
-	${RM} ${OBJS}
+	${RM} ${OBJS} 
 
 fclean: clean
 	${RM} ${NAME}

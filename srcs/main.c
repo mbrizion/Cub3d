@@ -6,7 +6,7 @@
 /*   By: jacktatoume <jacktatoume@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 22:28:30 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/03/29 11:46:20 by jacktatoume      ###   ########.fr       */
+/*   Updated: 2020/04/16 13:33:54 by jacktatoume      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ int 	main(int argc, char **argv)
 {
 	t_game game;
 	
+	if (argc < 2)
+		return (0);
 	if (!(ft_strnstr(((argv[1]) + ft_strlen(argv[1]) - 4), ".cub", 4)))
 		error(-7);
 	if (parser(&game.info, argv[1]) < 0)
@@ -79,7 +81,7 @@ int 	main(int argc, char **argv)
 	if ((game.ptr.win_ptr = mlx_new_window(game.ptr.mlx_ptr, game.info.res_x, game.info.res_y, "Cub3D")) == 0)
 		return (-1);
 	raycasting(&game);
-	if (ft_strnstr(argv[2], "--save", 6))
+	if (argv[2] && ft_strnstr(argv[2], "--save", 6))
 		screenshot(&game);
 	mlx_hook(game.ptr.win_ptr, DestroyNotify, StructureNotifyMask, close_window, 0);
 	mlx_hook(game.ptr.win_ptr, KeyPress, KeyPressMask, &keypress, &game);

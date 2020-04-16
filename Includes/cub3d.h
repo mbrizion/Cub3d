@@ -6,7 +6,7 @@
 /*   By: jacktatoume <jacktatoume@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 22:44:34 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/03/19 16:05:47 by jacktatoume      ###   ########.fr       */
+/*   Updated: 2020/04/12 20:27:37 by jacktatoume      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,5 +203,6 @@ int		close_window(void);
 int		map_checker(char **map, t_info *info);
 char	*ft_strdup_len(const char *s1, int len);
 int		screenshot(t_game *game);
+int		free_all(t_game *game);
 
 #endif

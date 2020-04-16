@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sprite_raycast.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jacktatoume <jacktatoume@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 00:43:52 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/03/06 00:40:15 by mbrizion         ###   ########.fr       */
+/*   Updated: 2020/04/16 14:36:29 by jacktatoume      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ int	sprite_raycast(t_game *game, double *wall_dist)
 	{
 		game->info.sprite.spriteX = game->info.sprite_pos.pos_x - game->info.pos_x;
 		game->info.sprite.spriteY = game->info.sprite_pos.pos_y - game->info.pos_y;
-
+	printf ("%f\n", game->info.sprite.spriteX);
+	printf ("%f\n", game->info.sprite.spriteY);
 		game->info.sprite.invDet = 1.0 / (game->plan_x * game->dirY - game->dirX * game->plan_y); 
 		game->info.sprite.transformX = game->info.sprite.invDet * (game->dirY * game->info.sprite.spriteX - game->dirX * game->info.sprite.spriteY);
 		game->info.sprite.transformY = game->info.sprite.invDet * (-game->plan_y * game->info.sprite.spriteX + game->plan_x * game->info.sprite.spriteY);
