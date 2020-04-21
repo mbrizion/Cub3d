@@ -18,7 +18,7 @@ NAME	= Cub3D
 
 LIB		= libft/libft.a ft_printf_error/ft_printf_error.a -lbsd -lm -lmlx -lXext -lX11
 
-CC		= gcc -fsanitize=address
+CC		= gcc #-fsanitize=address
 
 CFLAGS	= #-Wall -Wextra -Werror 
 

@@ -6,7 +6,7 @@
 /*   By: jacktatoume <jacktatoume@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 00:43:52 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/04/16 14:36:29 by jacktatoume      ###   ########.fr       */
+/*   Updated: 2020/04/21 11:22:25 by jacktatoume      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ int	sprite_raycast(t_game *game, double *wall_dist)
 	{
 		game->info.sprite.spriteX = game->info.sprite_pos.pos_x - game->info.pos_x;
 		game->info.sprite.spriteY = game->info.sprite_pos.pos_y - game->info.pos_y;
-	printf ("%f\n", game->info.sprite.spriteX);
-	printf ("%f\n", game->info.sprite.spriteY);
+
 		game->info.sprite.invDet = 1.0 / (game->plan_x * game->dirY - game->dirX * game->plan_y); 
 		game->info.sprite.transformX = game->info.sprite.invDet * (game->dirY * game->info.sprite.spriteX - game->dirX * game->info.sprite.spriteY);
 		game->info.sprite.transformY = game->info.sprite.invDet * (-game->plan_y * game->info.sprite.spriteX + game->plan_x * game->info.sprite.spriteY);
@@ -53,10 +52,13 @@ int	sprite_raycast(t_game *game, double *wall_dist)
 		{
 			game->info.sprite.texX = (int)(256 * (x - (-game->info.sprite.spriteWidth / 2 + game->info.sprite.spriteScreenX)) * game->tex.tex_w / game->info.sprite.spriteWidth) / 256;
 			y = game->info.sprite.drawStartY;
+			printf ("%f\n", game->info.sprite.transformY);
+			printf ("%f\n", wall_dist[x]);
 			if(game->info.sprite.transformY > 0 && x > 0 && x < game->info.res_x && game->info.sprite.transformY < wall_dist[x])
 			{
 				while (y < game->info.sprite.drawEndY)
 				{
+					
 					game->info.sprite.d = (y) * 256 - game->info.res_y * 128 + game->info.sprite.spriteHeight * 128;
 					game->info.sprite.texY = ((game->info.sprite.d * game->tex.tex_h) / game->info.sprite.spriteHeight) / 256;
 					
@@ -66,7 +68,6 @@ int	sprite_raycast(t_game *game, double *wall_dist)
 					game->info.sprite.color_c[0] = game->info.sprite.ftexel_p[game->info.sprite.texY * game->tex.tex_len_size + game->info.sprite.texX * game->tex.tex_bpp / 8];
 					game->info.sprite.color_c[1] = game->info.sprite.ftexel_p[game->info.sprite.texY * game->tex.tex_len_size + game->info.sprite.texX * game->tex.tex_bpp / 8 + 1];
 					game->info.sprite.color_c[2] = game->info.sprite.ftexel_p[game->info.sprite.texY * game->tex.tex_len_size + game->info.sprite.texX * game->tex.tex_bpp / 8 + 2];
-
 					if((game->info.sprite.color & 0x00FFFFFF) != 0)
 						ft_memcpy(&game->ptr.fpixel_add[(y * game->info.size_line + x * (game->info.bpp / 8))],
 							&game->info.sprite.ftexel_p[(game->info.sprite.texY * game->tex.tex_len_size + game->info.sprite.texX * (game->info.bpp / 8))],

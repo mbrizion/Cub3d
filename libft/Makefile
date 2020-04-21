@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+         #
+#    By: jacktatoume <jacktatoume@student.42.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/14 14:31:44 by mbrizion          #+#    #+#              #
-#    Updated: 2020/02/12 16:21:17 by mbrizion         ###   ########.fr        #
+#    Updated: 2020/04/21 10:59:16 by jacktatoume      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ NAME	= libft.a
 
 CC	= gcc
 
-CFLAGS	= -Wall -Wextra -Werror
+CFLAGS	= #-Wall -Wextra -Werror
 
 RM	= rm -f
 

@@ -6,7 +6,7 @@
 /*   By: jacktatoume <jacktatoume@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 01:33:14 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/04/12 19:15:46 by jacktatoume      ###   ########.fr       */
+/*   Updated: 2020/04/21 11:20:37 by jacktatoume      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	color_pixel(int x, int y, int color, t_game *game)
 void	ray_init(t_ray *ray, t_game *game, int x)
 {
 	ray->center = (2 * x / game->info.res_x) - 1;
+	ray->len = 0;
 	ray->pos_x = game->info.pos_x;
 	ray->pos_y = game->info.pos_y;
 	ray->dir_x = game->dirX + game->plan_x * ray->center;

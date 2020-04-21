@@ -1,14 +1,30 @@
-R 1280 720
-NO ./pics/eagle.xpm
-SO ./pics/greystone.xpm
-WE ./pics/redbrick.xpm
-EA ./pics/wood.xpm
+               NO ./pics/blackbrick.xpm
+    EA ./pics/blackstone.xpm
+  SO ./pics/greystone.xpm
+   WE ./pics/neg_eagle.xpm
+   R 1280 720
 
-S ./pics/barrel.xpm
-F 17,156,45
-C 116,184,252
+        F 22,   125,     22     
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+         
+        C 61,   93,  182                   
+               S ./pics/barrel.xpm               
+
 111111
 100001
-10E201
+10N201
 100001
 111111
