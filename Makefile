@@ -14,7 +14,7 @@ C_FILES	=	main.c \
 			raycasting2.c \
 			map_checker.c \
 			bmp.c \
-			free_all.c
+			free_all.c 
 			
 SRCS	=	$(addprefix ${C_DIR}/, ${C_FILES})
 
