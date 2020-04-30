@@ -1,4 +1,4 @@
-#include "../Includes/cub3d.h"
+#include "cub3d.h"
 
 int free_all(t_game *game)
 {

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Includes/cub3d.h"
+#include "cub3d.h"
 
 t_sprite_pos	*get_sprite(int x, int y, t_info *info)
 {

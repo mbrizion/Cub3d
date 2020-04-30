@@ -1,51 +1,57 @@
-SRCS	= 	srcs/main.c \
-			srcs/map_parser.c \
-			GNL/get_next_line.c \
-			GNL/get_next_line_utils.c \
-			srcs/tools.c \
-			srcs/raycasting.c \
-			srcs/move.c \
-			srcs/keypress.c \
-			srcs/sprite_raycast.c \
-			srcs/raycasting2.c \
-			srcs/map_checker.c \
-			srcs/bmp.c \
-			srcs/free_all.c
+NAME	=	Cub3D
 
-OBJS	= ${SRCS:.c=.o}
+C_DIR	=	srcs
 
-NAME	= Cub3D
+C_FILES	=	main.c \
+			map_parser.c \
+			get_next_line.c \
+			get_next_line_utils.c \
+			tools.c \
+			raycasting.c \
+			move.c \
+			keypress.c \
+			sprite_raycast.c \
+			raycasting2.c \
+			map_checker.c \
+			bmp.c \
+			free_all.c
+			
+SRCS	=	$(addprefix ${C_DIR}/, ${C_FILES})
 
-LIB		= libft/libft.a ft_printf_error/ft_printf_error.a -lbsd -lm -lmlx -lXext -lX11
+OBJS	=	${SRCS:.c=.o}
 
-CC		= gcc #-fsanitize=address
+CC		=	clang
 
-CFLAGS	= #-Wall -Wextra -Werror 
+CFLAGS	=	-I./inc/ #-Wall -Wextra -Werror -fsanitize=address
 
-RM		= rm -rf
+LIBS	=	libft/libft.a ft_printf_error/ft_printf_error.a
 
-$(NAME): ${OBJS}
-	make -C libft
-	make -C ft_printf_error
-	${CC} ${SRCS} -o ${NAME} ${LIB} ${INC} /home/jacktatoume/minilibx_linux/libmlx.a
-	echo ${GREEN}[Comp.DONE]${END}
+RM		= rm -f
+
+all:		${NAME}
+
+${NAME}:	${OBJS}
+			make -C libft
+			make -C ft_printf_error
+			${CC} ${OBJS} -lmlx -lbsd -lXext -lX11 -lm ${LIBS} -o ${NAME}
+			echo ${GREEN}[Comp.DONE]${END}
 
 .c.o:
-	${CC} ${CFLAGS} -c $< -o $@
+			${CC} ${CFLAGS} -c $< -o $@
 
-all:	${NAME}
+.PHONY:		clean fclean re .c.o all
 
-clean: 
-	${RM} ${OBJS} 
+clean:
+			${RM} ${OBJS}
+			make clean -C libft
+			make clean -C ft_printf_error
 
-fclean: clean
-	${RM} ${NAME}
-	make fclean -C libft
-	make fclean -C ft_printf_error
+fclean:		clean
+			${RM} ${NAME}
+			make fclean -C libft
+			make fclean -C ft_printf_error
 
-re: 	fclean all
+re:			fclean all
 
 GREEN	= '\033[0;32m'
 END		= '\033[0m'
-
-.PHONY: re fclean clean .c.o all

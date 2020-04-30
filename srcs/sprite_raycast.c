@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Includes/cub3d.h"
+#include "cub3d.h"
 
 int	sprite_raycast(t_game *game, double *wall_dist)
 {
@@ -29,10 +29,14 @@ int	sprite_raycast(t_game *game, double *wall_dist)
 		game->info.sprite.spriteY = game->info.sprite_pos.pos_y - game->info.pos_y;
 
 		game->info.sprite.invDet = 1.0 / (game->plan_x * game->dirY - game->dirX * game->plan_y); 
+
 		game->info.sprite.transformX = game->info.sprite.invDet * (game->dirY * game->info.sprite.spriteX - game->dirX * game->info.sprite.spriteY);
 		game->info.sprite.transformY = game->info.sprite.invDet * (-game->plan_y * game->info.sprite.spriteX + game->plan_x * game->info.sprite.spriteY);
+
 		game->info.sprite.spriteScreenX = (int)((game->info.res_x / 2) * (1 + (game->info.sprite.transformX / game->info.sprite.transformY)));
+
 		game->info.sprite.spriteHeight = abs((int)(game->info.res_y / (game->info.sprite.transformY)));
+
 		game->info.sprite.drawStartY = (-game->info.sprite.spriteHeight / 2) + (game->info.res_y / 2);
 		if(game->info.sprite.drawStartY < 0)
 			game->info.sprite.drawStartY = 0;
@@ -41,19 +45,19 @@ int	sprite_raycast(t_game *game, double *wall_dist)
 			game->info.sprite.drawEndY = game->info.res_y - 1;
 
 		game->info.sprite.spriteWidth = abs((int)(game->info.res_y / (game->info.sprite.transformY)));
-		game->info.sprite.drawStartX = (-game->info.sprite.spriteWidth / 2) + game->info.sprite.spriteScreenX;
+		
+		game->info.sprite.drawStartX = -game->info.sprite.spriteWidth / 2 + game->info.sprite.spriteScreenX;
 		if(game->info.sprite.drawStartX < 0)
 			game->info.sprite.drawStartX = 0;
+
 		game->info.sprite.drawEndX = (game->info.sprite.spriteWidth / 2) + game->info.sprite.spriteScreenX;
+
 		if(game->info.sprite.drawEndX >= game->info.res_x)
 			game->info.sprite.drawEndX = game->info.res_x - 1;
 		x = game->info.sprite.drawStartX;
 		while (x < game->info.sprite.drawEndX)
 		{
 			game->info.sprite.texX = (int)(256 * (x - (-game->info.sprite.spriteWidth / 2 + game->info.sprite.spriteScreenX)) * game->tex.tex_w / game->info.sprite.spriteWidth) / 256;
-			y = game->info.sprite.drawStartY;
-			printf ("%f\n", game->info.sprite.transformY);
-			printf ("%f\n", wall_dist[x]);
 			if(game->info.sprite.transformY > 0 && x > 0 && x < game->info.res_x && game->info.sprite.transformY < wall_dist[x])
 			{
 				while (y < game->info.sprite.drawEndY)

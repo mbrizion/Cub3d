@@ -2,7 +2,7 @@
 ** HEADER
 */
 
-#include "../Includes/cub3d.h"
+#include "cub3d.h"
 
 void conv_char(unsigned char *start, int size)
 {
