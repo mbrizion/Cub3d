@@ -1,6 +1,7 @@
 NAME	=	Cub3D
 
-C_DIR	=	srcs
+C_DIR	=	srcs/
+O_DIR	=	objs/
 
 C_FILES	=	main.c \
 			map_parser.c \
@@ -14,11 +15,10 @@ C_FILES	=	main.c \
 			raycasting2.c \
 			map_checker.c \
 			bmp.c \
-			free_all.c 
-			
-SRCS	=	$(addprefix ${C_DIR}/, ${C_FILES})
+			free_all.c
 
-OBJS	=	${SRCS:.c=.o}
+SRCS = $(addprefix $(C_DIR), $(C_FILES))
+OBJS = $(addprefix $(O_DIR), $(C_FILES:.c=.o))
 
 CC		=	clang
 
@@ -30,14 +30,16 @@ RM		= rm -f
 
 all:		${NAME}
 
+
+$(O_DIR)%.o:$(C_DIR)%.c
+			@mkdir -p $(O_DIR)
+			${CC} ${CFLAGS} -c $< -o $@
+
 ${NAME}:	${OBJS}
 			make -C libft
 			make -C ft_printf_error
 			${CC} ${OBJS} -lmlx -lbsd -lXext -lX11 -lm ${LIBS} -o ${NAME}
 			echo ${GREEN}[Comp.DONE]${END}
-
-.c.o:
-			${CC} ${CFLAGS} -c $< -o $@
 
 .PHONY:		clean fclean re .c.o all
 
