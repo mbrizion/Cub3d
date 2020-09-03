@@ -26,6 +26,10 @@ CFLAGS	=	-I./inc/ #-Wall -Wextra -Werror -fsanitize=address
 
 LIBS	=	libft/libft.a ft_printf_error/ft_printf_error.a
 
+LINUX_FLAGS = -lmlx -lbsd -lXext -lX11 -lm 
+
+MAC_FLAGS = -lmlx -framework OpenGL -framework AppKit -lm
+
 RM		= rm -f
 
 all:		${NAME}
@@ -38,7 +42,7 @@ $(O_DIR)%.o:$(C_DIR)%.c
 ${NAME}:	${OBJS}
 			make -C libft
 			make -C ft_printf_error
-			${CC} ${OBJS} -lmlx -lbsd -lXext -lX11 -lm ${LIBS} -o ${NAME}
+			${CC} ${OBJS} ${MAC_FLAGS} ${CFLAGS} ${LIBS} -o ${NAME}
 			echo ${GREEN}[Comp.DONE]${END}
 
 .PHONY:		clean fclean re .c.o all

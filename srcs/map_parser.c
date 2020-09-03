@@ -3,29 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jacktatoume <jacktatoume@student.42.fr>    +#+  +:+       +#+        */
+/*   By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 03:37:38 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/04/16 13:47:10 by jacktatoume      ###   ########.fr       */
+/*   Updated: 2020/09/04 00:06:25 by mbrizion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-t_sprite_pos	*get_sprite(int x, int y, t_info *info)
-{
-	t_sprite_pos *sprt;
+// t_sprite_pos	*get_sprite(int x, int y, t_info *info)
+// {
+// 	t_sprite_pos *sprt;
 
-	if (!(sprt = malloc(sizeof(t_sprite_pos))))
-		return (0);
-	sprt->pos_x = x + 0.5;
-	sprt->pos_y = y + 0.5;
-	return(sprt);
-}
+// 	if (!(sprt = malloc(sizeof(t_sprite_pos))))
+// 		return (0);
+// 	sprt->pos_x = x + 0.5;
+// 	sprt->pos_y = y + 0.5;
+// 	return(sprt);
+// }
 
 int		av_char(char c)
 {
-	if (c == 'N' || c == 'W' || c == 'W' || c == 'S' || c == '0' || c == '1' || c == '2' || c == ' ')
+	if (c == 'N' || c == 'W' || c == 'E' || c == 'S' || c == '0' || c == '1' || c == '2' || c == ' ')
 		return (1);
 	else if (c == '\t')
 		return (0);
@@ -86,9 +86,9 @@ int	get_map(t_info *info, char **map)
 
 	i = 0;
 	j = 0;
-	if (!(info->sprite_list = malloc(sizeof(t_sprite_pos))))
-		return (-1);
-	info->sprite_list->next = 0;
+	// if (!(info->sprite_list = malloc(sizeof(t_sprite_pos))))
+	// 	return (-1);
+	// info->sprite_list->next = 0;
 	info->map = malloc(sizeof(int *) * (info->map_len + 1));
 	while (i < info->map_len + 1)
 	{
@@ -100,11 +100,13 @@ int	get_map(t_info *info, char **map)
 				error (-8);
 			if (map[i][j] == '2')
 			{
-				if (!(info->sprite_list->next = malloc(sizeof(t_sprite_pos))))
-					return (-1);
-				info->sprite_list->content = get_sprite(i, j, info);
-				info->sprite_list = info->sprite_list->next;
-				info->sprite_list->next = 0;
+				info->sprite_pos.pos_x = i + 0.5;
+				info->sprite_pos.pos_y = j + 0.5;
+				// if (!(info->sprite_list->next = malloc(sizeof(t_sprite_pos))))
+				// 	return (-1);
+				// info->sprite_list->content = get_sprite(i, j, info);
+				// info->sprite_list = info->sprite_list->next;
+				// info->sprite_list->next = 0;
 				info->map[i][j] = map[i][j] - '0';
 			}
 			if (!check_pos(i, j, info, map[i][j]))

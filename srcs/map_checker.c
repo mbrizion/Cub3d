@@ -6,7 +6,7 @@
 /*   By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 23:19:18 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/03/11 03:09:06 by mbrizion         ###   ########.fr       */
+/*   Updated: 2020/09/03 23:55:01 by mbrizion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void error(int error_id)
 		ft_printf_error("Error\nNo spawnpoint\n");
 	else if (error_id == -3)
 		ft_printf_error("Error\nMap error\n");
+	else if (error_id == -7)
+		ft_printf_error("Error\nFile name error\n");
 	exit(0);
 }
 
