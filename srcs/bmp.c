@@ -1,6 +1,14 @@
-/*
-** HEADER
-*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   bmp.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/09/04 05:05:44 by mbrizion          #+#    #+#             */
+/*   Updated: 2020/09/04 06:00:56 by mbrizion         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "cub3d.h"
 
@@ -15,8 +23,8 @@ void conv_char(unsigned char *start, int size)
 
 static int	fill_bmp(int fd, t_game *game)
 {
-	int x;
-	int y;
+	int 	x;
+	int 	y;
 	int		color;
 
 	y = (int)game->info.res_y;
@@ -48,7 +56,8 @@ int		screenshot(t_game *game)
 	pad = (4 - ((int)game->info.res_x * 3) % 4) % 4;
 	filesize = 54 + (3 * ((int)game->info.res_x + pad) * (int)game->info.res_y);
 	ft_bzero(header, 54);
-	fd = open("screenshot.bmp", O_CREAT | O_RDWR | O_TRUNC);
+	if (fd = open("screenshot.bmp", O_CREAT | O_RDWR | O_TRUNC) < 0)
+		return (0);
     header[0] = (unsigned char)('B');
 	header[1] = (unsigned char)('M');
 	conv_char(header + 2, filesize);

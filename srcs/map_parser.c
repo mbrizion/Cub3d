@@ -6,20 +6,11 @@
 /*   By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 03:37:38 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/04 03:10:03 by mbrizion         ###   ########.fr       */
+/*   Updated: 2020/09/04 05:42:42 by mbrizion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-int		av_char(char c)
-{
-	if (c == 'N' || c == 'W' || c == 'E' || c == 'S' || c == '0' || c == '1' || c == '2' || c == ' ')
-		return (1);
-	else if (c == '\t')
-		return (0);
-	return (0);
-}
 
 int		check_pos(int x, int y, t_info *info, char c)
 {
@@ -83,8 +74,6 @@ int	get_map(t_info *info, char **map)
 			return (-1);
 		while (j < ft_strlen(map[i]))
 		{
-			// if (!av_char(map[i][j]))
-			// 	error (-8);
 			if (map[i][j] == '2')
 			{
 				info->sprite_pos.pos_x = i + 0.5;
@@ -281,5 +270,7 @@ int	parser(t_info *info, char *path)
 		free(tmp[i--]);
 	free(tmp);
 	close (fd);
+	if (!info->spawn_dir)
+		error(-2);
 	return (0);
 }

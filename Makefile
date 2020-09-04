@@ -6,7 +6,7 @@
 #    By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/04 03:41:23 by mbrizion          #+#    #+#              #
-#    Updated: 2020/09/04 04:34:28 by mbrizion         ###   ########.fr        #
+#    Updated: 2020/09/04 05:56:54 by mbrizion         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,7 @@ fclean:			clean
 				@${RM} ${NAME}
 				@make fclean -C libft
 				@make fclean -C ft_printf_error
-				@rm -rf objs
+				@rm -rf objs screenshot.bmp
 
 re:				fclean all
 
@@ -73,4 +73,4 @@ GREEN		= 	'\033[0;32m'
 BLUE		= 	'\033[0;36m'
 END			= 	'\033[0m'
 
-.PHONY:			clean fclean re .c.o all
+.PHONY: clean fclean re .c.o all

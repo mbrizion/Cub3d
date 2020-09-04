@@ -6,7 +6,7 @@
 #    By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/14 14:31:44 by mbrizion          #+#    #+#              #
-#    Updated: 2020/09/04 04:22:37 by mbrizion         ###   ########.fr        #
+#    Updated: 2020/09/04 04:52:02 by mbrizion         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -93,4 +93,4 @@ re: 			fclean all
 GREEN		= 	'\033[0;32m'
 END			= 	'\033[0m'
 
-.PHONY: 		re fclean clean .c.o all
+.PHONY: re fclean clean .c.o all

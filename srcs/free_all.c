@@ -6,7 +6,7 @@
 /*   By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/03 22:38:26 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/03 22:38:30 by mbrizion         ###   ########.fr       */
+/*   Updated: 2020/09/04 04:53:46 by mbrizion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,5 @@ int free_all(t_game *game)
         free(game->info.map[i]);
         i--;
     }
+    return (0);
 }
