@@ -6,7 +6,7 @@
 /*   By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 22:44:34 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/04 02:52:34 by mbrizion         ###   ########.fr       */
+/*   Updated: 2020/09/04 04:21:48 by mbrizion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 # define CUB3D_H
 
 #include "mlx.h"
-#include "../libft/libft.h"
+#include "libft/libft.h"
 #include <stdio.h>
-#include "get_next_line.h"
 #include <math.h>
 
 # define KEY_ESC 53

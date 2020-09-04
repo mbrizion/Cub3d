@@ -6,7 +6,7 @@
 /*   By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 12:27:19 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/03 22:40:51 by mbrizion         ###   ########.fr       */
+/*   Updated: 2020/09/04 04:10:22 by mbrizion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FT_PRINTF_H
 
 # include <stdarg.h>
-# include "../../libft/libft.h"
+# include "../libft/libft.h"
 
 typedef struct	s_toprint
 {

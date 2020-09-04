@@ -6,21 +6,11 @@
 /*   By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 14:52:41 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/03/11 02:01:34 by mbrizion         ###   ########.fr       */
+/*   Updated: 2020/09/04 04:23:50 by mbrizion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-
-size_t	ft_strlen(const char *s)
-{
-	int len;
-
-	len = 0;
-	while (s[len])
-		len++;
-	return (len);
-}
+#include "libft.h"
 
 int		ft_join_this(char **line, char *buff)
 {

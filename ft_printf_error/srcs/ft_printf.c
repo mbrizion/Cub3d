@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jacktatoume <jacktatoume@student.42.fr>    +#+  +:+       +#+        */
+/*   By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 12:24:01 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/03/13 09:24:17 by jacktatoume      ###   ########.fr       */
+/*   Updated: 2020/09/04 04:10:39 by mbrizion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "../../libft/libft.h"
+#include "../libft/libft.h"
 
 char		conv_identifier(const char *str, int index)
 {

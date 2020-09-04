@@ -6,7 +6,7 @@
 /*   By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 13:07:40 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/02/06 20:43:42 by mbrizion         ###   ########.fr       */
+/*   Updated: 2020/09/04 04:20:50 by mbrizion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,12 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <sys/stat.h>
+# include <fcntl.h>
+# define BUFFER_SIZE 500
+
 
 typedef struct	s_list
 {
@@ -67,4 +73,12 @@ void			ft_lstclear(t_list **lst, void (*del)(void*));
 void			ft_lstiter(t_list *lst, void (*f)(void *));
 t_list			*ft_lstmap(t_list *lst, void *(*f)(void *),
 				void (*del)(void *));
+int				get_next_line(int fd, char **line);
+size_t			ft_strlen(const char *s);
+char			*ft_strjoin(char const *s1, char const *s2);
+char			*ft_substr(char const *s, unsigned int start, size_t len);
+void			*ft_memchr(const void *s, int c, size_t n);
+char			*ft_strchr(const char *s, int c);
+size_t			ft_strlcpy(char *dst, const char *s, size_t dstlen);
+
 #endif

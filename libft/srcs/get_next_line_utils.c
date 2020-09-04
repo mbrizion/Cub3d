@@ -6,11 +6,11 @@
 /*   By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 14:53:10 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/02/06 20:50:31 by mbrizion         ###   ########.fr       */
+/*   Updated: 2020/09/04 04:20:37 by mbrizion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
