@@ -6,22 +6,11 @@
 /*   By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 03:37:38 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/04 00:06:25 by mbrizion         ###   ########.fr       */
+/*   Updated: 2020/09/04 03:10:03 by mbrizion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-// t_sprite_pos	*get_sprite(int x, int y, t_info *info)
-// {
-// 	t_sprite_pos *sprt;
-
-// 	if (!(sprt = malloc(sizeof(t_sprite_pos))))
-// 		return (0);
-// 	sprt->pos_x = x + 0.5;
-// 	sprt->pos_y = y + 0.5;
-// 	return(sprt);
-// }
 
 int		av_char(char c)
 {
@@ -40,6 +29,7 @@ int		check_pos(int x, int y, t_info *info, char c)
 		info->pos_x = x + 0.2;
 		info->pos_y = y + 0.2;
 		info->map[x][y] = 0;
+		
 		return (1);
 	}
 	else if (info->spawn_dir)
@@ -86,9 +76,6 @@ int	get_map(t_info *info, char **map)
 
 	i = 0;
 	j = 0;
-	// if (!(info->sprite_list = malloc(sizeof(t_sprite_pos))))
-	// 	return (-1);
-	// info->sprite_list->next = 0;
 	info->map = malloc(sizeof(int *) * (info->map_len + 1));
 	while (i < info->map_len + 1)
 	{
@@ -96,17 +83,12 @@ int	get_map(t_info *info, char **map)
 			return (-1);
 		while (j < ft_strlen(map[i]))
 		{
-			if (!av_char(map[i][j]))
-				error (-8);
+			// if (!av_char(map[i][j]))
+			// 	error (-8);
 			if (map[i][j] == '2')
 			{
 				info->sprite_pos.pos_x = i + 0.5;
 				info->sprite_pos.pos_y = j + 0.5;
-				// if (!(info->sprite_list->next = malloc(sizeof(t_sprite_pos))))
-				// 	return (-1);
-				// info->sprite_list->content = get_sprite(i, j, info);
-				// info->sprite_list = info->sprite_list->next;
-				// info->sprite_list->next = 0;
 				info->map[i][j] = map[i][j] - '0';
 			}
 			if (!check_pos(i, j, info, map[i][j]))
@@ -144,7 +126,7 @@ void	get_tex_path(t_info *info, char *line, char dir)
 {
 	int i;
 	int j;
-
+	
 	i = 2;
 	while (line[i] && line[i] == ' ')
 		i++;
@@ -171,12 +153,11 @@ void	get_tex_path(t_info *info, char *line, char dir)
 		info->east_path = malloc(sizeof(char) * ((j - i) + 1));
 		ft_strlcpy(info->east_path, &line[i], ((j - i) + 1));
 	}
-	else if (dir == 'P')
+	else if (dir == 'P' && !info->sprite.sprite_path)
 	{
 		info->sprite.sprite_path = malloc(sizeof(char) * ((j - i) + 1));
 		ft_strlcpy(info->sprite.sprite_path, &line[i], ((j - i) + 1));
-	}
-	
+	}	
 }
 
 int check_info(char *s)
@@ -256,7 +237,7 @@ int	parser(t_info *info, char *path)
 		j = 0;
 		while (line[j])
 		{
-			if (check_info(line))
+			if (check_info(line)  && !info->sprite.sprite_path)
 			{
 				while (line[j] && (line[j] == ' ' || line[j] == '\t'))
 					j++;
@@ -275,9 +256,9 @@ int	parser(t_info *info, char *path)
 				else if (line[j] && !ft_strncmp("F", &line[j], 1))
 					info->floor_color = get_rgb(&line[j]);
 				else if (line[j] && !ft_strncmp("S", &line[j], 1) && ft_strncmp("SO", &line[j], 2))
-					get_tex_path(info, &line[j], 'P');
+						get_tex_path(info, &line[j], 'P');
 			}
-			else if (!check_info(line) && line[j] != '\n')
+			else if (line[j] != '\n')
 			{
 				tmp[i] = ft_strdup(&line[j]);
 				info->len_line = info->len_line < ft_strlen(line) ? ft_strlen(line) : info->len_line;
@@ -299,7 +280,6 @@ int	parser(t_info *info, char *path)
 	while (i)
 		free(tmp[i--]);
 	free(tmp);
-
 	close (fd);
 	return (0);
 }

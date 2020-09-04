@@ -22,7 +22,7 @@ OBJS = $(addprefix $(O_DIR), $(C_FILES:.c=.o))
 
 CC		=	clang
 
-CFLAGS	=	-I./inc/ #-Wall -Wextra -Werror -fsanitize=address
+CFLAGS	=	-I./inc/ -fsanitize=address #-Wall -Wextra -Werror 
 
 LIBS	=	libft/libft.a ft_printf_error/ft_printf_error.a
 

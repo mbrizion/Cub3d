@@ -6,7 +6,7 @@
 /*   By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 22:44:34 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/03 22:42:36 by mbrizion         ###   ########.fr       */
+/*   Updated: 2020/09/04 02:52:34 by mbrizion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,6 +175,7 @@ typedef struct s_game
 	double		dirX;
 	double		dirY;
 }				t_game;
+
 
 int		parser(t_info *info, char *path);
 int		ft_nbrlen(int n);

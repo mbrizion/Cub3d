@@ -3,21 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jacktatoume <jacktatoume@student.42.fr>    +#+  +:+       +#+        */
+/*   By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 05:04:21 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/04/12 20:32:11 by jacktatoume      ###   ########.fr       */
+/*   Updated: 2020/09/04 02:29:34 by mbrizion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-int		charcmp(char c, char c2)
-{
-	if (c == c2)
-		return (1);
-	return (0);
-}
 
 int		ft_nbrlen(int n)
 {
