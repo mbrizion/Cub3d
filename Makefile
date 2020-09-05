@@ -6,7 +6,7 @@
 #    By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/04 03:41:23 by mbrizion          #+#    #+#              #
-#    Updated: 2020/09/04 05:56:54 by mbrizion         ###   ########.fr        #
+#    Updated: 2020/09/05 02:11:10 by mbrizion         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,8 @@ O_DIR		=	objs/
 
 C_FILES		=	main.c \
 				map_parser.c \
+				parser_utils.c \
+				parser_utils2.c \
 				tools.c \
 				raycasting.c \
 				move.c \
@@ -30,9 +32,9 @@ C_FILES		=	main.c \
 SRCS 		= 	$(addprefix $(C_DIR), $(C_FILES))
 OBJS 		= 	$(addprefix $(O_DIR), $(C_FILES:.c=.o))
 
-CC			=	clang
+CC			=	gcc
 
-CFLAGS		=	-I./ -fsanitize=address #-Wall -Wextra -Werror 
+CFLAGS		=	-I./ -Wall -Wextra -Werror #-fsanitize=address 
 
 LIBS		=	libft/libft.a ft_printf_error/ft_printf_error.a
 

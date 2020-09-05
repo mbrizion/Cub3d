@@ -1,8 +1,8 @@
                NO ./pics/blackbrick.xpm
-    EA ./pics/blackstone.xpm
+    EA ./pics/mossy.xpm
   SO ./pics/greystone.xpm
    WE ./pics/neg_eagle.xpm
-   R 1280 720
+   R 0 0
 
         F 22,   125,     22     
 

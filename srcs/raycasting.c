@@ -6,7 +6,7 @@
 /*   By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 01:33:14 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/04 00:44:58 by mbrizion         ###   ########.fr       */
+/*   Updated: 2020/09/05 02:24:56 by mbrizion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,21 +118,5 @@ void	raycasting(t_game *game)
 	sprite_raycast(game, game->info.sprite.wall_dist);
 	mlx_put_image_to_window(game->ptr.mlx_ptr, game->ptr.win_ptr,
 	game->ptr.buffer, 0, 0);
-
-	// *******************************
-	// void *test_img;
-	// int test_x;
-	// int test_y;
-
-	// test_img = mlx_new_image(game->ptr.mlx_ptr, game->info.res_x / 4, game->info.res_y / 4);
-	// if (!(test_img = mlx_xpm_file_to_image(game->ptr.mlx_ptr,"./pics/life.xpm", &test_x, &test_y)))
-	// 	printf ("Nop2\n");
-	// mlx_put_image_to_window(game->ptr.mlx_ptr, game->ptr.win_ptr,test_img, 10, game->info.res_y - 100);
-
-	// test_img = mlx_new_image(game->ptr.mlx_ptr, game->info.res_x, game->info.res_y);
-	// if (!(test_img = mlx_xpm_file_to_image(game->ptr.mlx_ptr,"./pics/crosshair.xpm", &test_x, &test_y)))
-	// 	printf ("Nop3\n");
-	// mlx_put_image_to_window(game->ptr.mlx_ptr, game->ptr.win_ptr,test_img, game->info.res_x / 2, ((game->info.res_y / 2) - (50 / game->info.res_y)));
-	// *************************************************
 	free (game->info.sprite.wall_dist);
 }

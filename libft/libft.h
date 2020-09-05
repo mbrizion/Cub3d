@@ -6,7 +6,7 @@
 /*   By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 13:07:40 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/04 04:20:50 by mbrizion         ###   ########.fr       */
+/*   Updated: 2020/09/05 00:15:18 by mbrizion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # define BUFFER_SIZE 500
-
 
 typedef struct	s_list
 {

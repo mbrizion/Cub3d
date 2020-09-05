@@ -6,13 +6,13 @@
 /*   By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/04 05:05:44 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/04 06:00:56 by mbrizion         ###   ########.fr       */
+/*   Updated: 2020/09/05 00:41:02 by mbrizion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void conv_char(unsigned char *start, int size)
+void		conv_char(unsigned char *start, int size)
 {
 	start[0] = (unsigned char)(size);
 	start[1] = (unsigned char)(size >> 8);
@@ -20,12 +20,11 @@ void conv_char(unsigned char *start, int size)
 	start[3] = (unsigned char)(size >> 24);
 }
 
-
 static int	fill_bmp(int fd, t_game *game)
 {
-	int 	x;
-	int 	y;
-	int		color;
+	int	x;
+	int	y;
+	int	color;
 
 	y = (int)game->info.res_y;
 	while (y > 0)
@@ -33,7 +32,8 @@ static int	fill_bmp(int fd, t_game *game)
 		x = 0;
 		while (x < (int)game->info.res_x)
 		{
-			color = (*(int*)(game->ptr.fpixel_add + ((x + (y * (int)game->info.res_x)) * (game->info.bpp / 8))));
+			color = (*(int*)(game->ptr.fpixel_add + ((x + (y *
+			(int)game->info.res_x)) * (game->info.bpp / 8))));
 			if (write(fd, &color, 3) < 0)
 				return (0);
 			x++;
@@ -43,34 +43,31 @@ static int	fill_bmp(int fd, t_game *game)
 	return (1);
 }
 
-
-int		screenshot(t_game *game)
+int			screenshot(t_game *game)
 {
-	int fd;
-	unsigned char header[54];
-	unsigned int filesize;
-	int tmp;
-	int pad;
+	unsigned char	header[54];
 
-
-	pad = (4 - ((int)game->info.res_x * 3) % 4) % 4;
-	filesize = 54 + (3 * ((int)game->info.res_x + pad) * (int)game->info.res_y);
+	game->pad = (4 - ((int)game->info.res_x * 3) % 4) % 4;
+	game->filesize = 54 + (3 * ((int)game->info.res_x + game->pad)
+	* (int)game->info.res_y);
 	ft_bzero(header, 54);
-	if (fd = open("screenshot.bmp", O_CREAT | O_RDWR | O_TRUNC) < 0)
+	if ((game->fd = open("screenshot.bmp", O_TRUNC)) < 0)
+		;
+	if ((game->fd = open("screenshot.bmp", O_WRONLY | O_CREAT)) < 0)
 		return (0);
-    header[0] = (unsigned char)('B');
+	header[0] = (unsigned char)('B');
 	header[1] = (unsigned char)('M');
-	conv_char(header + 2, filesize);
+	conv_char(header + 2, game->filesize);
 	header[10] = (unsigned char)(54);
 	header[14] = (unsigned char)(40);
-	tmp = game->info.res_x;
-	conv_char(header + 18, tmp);
-	tmp = game->info.res_y;
-	conv_char(header + 22, tmp);
+	game->tmp = game->info.res_x;
+	conv_char(header + 18, game->tmp);
+	game->tmp = game->info.res_y;
+	conv_char(header + 22, game->tmp);
 	header[27] = (unsigned char)(1);
 	header[28] = (unsigned char)(24);
-	write(fd, header, 54);
-	fill_bmp(fd, game);
-	close (fd);
+	write(game->fd, header, 54);
+	fill_bmp(game->fd, game);
+	close(game->fd);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 22:44:34 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/04 04:21:48 by mbrizion         ###   ########.fr       */
+/*   Updated: 2020/09/05 02:22:10 by mbrizion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_sprite_pos
 {
 	double	pos_x;
 	double	pos_y;
+	int		nb_sprite;
 }				t_sprite_pos;
 
 typedef struct s_sprite
@@ -173,6 +174,10 @@ typedef struct s_game
 	double		plan_y;
 	double		dirX;
 	double		dirY;
+	int			fd;
+	int			tmp;
+	int			pad;
+	unsigned int	filesize;
 }				t_game;
 
 
@@ -197,5 +202,15 @@ int		map_checker(char **map, t_info *info);
 char	*ft_strdup_len(const char *s1, int len);
 int		screenshot(t_game *game);
 int		free_all(t_game *game);
-
+int		check_pos(int x, int y, t_info *info, char c);
+char	**fill_map(char **map, t_info *info);
+void	add_sprite(int i, int j, t_info *info);
+int		get_map(t_info *info, char **map);
+void	get_res(t_info *info, char *line);
+void	north_tex(t_info *info, char *line, int i, int j);
+void	south_tex(t_info *info, char *line, int i, int j);
+void	weast_tex(t_info *info, char *line, int i, int j);
+void	east_tex(t_info *info, char *line, int i, int j);
+void	parser_loop(char *line, t_info *info, int j);
+void	get_tex_path(t_info *info, char *line, char dir);
 #endif
