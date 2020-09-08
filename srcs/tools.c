@@ -6,7 +6,7 @@
 /*   By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 05:04:21 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/04 02:29:34 by mbrizion         ###   ########.fr       */
+/*   Updated: 2020/09/08 06:22:49 by mbrizion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,9 @@ int		get_rgb(char *str)
 	return (color);
 }
 
-int		close_window(void)
+int		close_window(t_game *game)
 {
+	if (5 == 999999)
+		kill(game->music.pid + 1, SIGTERM);
 	exit(0);
 }

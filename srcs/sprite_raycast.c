@@ -6,27 +6,57 @@
 /*   By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 00:43:52 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/03 23:46:47 by mbrizion         ###   ########.fr       */
+/*   Updated: 2020/09/08 02:20:43 by mbrizion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+void	sprite_sorter(t_list *lst, t_game *game)
+{
+	t_list *tmp;
+	double sprite_dst;
+	double tmp_dst;
+
+	while (lst)
+	{
+		tmp = lst->next;
+		while (tmp)
+		{
+			sprite_dst = (
+			(game->info.pos_x - ((t_sprite_pos *)(lst->content))->pos_x) *
+			(game->info.pos_x - ((t_sprite_pos *)(lst->content))->pos_x) +
+			(game->info.pos_y - ((t_sprite_pos *)(lst->content))->pos_y) *
+			(game->info.pos_y - ((t_sprite_pos *)(lst->content))->pos_y));
+			tmp_dst = (
+			(game->info.pos_x - ((t_sprite_pos *)(lst->content))->pos_x) *
+			(game->info.pos_x - ((t_sprite_pos *)(tmp->content))->pos_x) +
+			(game->info.pos_y - ((t_sprite_pos *)(tmp->content))->pos_y) *
+			(game->info.pos_y - ((t_sprite_pos *)(tmp->content))->pos_y));
+			if (tmp_dst > sprite_dst)
+				ft_lstswap(lst, tmp);
+			tmp = tmp->next;
+		}
+		lst = lst->next;
+	}
+}
+
 int	sprite_raycast(t_game *game, double *wall_dist)
 {
-	int i;
 	int y;
 	int x;
+	t_list *sprite;
 
-	i = 0;
+	sprite_sorter(game->info.sprite_lst, game);
+	sprite = game->info.sprite_lst;
 	game->info.sprite.color = 0;
 	game->info.sprite.test_p = mlx_xpm_file_to_image(game->ptr.mlx_ptr, game->info.sprite.sprite_path, &game->tex.tex_w, &game->tex.tex_h);
 	if (!(game->info.sprite.ftexel_p = mlx_get_data_addr(game->info.sprite.test_p , &game->tex.tex_bpp, &game->tex.tex_len_size, &game->tex.tex_endian)))
 		return (0);
-	while (i < 1)
+	while (sprite)
 	{
-		game->info.sprite.spriteX = game->info.sprite_pos.pos_x - game->info.pos_x;
-		game->info.sprite.spriteY = game->info.sprite_pos.pos_y - game->info.pos_y;
+		game->info.sprite.spriteX = ((t_sprite_pos *)sprite->content)->pos_x - game->info.pos_x;
+		game->info.sprite.spriteY = ((t_sprite_pos *)sprite->content)->pos_y- game->info.pos_y;
 		game->info.sprite.invDet = 1.0 / (game->plan_x * game->dirY - game->dirX * game->plan_y); 
 		game->info.sprite.transformX = game->info.sprite.invDet * (game->dirY * game->info.sprite.spriteX - game->dirX * game->info.sprite.spriteY);
 		game->info.sprite.transformY = game->info.sprite.invDet * (-game->plan_y * game->info.sprite.spriteX + game->plan_x * game->info.sprite.spriteY);
@@ -74,7 +104,7 @@ int	sprite_raycast(t_game *game, double *wall_dist)
 			}
 			x++;
 		}
-		i++;
-		}
-		return (1);
+		sprite = sprite->next;
+	}
+	return (1);
 }

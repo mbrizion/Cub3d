@@ -6,7 +6,7 @@
 /*   By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 22:28:30 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/04 00:48:59 by mbrizion         ###   ########.fr       */
+/*   Updated: 2020/09/08 06:24:41 by mbrizion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,21 @@ void	move_init(t_game *game)
 	}
 }
 
+void	ft_start(t_game game)
+{
+	raycasting(&game);
+	mlx_hook(game.ptr.win_ptr, DestroyNotify, StructureNotifyMask, close_window, 0);
+	mlx_hook(game.ptr.win_ptr, KeyPress, KeyPressMask, &keypress, &game);
+	mlx_hook(game.ptr.win_ptr, KeyRelease, KeyReleaseMask, &keyrelease, &game);
+	mlx_loop_hook(game.ptr.mlx_ptr, &loop, &game);
+	raycasting(&game);
+	mlx_loop(game.ptr.mlx_ptr);
+}
+
 int 	main(int argc, char **argv)
 {
 	t_game game;
-	
+
 	if (argc < 2)
 		return (0);
 	if (!(ft_strnstr(((argv[1]) + ft_strlen(argv[1]) - 4), ".cub", 4)))
@@ -83,11 +94,16 @@ int 	main(int argc, char **argv)
 	raycasting(&game);
 	if (argv[2] && ft_strnstr(argv[2], "--save", 6))
 		screenshot(&game);
+	raycasting(&game);
 	mlx_hook(game.ptr.win_ptr, DestroyNotify, StructureNotifyMask, close_window, 0);
 	mlx_hook(game.ptr.win_ptr, KeyPress, KeyPressMask, &keypress, &game);
 	mlx_hook(game.ptr.win_ptr, KeyRelease, KeyReleaseMask, &keyrelease, &game);
 	mlx_loop_hook(game.ptr.mlx_ptr, &loop, &game);
 	raycasting(&game);
 	mlx_loop(game.ptr.mlx_ptr);
+	// game.music.pid = -1;
+	// game.music.pid = fork();
+	// (game.music.pid == 0) ? system("afplay ./srcs/music.mp3") : 0;
+	// (game.music.pid != 0) ? ft_start(game) : 0;
 	return (0);
 }

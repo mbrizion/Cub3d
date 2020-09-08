@@ -6,7 +6,7 @@
 /*   By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 02:06:22 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/05 04:18:06 by mbrizion         ###   ########.fr       */
+/*   Updated: 2020/09/08 02:05:53 by mbrizion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,16 @@ char		**fill_map(char **map, t_info *info)
 	return (tmp);
 }
 
-void		add_sprite(int i, int j, t_info *info)
+int		add_sprite(int i, int j, t_info *info)
 {
-	info->sprite_pos.nb_sprite++;
-	info->sprite_pos.pos_x = i + 0.5;
-	info->sprite_pos.pos_y = j + 0.5;
+	t_sprite_pos *sprite_pos;
+
+	if ((sprite_pos = malloc(sizeof(t_sprite_pos))) == 0)
+		return (-1);
+	sprite_pos->pos_x = i + 0.5;
+	sprite_pos->pos_y = j + 0.5;
+	ft_lstadd_back(&info->sprite_lst, ft_lstnew(sprite_pos));
+	return (0);
 }
 
 int			get_map(t_info *info, char **map)
@@ -81,7 +86,8 @@ int			get_map(t_info *info, char **map)
 		{
 			if (map[i][j] == '2')
 			{
-				add_sprite(i, j, info);
+				if (add_sprite(i, j, info) < 0)
+					return (-1);
 				info->map[i][j] = map[i][j] - '0';
 			}
 			if (!check_pos(i, j, info, map[i][j]))

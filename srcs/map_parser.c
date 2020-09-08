@@ -6,7 +6,7 @@
 /*   By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 03:37:38 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/05 02:20:54 by mbrizion         ###   ########.fr       */
+/*   Updated: 2020/09/08 02:06:48 by mbrizion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,6 @@ void		info_init(t_info *info)
 	info->weast_path = 0;
 	info->floor_rgb = 0;
 	info->cieling_rgb = 0;
-	info->sprite_pos.nb_sprite = 0;
-	info->sprite_pos.pos_x = 0;
-	info->sprite_pos.pos_y = 0;
 }
 
 int			parser(t_info *info, char *path)
