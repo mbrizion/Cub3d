@@ -6,7 +6,7 @@
 /*   By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 00:43:52 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/08 02:20:43 by mbrizion         ###   ########.fr       */
+/*   Updated: 2020/09/09 04:05:06 by mbrizion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,6 @@ int	sprite_raycast(t_game *game, double *wall_dist)
 	sprite_sorter(game->info.sprite_lst, game);
 	sprite = game->info.sprite_lst;
 	game->info.sprite.color = 0;
-	game->info.sprite.test_p = mlx_xpm_file_to_image(game->ptr.mlx_ptr, game->info.sprite.sprite_path, &game->tex.tex_w, &game->tex.tex_h);
-	if (!(game->info.sprite.ftexel_p = mlx_get_data_addr(game->info.sprite.test_p , &game->tex.tex_bpp, &game->tex.tex_len_size, &game->tex.tex_endian)))
-		return (0);
 	while (sprite)
 	{
 		game->info.sprite.spriteX = ((t_sprite_pos *)sprite->content)->pos_x - game->info.pos_x;

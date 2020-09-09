@@ -1,7 +1,7 @@
-               NO ./pics/blackbrick.xpm
-    EA ./pics/mossy.xpm
-  SO ./pics/greystone.xpm
-   WE ./pics/neg_eagle.xpm
+              NO ./pics/mountain.xpm
+    EA                                 ./pics/mount1.xpm
+  SO  									./pics/mount3.xpm
+   WE ./pics/mount4.xpm
    R 1280 720
 
         F 22,   125,     22     
@@ -20,8 +20,8 @@
 
         
          
-        C 61,   93,  182                   
-               S ./pics/barrel.xpm               
+        C 						61,   93,  182                   
+               S 						./pics/sauron.xpm               
 
 1111111111
 1000000001

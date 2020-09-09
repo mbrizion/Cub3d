@@ -6,7 +6,7 @@
 /*   By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/03 22:38:26 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/05 00:20:42 by mbrizion         ###   ########.fr       */
+/*   Updated: 2020/09/09 05:30:02 by mbrizion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,17 @@ int	free_all(t_game *game)
 	free(game->info.weast_path);
 	free(game->info.east_path);
 	free(game->info.sprite.sprite_path);
+	free(game->info.sprite.wall_dist);
+	mlx_destroy_image(game->ptr.mlx_ptr, game->ptr.buffer);
+	mlx_destroy_window(game->ptr.mlx_ptr, game->ptr.win_ptr);
 	while (i >= 0)
 	{
 		free(game->info.map[i]);
 		i--;
 	}
+	free(game->info.map);
+	
+
+	// Free liste chainee
 	return (0);
 }

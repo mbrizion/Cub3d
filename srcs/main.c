@@ -6,7 +6,7 @@
 /*   By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 22:28:30 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/04 00:48:59 by mbrizion         ###   ########.fr       */
+/*   Updated: 2020/09/09 05:36:12 by mbrizion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,6 @@ int 	main(int argc, char **argv)
 	mlx_loop_hook(game.ptr.mlx_ptr, &loop, &game);
 	raycasting(&game);
 	mlx_loop(game.ptr.mlx_ptr);
+	free_all(&game);
 	return (0);
 }

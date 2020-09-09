@@ -6,7 +6,7 @@
 /*   By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 01:26:21 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/08 04:10:45 by mbrizion         ###   ########.fr       */
+/*   Updated: 2020/09/09 03:13:34 by mbrizion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,15 +91,6 @@ void	calculate(t_ray *ray, t_game *game, int x)
 
 void	raycasting2(t_game *game, t_ray *ray, int x, int y)
 {
-	// double distPlayer = 0;
-	// double currentDist = 0;
-	// double weight = 0;
-	// double currentFloorX = 0;
-	// double currentFloorY = 0;
-	// double floorXWall = 0;
-	// double floorYWall = 0;
-	// int floorTexY = 0;
-	// int floorTexX = 0;
 	hit(ray, game);
 	calculate(ray, game, x);
 	if (ray->draw_start < 0)
@@ -115,44 +106,9 @@ void	raycasting2(t_game *game, t_ray *ray, int x, int y)
 	if (ray->draw_end < 0)
 		ray->draw_end = game->info.res_y;
 	y = ray->draw_end;
-	// if (ray->side == 1)
-	// 	{
-	// 		floorXWall = ray->map_x;
-	// 		floorYWall = ray->map_y + game->tex.wall_x;
-	// 	}
-	// 	else if (ray->side == 0)
-	// 	{
-	// 		floorXWall = ray->map_x + 1.0;
-	// 		floorYWall = ray->map_y + game->tex.wall_x;
-	// 	}
-	// 	else if (ray->side == 2)
-	// 	{
-	// 		floorXWall = ray->map_x + game->tex.wall_x;
-	// 		floorYWall = ray->map_y;
-	// 	}
-	// 	else
-	// 	{
-	// 		floorXWall = ray->map_x + game->tex.wall_x;
-	// 		floorYWall = ray->map_y + 1.0;
-	// 	}
-	// 	if (ray->draw_end < 0)
-	// 		ray->draw_end = game->info.res_y;
-	// 	y = ray->draw_end + 1;
+
  		while (y < game->info.res_y)
 		{
-			// currentDist = game->info.res_y / (2.0 * y - game->info.res_y);
-			// weight = (currentDist - distPlayer) / (ray->len - distPlayer);
-			// currentFloorX = weight * floorXWall + (1.0 - weight) * ray->pos_x;
-			// currentFloorY = weight * floorYWall + (1.0 - weight) * ray->pos_y;
-			// floorTexX = (int)(currentFloorX * game->tex.tex_w) % game->tex.tex_w;
-			// floorTexY = (int)(currentFloorY * game->tex.tex_h) % game->tex.tex_h;
- 
-			// ft_memcpy(&game->ptr.fpixel_add[(y * game->info.size_line + x * (game->info.bpp / 8))],
-            //             &game->tex.ftexel_f[(floorTexY * game->tex.tex_len_size + floorTexX * (game->info.bpp / 8))],
-            //                 game->tex.tex_bpp / 8);
-			// ft_memcpy(&game->ptr.fpixel_add[(((int)game->info.res_y - y - 1) * game->info.size_line + x * (game->info.bpp / 8))],
-            //             &game->tex.ftexel_c[(floorTexY * game->tex.tex_len_size + floorTexX * (game->info.bpp / 8))],
-            //                 game->tex.tex_bpp / 8);
 			color_pixel(x, y, game->info.floor_color, game);
 			color_pixel(x, game->info.res_y - y - 1, game->info.cieling_color, game);
 			++y;

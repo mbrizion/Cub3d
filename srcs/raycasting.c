@@ -6,7 +6,7 @@
 /*   By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 01:33:14 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/08 03:27:06 by mbrizion         ###   ########.fr       */
+/*   Updated: 2020/09/09 05:18:29 by mbrizion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,15 +64,11 @@ int		load_tex(t_game *game)
 		error(69);
 	game->tex.ftexel_e = mlx_get_data_addr(game->tex.text_e,
 	&game->tex.tex_bpp, &game->tex.tex_len_size, &game->tex.tex_endian);
-	// return (1);
-
-	if (!(game->tex.text_f = mlx_xpm_file_to_image(game->ptr.mlx_ptr, "./pics/wood.xpm", &game->tex.tex_w, &game->tex.tex_h)))
-		return (0);
-	game->tex.ftexel_f = mlx_get_data_addr(game->tex.text_f, &game->tex.tex_bpp, &game->tex.tex_len_size, &game->tex.tex_endian);
-	if (!(game->tex.text_c = mlx_xpm_file_to_image(game->ptr.mlx_ptr, "./pics/stars.xpm", &game->tex.tex_w, &game->tex.tex_h)))
-		return (0);
-	game->tex.ftexel_c = mlx_get_data_addr(game->tex.text_c, &game->tex.tex_bpp, &game->tex.tex_len_size, &game->tex.tex_endian);
-
+	if (!(game->info.sprite.test_p = mlx_xpm_file_to_image(game->ptr.mlx_ptr,
+	game->info.sprite.sprite_path, &game->tex.tex_w, &game->tex.tex_h)))
+		error (80);
+	game->info.sprite.ftexel_p = mlx_get_data_addr(game->info.sprite.test_p,
+	&game->tex.tex_bpp, &game->tex.tex_len_size, &game->tex.tex_endian);
 	return (1);
 }
 
@@ -127,5 +123,4 @@ void	raycasting(t_game *game)
 	sprite_raycast(game, game->info.sprite.wall_dist);
 	mlx_put_image_to_window(game->ptr.mlx_ptr, game->ptr.win_ptr,
 	game->ptr.buffer, 0, 0);
-	free (game->info.sprite.wall_dist);
 }

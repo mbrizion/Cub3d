@@ -1,16 +1,15 @@
   
 R 1280 720
 
-              NO ./pics/blackbrick.xpm
-      SO ./pics/mossy.xpm
-                    WE ./pics/greystone.xpm
-
-EA ./pics/neg_eagle.xpm
+              NO ./pics/mount1.xpm
+    EA ./pics/mountain.xpm
+  SO ./pics/mount3.xpm
+   WE ./pics/mount4.xpm
 
 F  255,170,85
 C        85,170,255
 
-S ./pics/barrel.xpm 
+S ./pics/sauron.xpm 
 
 1111111111111111111111111      111111111111111
 1000000000001110000000001      1100201111000011111111111

@@ -6,7 +6,7 @@
 /*   By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 03:37:38 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/08 02:06:48 by mbrizion         ###   ########.fr       */
+/*   Updated: 2020/09/09 05:36:37 by mbrizion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void		get_tex_path(t_info *info, char *line, char dir)
 	int j;
 
 	i = 2;
-	while (line[i] && line[i] == ' ')
+	while (line[i] && (line[i] == ' ' || line[i] == '\t'))
 		i++;
 	j = i;
 	while (line[j] && line[j] != ' ')
@@ -69,8 +69,7 @@ int			check_info(char *s)
 	len = ft_strlen(s);
 	while (j < len + 1)
 	{
-		while (j < len + 1 && (s[j] == ' ' || s[j] == '\t' || s[j] == '\v'
-		|| s[j] == '\f' || s[j] == '\r'))
+		while (j < len + 1 && (s[j] == ' ' || s[j] == '\t'))
 			j++;
 		if (identify_info(s, j))
 			return (1);
@@ -110,7 +109,10 @@ int			parser(t_info *info, char *path)
 	if ((fd = open(path, O_RDONLY)) < 0)
 		return (-1);
 	while ((ret = get_next_line(fd, &line) > 0))
+	{
 		info->file_len++;
+		free(line);
+	}
 	close(fd);
 	if (!(tmp = malloc(sizeof(char *) * info->file_len)))
 		return (-1);
