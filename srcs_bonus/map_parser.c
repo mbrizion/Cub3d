@@ -102,7 +102,16 @@ void		info_init(t_info *info)
 	info->north_path = 0;
 	info->south_path = 0;
 	info->east_path = 0;
-	info->weast_path = 0;
+	info->weast_path = 0;	
+	info->sprite.sprite_path = 0;	
+	info->sprite_lst = 0;
+}
+
+int			all_info_init(t_info *info)
+{
+	if (info->res_x && info->res_y && info->north_path && info->south_path && info->east_path && info->weast_path && info->floor_path && info->cieling_path && info->sprite.sprite_path)
+		return (1);
+	return (0);
 }
 
 int			parser(t_info *info, char *path)
@@ -118,7 +127,10 @@ int			parser(t_info *info, char *path)
 	if ((fd = open(path, O_RDONLY)) < 0)
 		return (-1);
 	while ((ret = get_next_line(fd, &line) > 0))
+	{
 		info->file_len++;
+		free(line);
+	}
 	close(fd);
 	if (!(tmp = malloc(sizeof(char *) * info->file_len)))
 		return (-1);
@@ -130,7 +142,7 @@ int			parser(t_info *info, char *path)
 	while ((ret = get_next_line(fd, &line) > 0))
 	{
 		j = 0;
-		while (line[j])
+		while (line[j] && !all_info_init(info))
 		{
 			if (check_info(line) && !info->sprite.sprite_path)
 			{
@@ -140,22 +152,23 @@ int			parser(t_info *info, char *path)
 			}
 			else if (line[j] != '\n')
 			{
-				tmp[i] = ft_strdup(&line[j]);
 				info->len_line = info->len_line < (int)ft_strlen(line)
-				? ft_strlen(line) : info->len_line;
-				i++;
+				? (int)ft_strlen(line) : info->len_line;
 				break ;
 			}
 			if (line[j])
 				j++;
 		}
+		if (all_info_init(info) && line[j] != '\n' && line[j] != ' ' && line[j] != '\t')
+		{
+			tmp[i] = ft_strdup(&line[j]);
+			i++;
+		}
 		free(line);
 		line = 0;
 	}
 	tmp[i] = ft_strdup(&line[j]);
-	free(line);
 	info->map_len = i;
-	tmp = fill_map(tmp, info);
 	get_map(info, tmp);
 	map_checker(tmp, info);
 	while (i)

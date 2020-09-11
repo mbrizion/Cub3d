@@ -27,6 +27,5 @@ int	free_all(t_game *game)
 		free(game->info.map[i]);
 		i--;
 	}
-	kill(game->music.pid + 1, SIGTERM);
 	return (0);
 }

@@ -96,9 +96,16 @@ int 	main(int argc, char **argv)
 	raycasting(&game);
 	if (argv[2] && ft_strnstr(argv[2], "--save", 6))
 		screenshot(&game);
-	game.music.pid = -1;
-	game.music.pid = fork();
-	(game.music.pid == 0) ? system("afplay ./srcs_bonus/sounds/music.mp3") : 0;
-	(game.music.pid != 0) ? ft_start(game) : 0;
+	mlx_hook(game.ptr.win_ptr, DestroyNotify, StructureNotifyMask, close_window, 0);
+	mlx_hook(game.ptr.win_ptr, KeyPress, KeyPressMask, &keypress, &game);
+	mlx_hook(game.ptr.win_ptr, KeyRelease, KeyReleaseMask, &keyrelease, &game);
+	mlx_loop_hook(game.ptr.mlx_ptr, &loop, &game);
+	raycasting(&game);
+	mlx_loop(game.ptr.mlx_ptr);
+	// game.music.pid = -1;
+	// game.music.pid = fork();
+	// printf("%d\n", game.music.pid);
+	// (game.music.pid == 0) ? system("mpg123 ./srcs_bonus/sounds/music.mp3") : 0;
+	// (game.music.pid != 0) ? ft_start(game) : 0;
 	return (0);
 }

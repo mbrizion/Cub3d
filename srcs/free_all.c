@@ -22,7 +22,7 @@ int	free_all(t_game *game)
 	free(game->info.weast_path);
 	free(game->info.east_path);
 	free(game->info.sprite.sprite_path);
-	free(game->info.sprite.wall_dist);
+	// free(game->info.sprite.wall_dist);
 	mlx_destroy_image(game->ptr.mlx_ptr, game->ptr.buffer);
 	mlx_destroy_window(game->ptr.mlx_ptr, game->ptr.win_ptr);
 	while (i >= 0)

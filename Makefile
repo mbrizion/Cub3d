@@ -37,9 +37,9 @@ SRCS_BONUS		=	$(addprefix $(CB_DIR), $(C_FILES))
 OBJS 			= 	$(addprefix $(O_DIR), $(C_FILES:.c=.o))
 OBJS_BONUS 		= 	$(addprefix $(OB_DIR), $(C_FILES:.c=.o))
 
-CC				=	gcc
+CC				=	clang
 
-CFLAGS			=	-I./ -Wall -Wextra -Werror #-fsanitize=address
+CFLAGS			=	-I./ -Wall -Wextra -Werror -fsanitize=address
 CFLAGS_BONUS	=	-I./ -Wall -Wextra -Werror #-fsanitize=address 
 
 LIBS			=	libft/libft.a ft_printf_error/ft_printf_error.a
@@ -64,7 +64,7 @@ $(OB_DIR)%.o:	$(CB_DIR)%.c
 ${NAME}:		${OBJS}
 				@make -C libft
 				@make -C ft_printf_error
-				@${CC} ${OBJS} ${MAC_FLAGS} ${CFLAGS} ${LIBS} -o ${NAME}
+				@${CC} ${OBJS} ${LINUX_FLAGS} ${CFLAGS} ${LIBS} -o ${NAME}
 				@echo ${GREEN}[Comp.DONE]${END}
 
 clean:
@@ -76,7 +76,7 @@ clean:
 bonus:			${OBJS_BONUS}
 				@make -C libft
 				@make -C ft_printf_error
-				@${CC} ${OBJS_BONUS} ${MAC_FLAGS} ${CFLAGS_BONUS} ${LIBS} -o ${NAME_BONUS}
+				@${CC} ${OBJS_BONUS} ${LINUX_FLAGS} ${CFLAGS_BONUS} ${LIBS} -o ${NAME_BONUS}
 				@echo ${GREEN}[Comp.DONE]${END}
 
 fclean:			clean
