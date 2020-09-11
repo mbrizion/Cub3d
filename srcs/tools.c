@@ -48,16 +48,17 @@ int		get_rgb(char *str)
 {
 	char	**tmp;
 	int		color;
+	int		i;
 
+	i = 0;
 	color = 0;
 	tmp = ft_split(str, ',');
 	color += ft_atoi(tmp[0]) << 16;
 	color += ft_atoi(tmp[1]) << 8;
 	color += ft_atoi(tmp[2]);
-	free(tmp[0]);
-	free(tmp[1]);
-	free(tmp[2]);
-	free(tmp[3]);
+	while (i < 4)
+		free(tmp[i++]);
+	free(tmp);
 	return (color);
 }
 
