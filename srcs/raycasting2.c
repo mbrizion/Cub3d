@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 01:26:21 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/09 03:13:34 by mbrizion         ###   ########.fr       */
+/*   Updated: 2020/09/12 04:15:45 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,11 +106,11 @@ void	raycasting2(t_game *game, t_ray *ray, int x, int y)
 	if (ray->draw_end < 0)
 		ray->draw_end = game->info.res_y;
 	y = ray->draw_end;
-
- 		while (y < game->info.res_y)
-		{
-			color_pixel(x, y, game->info.floor_color, game);
-			color_pixel(x, game->info.res_y - y - 1, game->info.cieling_color, game);
-			++y;
-		}
+	while (y < game->info.res_y)
+	{
+		color_pixel(x, y, game->info.floor_color, game);
+		color_pixel(x, game->info.res_y - y - 1,
+		game->info.cieling_color, game);
+		++y;
+	}
 }

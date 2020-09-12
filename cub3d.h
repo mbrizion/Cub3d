@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 22:44:34 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/09 05:36:47 by mbrizion         ###   ########.fr       */
+/*   Updated: 2020/09/12 05:01:27 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 # define BLEU  0x607EBD
 # define ROUGE 0xAD4B4B
 # define JAUNE  0xD1C236
+# define BLACK 0x00FFFFFF
 # define DestroyNotify 17
 # define StructureNotifyMask 1L<<17
 # define KeyPress 2
@@ -214,7 +215,7 @@ int		screenshot(t_game *game);
 int		free_all(t_game *game);
 int		check_pos(int x, int y, t_info *info, char c);
 char	**fill_map(char **map, t_info *info);
-int	add_sprite(int i, int j, t_info *info);
+int		add_sprite(int i, int j, t_info *info);
 int		get_map(t_info *info, char **map);
 void	get_res(t_info *info, char *line);
 void	north_tex(t_info *info, char *line, int i, int j);
@@ -223,4 +224,11 @@ void	weast_tex(t_info *info, char *line, int i, int j);
 void	east_tex(t_info *info, char *line, int i, int j);
 void	parser_loop(char *line, t_info *info, int j);
 void	get_tex_path(t_info *info, char *line, char dir);
+int		add_sprite(int i, int j, t_info *info);
+void	ray_init(t_ray *ray, t_game *game, int x);
+void	tex_init(t_game *game);
+void	init_side_dist(t_ray *ray);
+void 	draw_sprite_loop(t_game *game, int y, int x);
+void    sprite_calcul1(t_game *game, t_list *sprite);
+void    sprite_calcul2(t_game *game);
 #endif

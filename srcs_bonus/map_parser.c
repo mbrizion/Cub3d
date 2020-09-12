@@ -105,6 +105,8 @@ void		info_init(t_info *info)
 	info->weast_path = 0;	
 	info->sprite.sprite_path = 0;	
 	info->sprite_lst = 0;
+	info->cieling_path = 0;
+	info->floor_path = 0;
 }
 
 int			all_info_init(t_info *info)
@@ -131,6 +133,7 @@ int			parser(t_info *info, char *path)
 		info->file_len++;
 		free(line);
 	}
+	free(line);
 	close(fd);
 	if (!(tmp = malloc(sizeof(char *) * info->file_len)))
 		return (-1);
@@ -168,11 +171,13 @@ int			parser(t_info *info, char *path)
 		line = 0;
 	}
 	tmp[i] = ft_strdup(&line[j]);
+	free(line);
 	info->map_len = i;
 	get_map(info, tmp);
 	map_checker(tmp, info);
 	while (i)
 		free(tmp[i--]);
+	free(tmp[i]);
 	free(tmp);
 	close(fd);
 	if (!info->spawn_dir)

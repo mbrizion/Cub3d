@@ -96,6 +96,8 @@ void		info_init(t_info *info)
 	info->cieling_rgb = 0;
 	info->sprite.sprite_path = 0;
 	info->sprite_lst = 0;
+	info->floor_color = 0;
+	info->cieling_color = 0;
 }
 
 int			all_info_init(t_info *info)

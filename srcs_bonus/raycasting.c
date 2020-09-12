@@ -12,6 +12,22 @@
 
 #include "cub3d_bonus.h"
 
+void free_rt_tools(t_game *game)
+{
+	if (game->tex.text_s && game->tex.text_n && game->tex.text_w && game->tex.text_e && game->info.sprite.test_p)
+	{
+		free(game->info.sprite.wall_dist);
+		mlx_destroy_image(game->ptr.mlx_ptr, game->ptr.buffer);
+		mlx_destroy_image(game->ptr.mlx_ptr, game->tex.text_s);
+		mlx_destroy_image(game->ptr.mlx_ptr, game->tex.text_n);
+		mlx_destroy_image(game->ptr.mlx_ptr, game->tex.text_e);
+		mlx_destroy_image(game->ptr.mlx_ptr, game->tex.text_w);
+		mlx_destroy_image(game->ptr.mlx_ptr, game->info.sprite.test_p);
+		mlx_destroy_image(game->ptr.mlx_ptr, game->tex.text_f);
+		mlx_destroy_image(game->ptr.mlx_ptr, game->tex.text_c);
+	}
+}
+
 void	color_pixel(int x, int y, int color, t_game *game)
 {
 	unsigned char *color_c;
@@ -133,5 +149,5 @@ void	raycasting(t_game *game)
 	sprite_raycast(game, game->info.sprite.wall_dist);
 	mlx_put_image_to_window(game->ptr.mlx_ptr, game->ptr.win_ptr,
 	game->ptr.buffer, 0, 0);
-	free (game->info.sprite.wall_dist);
+	free_rt_tools(game);
 }

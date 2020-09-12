@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 05:04:21 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/08 02:35:32 by mbrizion         ###   ########.fr       */
+/*   Updated: 2020/09/12 04:19:36 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,23 @@ int		get_rgb(char *str)
 		free(tmp[i++]);
 	free(tmp);
 	return (color);
+}
+
+void	error(int error_id)
+{
+	if (error_id > 0)
+		ft_printf_error("Error\nTexture not found (%c)\n", (char)error_id);
+	else if (error_id == -1)
+		ft_printf_error("Error\nMultiple spawnpoint\n");
+	else if (error_id == -2)
+		ft_printf_error("Error\nNo spawnpoint\n");
+	else if (error_id == -3)
+		ft_printf_error("Error\nMap error\n");
+	else if (error_id == -7)
+		ft_printf_error("Error\nFile name error\n");
+	else if (error_id == -4)
+		ft_printf_error("Error\nMalloc failed\n");
+	exit(0);
 }
 
 int		close_window(void)
