@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 03:37:38 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/09 05:36:37 by mbrizion         ###   ########.fr       */
+/*   Updated: 2020/09/12 05:39:31 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,14 +102,35 @@ void		info_init(t_info *info)
 
 int			all_info_init(t_info *info)
 {
-	if (info->res_x && info->res_y && info->north_path && info->south_path && info->east_path && info->weast_path && info->floor_color && info->cieling_color && info->sprite.sprite_path)
+	if (info->res_x && info->res_y && info->north_path
+	&& info->south_path && info->east_path
+	&& info->weast_path && info->floor_color
+	&& info->cieling_color && info->sprite.sprite_path)
 		return (1);
+	return (0);
+}
+
+int			get_file_len(char *path, t_info *info)
+{
+	int fd;
+	int ret;
+
+	ret = 1;
+	info->line_buf = 0;
+	if ((fd = open(path, O_RDONLY)) < 0)
+		return (-1);
+	while ((ret = get_next_line(fd, &info->line_buf) > 0))
+	{
+		info->file_len++;
+		free(info->line_buf);
+	}
+	free(info->line_buf);
+	close(fd);
 	return (0);
 }
 
 int			parser(t_info *info, char *path)
 {
-	char	*line;
 	int		j;
 	int		ret;
 	int		fd;
@@ -117,52 +138,47 @@ int			parser(t_info *info, char *path)
 	char	**tmp;
 
 	info_init(info);
-	if ((fd = open(path, O_RDONLY)) < 0)
-		return (-1);
-	while ((ret = get_next_line(fd, &line) > 0))
-	{
-		info->file_len++;
-		free(line);
-	}
-	free(line);
-	close(fd);
+	get_file_len(path, info);
 	if (!(tmp = malloc(sizeof(char *) * info->file_len)))
-		return (-1);
+		error(-4);
 	if ((fd = open(path, O_RDONLY)) < 0)
 		return (-1);
-	line = 0;
+	info->line_buf = 0;
 	ret = 1;
 	i = 0;
-	while ((ret = get_next_line(fd, &line) > 0))
+	while ((ret = get_next_line(fd, &info->line_buf) > 0))
 	{
 		j = 0;
-		while (line[j] && !all_info_init(info))
+		while (info->line_buf[j] && !all_info_init(info))
 		{
-			if (check_info(line) && !info->sprite.sprite_path)
+			if (check_info(info->line_buf) && !info->sprite.sprite_path)
 			{
-				while (line[j] && (line[j] == ' ' || line[j] == '\t'))
+				while (info->line_buf[j] &&
+				(info->line_buf[j] == ' ' || info->line_buf[j] == '\t'))
 					j++;
-				parser_loop(line, info, j);
+				parser_loop(info->line_buf, info, j);
 			}
-			else if (line[j] != '\n')
+			else if (info->line_buf[j] != '\n')
 			{
-				info->len_line = info->len_line < (int)ft_strlen(line)
-				? (int)ft_strlen(line) : info->len_line;
+				info->len_line = info->len_line < (int)ft_strlen(info->line_buf)
+				? (int)ft_strlen(info->line_buf) : info->len_line;
 				break ;
 			}
-			if (line[j])
+			if (info->line_buf[j])
 				j++;
 		}
-		if (all_info_init(info) && line[j] != '\n' && line[j] != ' ' && line[j] != '\t')
+		if (all_info_init(info) &&
+		info->line_buf[j] != '\n' && info->line_buf[j]
+		!= ' ' && info->line_buf[j] != '\t')
 		{
-			tmp[i] = ft_strdup(&line[j]);
+			tmp[i] = ft_strdup(&info->line_buf[j]);
 			i++;
 		}
-		free(line);
-		line = 0;
+		free(info->line_buf);
+		info->line_buf = 0;
 	}
-	tmp[i] = ft_strdup(&line[j]);
-	free(line);
+	tmp[i] = ft_strdup(&info->line_buf[j]);
+	free(info->line_buf);
 	info->map_len = i;
 	get_map(info, tmp);
 	map_checker(tmp, info);
@@ -170,7 +186,5 @@ int			parser(t_info *info, char *path)
 		free(tmp[i--]);
 	free(tmp);
 	close(fd);
-	if (!info->spawn_dir)
-		error(-2);
 	return (0);
 }

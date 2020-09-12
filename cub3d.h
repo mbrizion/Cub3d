@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 22:44:34 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/12 05:01:27 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/12 05:27:29 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,6 +172,7 @@ typedef	struct s_info
 	int		floor_color;
 	int		cieling_color;
 	int		map_len;
+	char	*line_buf;
 }				t_info;
 
 typedef struct s_game

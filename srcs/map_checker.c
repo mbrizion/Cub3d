@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_checker.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 23:19:18 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/09 05:36:58 by mbrizion         ###   ########.fr       */
+/*   Updated: 2020/09/12 05:22:13 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,7 @@ int		map_checker(char **map, t_info *info)
 		}
 		i++;
 	}
+	if (!info->spawn_dir)
+		error(-2);
 	return (0);
 }
