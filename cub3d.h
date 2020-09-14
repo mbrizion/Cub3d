@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 22:44:34 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/12 05:27:29 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/15 00:21:41 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,14 @@
 # define KeyRelease 3
 # define KeyReleaseMask 1L<<1
 
-typedef struct s_music
+typedef struct s_parser
 {
-	int pid;
-}				t_music;
+	int		j;
+	int		ret;
+	int		fd;
+	int		i;
+	char	**tmp;
+}				t_parser;
 
 typedef struct s_sprite_pos
 {
@@ -181,7 +185,6 @@ typedef struct s_game
 	t_info	info;
 	t_move	move;
 	t_tex	tex;
-	t_music	music;
 	double		plan_x;
 	double		plan_y;
 	double		dirX;

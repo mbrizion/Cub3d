@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 03:37:38 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/12 05:39:31 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/15 00:33:13 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,20 @@ int			get_file_len(char *path, t_info *info)
 	return (0);
 }
 
+int			is_valid_line(char *s)
+{
+	int i;
+
+	i = 0;
+	while (s[i++])
+	{
+		if (s[i] != ' ' || s[i] == '\t' || s[i] == '\0')
+			if ((s[i] >= '0' && s[i] <= '2'))
+				return (1);
+ 	}
+	return (0);
+}
+
 int			parser(t_info *info, char *path)
 {
 	int		j;
@@ -167,9 +181,7 @@ int			parser(t_info *info, char *path)
 			if (info->line_buf[j])
 				j++;
 		}
-		if (all_info_init(info) &&
-		info->line_buf[j] != '\n' && info->line_buf[j]
-		!= ' ' && info->line_buf[j] != '\t')
+		if (all_info_init(info) && is_valid_line(&info->line_buf[j]))
 		{
 			tmp[i] = ft_strdup(&info->line_buf[j]);
 			i++;

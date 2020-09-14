@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 02:06:22 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/12 04:13:50 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/15 00:13:39 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,12 @@ int			is_valid_char(char c)
 	else if (c == 'W')
 		return (1);
 	else if (c == 'E')
+		return (1);
+	else if (c == ' ')
+		return (1);
+	else if (c == '\t')
+		return (1);
+	else if (c == '\0')
 		return (1);
 	return (0);
 }
