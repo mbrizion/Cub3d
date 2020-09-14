@@ -30,22 +30,3 @@ int		prec_assign(const char *str, int index, char c)
 	}
 	return (nbs);
 }
-
-void	ft_putstr_fd(char *s, int fd)
-{
-	int i;
-
-	i = 0;
-	if (!s)
-		return ;
-	while (s[i])
-	{
-		write(fd, &s[i], 1);
-		i++;
-	}
-}
-
-int		ft_isalpha(int c)
-{
-	return ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) ? 1 : 0;
-}

@@ -22,6 +22,8 @@ int	free_all(t_game *game)
 	free(game->info.weast_path);
 	free(game->info.east_path);
 	free(game->info.sprite.sprite_path);
+	free(game->info.sprite.wall_dist);
+	mlx_destroy_image(game->ptr.mlx_ptr, game->ptr.buffer);
 	mlx_destroy_window(game->ptr.mlx_ptr, game->ptr.win_ptr);
 	while (i >= 0)
 	{
@@ -29,7 +31,8 @@ int	free_all(t_game *game)
 		i--;
 	}
 	free(game->info.map);
-	free(game->ptr.mlx_ptr);
-	ft_lstclear(&game->info.sprite_lst, &free);
+	
+
+	// Free liste chainee
 	return (0);
 }

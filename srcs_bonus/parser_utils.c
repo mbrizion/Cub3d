@@ -33,6 +33,7 @@ int			check_pos(int x, int y, t_info *info, char c)
 char		**fill_map(char **map, t_info *info)
 {
 	int		i;
+	int		j;
 	char	**tmp;
 
 	if (!(tmp = malloc(sizeof(char *) * (info->map_len + 1))))
@@ -40,6 +41,7 @@ char		**fill_map(char **map, t_info *info)
 	i = 0;
 	while (i < info->map_len)
 	{
+		j = 0;
 		if (!(tmp[i] = malloc(sizeof(char) * info->len_line + 1)))
 			return (0);
 		ft_bzero(tmp[i], info->len_line + 1);

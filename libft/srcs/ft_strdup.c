@@ -23,7 +23,6 @@ char	*ft_strdup(const char *s1)
 	++slen;
 	if (!(cpy = malloc(slen * sizeof(char))))
 		return (0);
-	ft_bzero(cpy, slen);
 	while (slen--)
 		cpy[slen] = s1[slen];
 	return (cpy);

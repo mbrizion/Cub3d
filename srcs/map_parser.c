@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 03:37:38 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/15 00:33:13 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/09 05:36:37 by mbrizion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,57 +94,11 @@ void		info_init(t_info *info)
 	info->weast_path = 0;
 	info->floor_rgb = 0;
 	info->cieling_rgb = 0;
-	info->sprite.sprite_path = 0;
-	info->sprite_lst = 0;
-	info->floor_color = 0;
-	info->cieling_color = 0;
-}
-
-int			all_info_init(t_info *info)
-{
-	if (info->res_x && info->res_y && info->north_path
-	&& info->south_path && info->east_path
-	&& info->weast_path && info->floor_color
-	&& info->cieling_color && info->sprite.sprite_path)
-		return (1);
-	return (0);
-}
-
-int			get_file_len(char *path, t_info *info)
-{
-	int fd;
-	int ret;
-
-	ret = 1;
-	info->line_buf = 0;
-	if ((fd = open(path, O_RDONLY)) < 0)
-		return (-1);
-	while ((ret = get_next_line(fd, &info->line_buf) > 0))
-	{
-		info->file_len++;
-		free(info->line_buf);
-	}
-	free(info->line_buf);
-	close(fd);
-	return (0);
-}
-
-int			is_valid_line(char *s)
-{
-	int i;
-
-	i = 0;
-	while (s[i++])
-	{
-		if (s[i] != ' ' || s[i] == '\t' || s[i] == '\0')
-			if ((s[i] >= '0' && s[i] <= '2'))
-				return (1);
- 	}
-	return (0);
 }
 
 int			parser(t_info *info, char *path)
 {
+	char	*line;
 	int		j;
 	int		ret;
 	int		fd;
@@ -152,51 +106,57 @@ int			parser(t_info *info, char *path)
 	char	**tmp;
 
 	info_init(info);
-	get_file_len(path, info);
-	if (!(tmp = malloc(sizeof(char *) * info->file_len)))
-		error(-4);
 	if ((fd = open(path, O_RDONLY)) < 0)
 		return (-1);
-	info->line_buf = 0;
+	while ((ret = get_next_line(fd, &line) > 0))
+	{
+		info->file_len++;
+		free(line);
+	}
+	close(fd);
+	if (!(tmp = malloc(sizeof(char *) * info->file_len)))
+		return (-1);
+	if ((fd = open(path, O_RDONLY)) < 0)
+		return (-1);
+	line = 0;
 	ret = 1;
 	i = 0;
-	while ((ret = get_next_line(fd, &info->line_buf) > 0))
+	while ((ret = get_next_line(fd, &line) > 0))
 	{
 		j = 0;
-		while (info->line_buf[j] && !all_info_init(info))
+		while (line[j])
 		{
-			if (check_info(info->line_buf) && !info->sprite.sprite_path)
+			if (check_info(line) && !info->sprite.sprite_path)
 			{
-				while (info->line_buf[j] &&
-				(info->line_buf[j] == ' ' || info->line_buf[j] == '\t'))
+				while (line[j] && (line[j] == ' ' || line[j] == '\t'))
 					j++;
-				parser_loop(info->line_buf, info, j);
+				parser_loop(line, info, j);
 			}
-			else if (info->line_buf[j] != '\n')
+			else if (line[j] != '\n')
 			{
-				info->len_line = info->len_line < (int)ft_strlen(info->line_buf)
-				? (int)ft_strlen(info->line_buf) : info->len_line;
+				tmp[i] = ft_strdup(&line[j]);
+				info->len_line = info->len_line < (int)ft_strlen(line)
+				? ft_strlen(line) : info->len_line;
+				i++;
 				break ;
 			}
-			if (info->line_buf[j])
+			if (line[j])
 				j++;
 		}
-		if (all_info_init(info) && is_valid_line(&info->line_buf[j]))
-		{
-			tmp[i] = ft_strdup(&info->line_buf[j]);
-			i++;
-		}
-		free(info->line_buf);
-		info->line_buf = 0;
+		free(line);
+		line = 0;
 	}
-	tmp[i] = ft_strdup(&info->line_buf[j]);
-	free(info->line_buf);
+	tmp[i] = ft_strdup(&line[j]);
+	free(line);
 	info->map_len = i;
+	tmp = fill_map(tmp, info);
 	get_map(info, tmp);
 	map_checker(tmp, info);
-	while (i > -1)
+	while (i)
 		free(tmp[i--]);
 	free(tmp);
 	close(fd);
+	if (!info->spawn_dir)
+		error(-2);
 	return (0);
 }

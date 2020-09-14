@@ -22,12 +22,11 @@ int	free_all(t_game *game)
 	free(game->info.weast_path);
 	free(game->info.east_path);
 	free(game->info.sprite.sprite_path);
-	mlx_destroy_window(game->ptr.mlx_ptr, game->ptr.win_ptr);
 	while (i >= 0)
 	{
 		free(game->info.map[i]);
 		i--;
 	}
-	free(game->info.map);
+	kill(game->music.pid + 1, SIGTERM);
 	return (0);
 }

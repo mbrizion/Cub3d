@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 01:26:21 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/15 00:46:00 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/09 03:13:34 by mbrizion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	wall_texturing(t_ray *ray, t_game *game, int y, int x)
 		game->tex.tex_len_size + game->tex.tex_x * game->info.bpp / 8)],
 		game->tex.tex_bpp / 8);
 	else if (ray->side == 1)
-
 		ft_memcpy(&game->ptr.fpixel_add[(y * game->info.size_line + x
 		* (game->info.bpp / 8))], &game->tex.ftexel_n[(game->tex.tex_y *
 		game->tex.tex_len_size + game->tex.tex_x * game->info.bpp / 8)],
@@ -107,11 +106,11 @@ void	raycasting2(t_game *game, t_ray *ray, int x, int y)
 	if (ray->draw_end < 0)
 		ray->draw_end = game->info.res_y;
 	y = ray->draw_end;
-	while (y < game->info.res_y)
-	{
-		color_pixel(x, y, game->info.floor_color, game);
-		color_pixel(x, game->info.res_y - y - 1,
-		game->info.cieling_color, game);
-		++y;
-	}
+
+ 		while (y < game->info.res_y)
+		{
+			color_pixel(x, y, game->info.floor_color, game);
+			color_pixel(x, game->info.res_y - y - 1, game->info.cieling_color, game);
+			++y;
+		}
 }
