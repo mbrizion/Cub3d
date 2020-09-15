@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+         #
+#    By: user42 <user42@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/04 03:41:23 by mbrizion          #+#    #+#              #
-#    Updated: 2020/09/15 00:59:06 by mbrizion         ###   ########.fr        #
+#    Updated: 2020/09/15 05:56:58 by user42           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,12 +22,15 @@ C_FILES			=	main.c \
 					map_parser.c \
 					parser_utils.c \
 					parser_utils2.c \
+					parser_utils3.c \
 					tools.c \
 					raycasting.c \
+					raycasting2.c \
+					raycasting3.c \
 					move.c \
 					keypress.c \
 					sprite_raycast.c \
-					raycasting2.c \
+					sprite_raycast_utils.c \
 					map_checker.c \
 					bmp.c \
 					free_all.c
@@ -37,7 +40,7 @@ SRCS_BONUS		=	$(addprefix $(CB_DIR), $(C_FILES))
 OBJS 			= 	$(addprefix $(O_DIR), $(C_FILES:.c=.o))
 OBJS_BONUS 		= 	$(addprefix $(OB_DIR), $(C_FILES:.c=.o))
 
-CC				=	gcc
+CC				=	clang
 
 CFLAGS			=	-I./ -Wall -Wextra -Werror #-fsanitize=address
 CFLAGS_BONUS	=	-I./ -Wall -Wextra -Werror #-fsanitize=address 
@@ -62,27 +65,27 @@ $(OB_DIR)%.o:	$(CB_DIR)%.c
 				@${CC} ${CFLAGS_BONUS} -c $< -o $@
 
 ${NAME}:		${OBJS}
-				@make -C libft
-				@make -C ft_printf_error
-				@${CC} ${OBJS} ${MAC_FLAGS} ${CFLAGS} ${LIBS} -o ${NAME}
+				@make -sC libft
+				@make -sC ft_printf_error
+				@${CC} ${OBJS} ${LINUX_FLAGS} ${CFLAGS} ${LIBS} -o ${NAME}
 				@echo ${GREEN}[Comp.DONE]${END}
 
 clean:
 				@${RM} ${OBJS} 
-				@make clean -C libft
-				@make clean -C ft_printf_error
+				@make clean -sC libft
+				@make clean -sC ft_printf_error
 				@echo ${BLUE}[All clean]${END}
 
 bonus:			${OBJS_BONUS}
-				@make -C libft
-				@make -C ft_printf_error
-				@${CC} ${OBJS_BONUS} ${MAC_FLAGS} ${CFLAGS_BONUS} ${LIBS} -o ${NAME_BONUS}
+				@make -sC libft
+				@make -sC ft_printf_error
+				@${CC} ${OBJS_BONUS} ${LINUX_FLAGS} ${CFLAGS_BONUS} ${LIBS} -o ${NAME_BONUS}
 				@echo ${GREEN}[Comp.DONE]${END}
 
 fclean:			clean
 				@${RM} ${NAME} ${NAME_BONUS}
-				@make fclean -C libft
-				@make fclean -C ft_printf_error
+				@make fclean -sC libft
+				@make fclean -sC ft_printf_error
 				@rm -rf objs objs_bonus screenshot.bmp
 
 re:				fclean all

@@ -12,9 +12,10 @@
 
 #include "cub3d.h"
 
-int loop(t_game *game)
+int		loop(t_game *game)
 {
-	if (game->move.forward == 1 || game->move.backward == 1 || game->move.right == 1 || game->move.left == 1 || game->move.v_rot != 0)
+	if (game->move.forward == 1 || game->move.backward == 1
+	|| game->move.right == 1 || game->move.left == 1 || game->move.v_rot != 0)
 		move(game);
 	return (0);
 }
@@ -49,7 +50,8 @@ void	move_init(t_game *game)
 	game->move.rot = 0;
 	game->move.v_rot = 0;
 	game->move.speed = 0.15;
-	if (north_south(game));
+	if (north_south(game))
+		;
 	else if (game->info.spawn_dir == 'E')
 	{
 		game->dirX = 0;
@@ -66,10 +68,10 @@ void	move_init(t_game *game)
 	}
 }
 
-int 	main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
 	t_game game;
-	
+
 	if (argc < 2)
 		return (0);
 	if (!(ft_strnstr(((argv[1]) + ft_strlen(argv[1]) - 4), ".cub", 4)))
@@ -78,12 +80,14 @@ int 	main(int argc, char **argv)
 		return (-1);
 	move_init(&game);
 	game.ptr.mlx_ptr = mlx_init();
-	if ((game.ptr.win_ptr = mlx_new_window(game.ptr.mlx_ptr, game.info.res_x, game.info.res_y, "Cub3D")) == 0)
+	if ((game.ptr.win_ptr = mlx_new_window(game.ptr.mlx_ptr, game.info.res_x,
+	game.info.res_y, "Cub3D")) == 0)
 		return (-1);
-	
+	raycasting(&game);
 	if (argv[2] && ft_strnstr(argv[2], "--save", 6))
 		screenshot(&game);
-	mlx_hook(game.ptr.win_ptr, DestroyNotify, StructureNotifyMask, close_window, 0);
+	mlx_hook(game.ptr.win_ptr,
+	DestroyNotify, StructureNotifyMask, close_window, 0);
 	mlx_hook(game.ptr.win_ptr, KeyPress, KeyPressMask, &keypress, &game);
 	mlx_hook(game.ptr.win_ptr, KeyRelease, KeyReleaseMask, &keyrelease, &game);
 	mlx_loop_hook(game.ptr.mlx_ptr, &loop, &game);

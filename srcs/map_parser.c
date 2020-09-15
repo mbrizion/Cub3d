@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 03:37:38 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/09 05:36:37 by mbrizion         ###   ########.fr       */
+/*   Updated: 2020/09/15 05:57:52 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ int			check_info(char *s)
 
 void		info_init(t_info *info)
 {
-	info->map_len = 1;
 	info->file_len = 1;
 	info->len_line = 0;
 	info->spawn_dir = '\0';
@@ -94,69 +93,107 @@ void		info_init(t_info *info)
 	info->weast_path = 0;
 	info->floor_rgb = 0;
 	info->cieling_rgb = 0;
+	info->sprite.sprite_path = 0;
+	info->sprite_lst = 0;
+	info->floor_color = 0;
+	info->cieling_color = 0;
+}
+
+int			all_info_init(t_info *info)
+{
+	if (info->res_x && info->res_y && info->north_path
+	&& info->south_path && info->east_path
+	&& info->weast_path && info->floor_color
+	&& info->cieling_color && info->sprite.sprite_path)
+		return (1);
+	return (0);
+}
+
+int			get_file_len(char *path, t_info *info)
+{
+	int fd;
+	int ret;
+
+	ret = 1;
+	info->line_buf = 0;
+	if ((fd = open(path, O_RDONLY)) < 0)
+		return (-1);
+	while ((ret = get_next_line(fd, &info->line_buf) > 0))
+	{
+		info->file_len++;
+		free(info->line_buf);
+	}
+	free(info->line_buf);
+	close(fd);
+	return (0);
+}
+
+int			empty_line(t_info *info)
+{
+	int i;
+
+	i = 0;
+	while (info->line_buf[i++])
+		if (info->line_buf[i] && info->line_buf[i] != '\t' && info->line_buf[i] != ' ')
+		{
+			info->file[info->file_index++] = ft_strdup(info->line_buf);
+			return (1);
+		}
+	info->count++;
+	return (0);
 }
 
 int			parser(t_info *info, char *path)
 {
-	char	*line;
 	int		j;
 	int		ret;
 	int		fd;
 	int		i;
-	char	**tmp;
-
 	info_init(info);
+	get_file_len(path, info);
 	if ((fd = open(path, O_RDONLY)) < 0)
 		return (-1);
-	while ((ret = get_next_line(fd, &line) > 0))
-	{
-		info->file_len++;
-		free(line);
-	}
-	close(fd);
-	if (!(tmp = malloc(sizeof(char *) * info->file_len)))
-		return (-1);
-	if ((fd = open(path, O_RDONLY)) < 0)
-		return (-1);
-	line = 0;
+	if (!(info->file = malloc(sizeof(char *) * info->file_len)))
+		error(-4);
+	info->line_buf = 0;
+	info->file_index = 0;
+	info->count = 0;
 	ret = 1;
 	i = 0;
-	while ((ret = get_next_line(fd, &line) > 0))
+	info->buf = 1;
+	while ((ret = get_next_line(fd, &info->line_buf) > 0))
 	{
 		j = 0;
-		while (line[j])
+		empty_line(info);
+		while (info->line_buf[j] && !all_info_init(info))
 		{
-			if (check_info(line) && !info->sprite.sprite_path)
+			if (check_info(info->line_buf) && !info->sprite.sprite_path)
 			{
-				while (line[j] && (line[j] == ' ' || line[j] == '\t'))
+				while (info->line_buf[j] &&
+				(info->line_buf[j] == ' ' || info->line_buf[j] == '\t'))
 					j++;
-				parser_loop(line, info, j);
+				parser_loop(info->line_buf, info, j);
 			}
-			else if (line[j] != '\n')
+			else if (info->line_buf[j] != '\n')
 			{
-				tmp[i] = ft_strdup(&line[j]);
-				info->len_line = info->len_line < (int)ft_strlen(line)
-				? ft_strlen(line) : info->len_line;
-				i++;
+				info->len_line = info->len_line < (int)ft_strlen(info->line_buf)
+				? (int)ft_strlen(info->line_buf) : info->len_line;
 				break ;
 			}
-			if (line[j])
+			if (info->line_buf[j])
 				j++;
+			free(info->line_buf);
 		}
-		free(line);
-		line = 0;
+		if (all_info_init(info) && info->buf)
+		{
+			info->buf = 0;
+			info->map_start = i - info->count + 1;
+		}
+		i++;
 	}
-	tmp[i] = ft_strdup(&line[j]);
-	free(line);
-	info->map_len = i;
-	tmp = fill_map(tmp, info);
-	get_map(info, tmp);
-	map_checker(tmp, info);
-	while (i)
-		free(tmp[i--]);
-	free(tmp);
+	info->file[info->file_index] = ft_strdup(info->line_buf);
+	get_map(info);
+	// map_checker(info->map, info);
 	close(fd);
-	if (!info->spawn_dir)
-		error(-2);
 	return (0);
 }

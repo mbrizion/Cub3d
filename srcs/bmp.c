@@ -32,10 +32,8 @@ static int	fill_bmp(int fd, t_game *game)
 		x = 0;
 		while (x < (int)game->info.res_x)
 		{
-			printf ("%d\n", x);
 			color = (*(int*)(game->ptr.fpixel_add + ((x + (y *
 			(int)game->info.res_x)) * (game->info.bpp / 8))));
-			printf ("%d\n", x);
 			if (write(fd, &color, 3) < 0)
 				return (0);
 			x++;
@@ -49,7 +47,6 @@ int			screenshot(t_game *game)
 {
 	unsigned char	header[54];
 
-	raycasting(game);
 	game->pad = (4 - ((int)game->info.res_x * 3) % 4) % 4;
 	game->filesize = 54 + (3 * ((int)game->info.res_x + game->pad)
 	* (int)game->info.res_y);
