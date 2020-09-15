@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 23:19:18 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/15 05:50:06 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/16 01:21:15 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,10 @@ int		map_checker(int **map, t_info *info)
 	i = 0;
 	j = 0;
 	correct_len = info->file_len - info->count - info->map_start;
-	while (i < correct_len + 1)
+	while (i < info->map_len)
 	{
 		j = 0;
-		while (map[i][j])
+		while (j< (int)ft_strlen(info->file[info->map_start + i]))
 		{
 			if (map[i][j] == '0' || map[i][j] == '2')
 			{

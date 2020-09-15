@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 22:44:34 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/15 05:47:14 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/16 00:29:15 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,6 +177,7 @@ typedef	struct s_info
 	int		map_start;
 	int		buf;
 	int		count;
+	int		map_len;
 }				t_info;
 
 typedef struct s_game

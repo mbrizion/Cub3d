@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 03:37:38 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/15 05:57:52 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/16 01:19:10 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,43 @@ int			empty_line(t_info *info)
 	return (0);
 }
 
+int			is_spawn(char c)
+{
+	if(c == 'N' || c == 'S' || c == 'E' || c == 'W')
+		return (1);
+	return (0);
+}
+
+int			conv_map(t_info *info)
+{
+	char	**tmp;
+	int		i;
+	int		j;
+	int		k;
+
+	if (!(tmp = malloc(sizeof(char *) * info->file_len)))
+		error(-4);
+	i = info->map_start;
+	k = 0;
+	while (i < info->file_len - info->count)
+	{
+		j = -1;
+		while (++j < (int)ft_strlen(info->file[i]))
+		{
+			if(info->file[i][j] != ' ' && !is_spawn(info->file[i][j]))
+				info->map[k][j] = info->file[i][j] - '0';
+			else if(info->file[i][j] == ' ')
+				info->map[k][j] = ' ';
+			else if(is_spawn(info->file[i][j]))
+				info->map[k][j] = 0;
+		}
+		i++;
+		k++;
+	}
+	info->map_len = k;
+	return (0);
+}
+
 int			parser(t_info *info, char *path)
 {
 	int		j;
@@ -194,7 +231,8 @@ int			parser(t_info *info, char *path)
 	info->file[info->file_index] = ft_strdup(info->line_buf);
 	free(info->line_buf);
 	get_map(info);
-	// map_checker(info->map, info);
+	conv_map(info);
+	map_checker(info->map, info);
 	close(fd);
 	return (0);
 }
