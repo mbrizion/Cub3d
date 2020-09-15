@@ -231,9 +231,9 @@ void	parser_loop(char *line, t_info *info, int j);
 void	get_tex_path(t_info *info, char *line, char dir);
 int		add_sprite(int i, int j, t_info *info);
 void	ray_init(t_ray *ray, t_game *game, int x);
-void	tex_init(t_game *game);
 void	init_side_dist(t_ray *ray);
 void 	draw_sprite_loop(t_game *game, int y, int x);
 void    sprite_calcul1(t_game *game, t_list *sprite);
 void    sprite_calcul2(t_game *game);
+void	load_tex(t_game *game);
 #endif

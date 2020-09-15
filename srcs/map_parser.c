@@ -182,7 +182,7 @@ int			parser(t_info *info, char *path)
 			}
 			if (info->line_buf[j])
 				j++;
-			free(info->line_buf);
+			// free(info->line_buf);
 		}
 		if (all_info_init(info) && info->buf)
 		{

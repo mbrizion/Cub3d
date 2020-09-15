@@ -18,7 +18,6 @@ void	free_rt_tools(t_game *game)
 	&& game->tex.text_w && game->tex.text_e && game->info.sprite.test_p)
 	{
 		free(game->info.sprite.wall_dist);
-		mlx_destroy_image(game->ptr.mlx_ptr, game->ptr.buffer);
 		mlx_destroy_image(game->ptr.mlx_ptr, game->tex.text_s);
 		mlx_destroy_image(game->ptr.mlx_ptr, game->tex.text_n);
 		mlx_destroy_image(game->ptr.mlx_ptr, game->tex.text_e);
@@ -76,23 +75,24 @@ void	raycasting(t_game *game)
 	int		endian;
 	t_ray	ray;
 
-	x = 0;
+	x = -1;
 	y = 0;
-	tex_init(game);
+	if (game->ptr.buffer)
+		mlx_destroy_image(game->ptr.mlx_ptr, game->ptr.buffer);
+	if (!(game->info.sprite.wall_dist = malloc(sizeof(double*)
+	* game->info.res_x)))
+		error(-4);
 	game->ptr.buffer = mlx_new_image(game->ptr.mlx_ptr,
 	game->info.res_x, game->info.res_y);
 	game->ptr.fpixel_add = mlx_get_data_addr(game->ptr.buffer, &game->info.bpp,
 	&game->info.size_line, &endian);
-	load_tex(game);
-	while (x < game->info.res_x)
+	while (++x < game->info.res_x)
 	{
 		ray_init(&ray, game, x);
 		init_side_dist(&ray);
 		raycasting2(game, &ray, x, y);
-		++x;
 	}
 	sprite_raycast(game, game->info.sprite.wall_dist);
 	mlx_put_image_to_window(game->ptr.mlx_ptr, game->ptr.win_ptr,
 	game->ptr.buffer, 0, 0);
-	free_rt_tools(game);
 }

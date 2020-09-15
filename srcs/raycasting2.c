@@ -43,7 +43,9 @@ void	wall_texturing(t_ray *ray, t_game *game, int y, int x)
 {
 	game->tex.tex_y = (y * 2 - game->info.res_y + ray->line_height)
 	* (game->tex.tex_h / 2) / ray->line_height;
-	if (ray->side == 0)\
+	game->tex.tex_y = game->tex.tex_y < 0 ? 0 : game->tex.tex_y;
+	game->tex.tex_y = game->tex.tex_y > game->tex.tex_h ? game->tex.tex_h : game->tex.tex_y;
+	if (ray->side == 0)
 		ft_memcpy(&game->ptr.fpixel_add[(y * game->info.size_line + x
 		* (game->info.bpp / 8))], &game->tex.ftexel_s[(game->tex.tex_y *
 		game->tex.tex_len_size + game->tex.tex_x * game->info.bpp / 8)],

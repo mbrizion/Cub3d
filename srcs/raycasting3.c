@@ -36,18 +36,6 @@ void	init_side_dist(t_ray *ray)
 	}
 }
 
-void	tex_init(t_game *game)
-{
-	game->tex.text_n = 0;
-	game->tex.text_s = 0;
-	game->tex.text_w = 0;
-	game->tex.text_e = 0;
-	game->info.sprite.test_p = 0;
-	if (!(game->info.sprite.wall_dist = malloc(sizeof(double*)
-	* game->info.res_x)))
-		error(-4);
-}
-
 void	ray_init(t_ray *ray, t_game *game, int x)
 {
 	ray->center = (2 * x / game->info.res_x) - 1;
