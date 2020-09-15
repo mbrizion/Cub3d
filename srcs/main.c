@@ -68,30 +68,6 @@ void	move_init(t_game *game)
 	}
 }
 
-void		tex_init(t_game *game)
-{
-	game->tex.tex_w = 0;
-	game->tex.tex_h = 0;
-	game->tex.wall_x = 0;
-	game->tex.tex_x = 0;
-	game->tex.tex_y = 0;
-	game->tex.tex_len_size = 0;
-	game->tex.tex_bpp = 0;
-	game->tex.tex_endian = 0;
-	game->tex.text_n = 0;
-	game->tex.text_e = 0;
-	game->tex.text_s = 0;
-	game->tex.text_w = 0;
- 	game->tex.text_f = 0;
-	game->tex.text_c = 0;
-	game->tex.ftexel_n = 0;
-	game->tex.ftexel_e = 0;
-	game->tex.ftexel_s = 0;
- 	game->tex.ftexel_w = 0;
-	game->tex.ftexel_f = 0;
-	game->tex.ftexel_c = 0;
-}
-
 int		main(int argc, char **argv)
 {
 	t_game game;
@@ -108,7 +84,6 @@ int		main(int argc, char **argv)
 	if ((game.ptr.win_ptr = mlx_new_window(game.ptr.mlx_ptr, game.info.res_x,
 	game.info.res_y, "Cub3D")) == 0)
 		return (-1);
-	tex_init(&game);
 	load_tex(&game);
 	raycasting(&game);
 	if (argv[2] && ft_strnstr(argv[2], "--save", 6))

@@ -182,16 +182,17 @@ int			parser(t_info *info, char *path)
 			}
 			if (info->line_buf[j])
 				j++;
-			// free(info->line_buf);
 		}
 		if (all_info_init(info) && info->buf)
 		{
 			info->buf = 0;
 			info->map_start = i - info->count + 1;
 		}
+		free(info->line_buf);
 		i++;
 	}
 	info->file[info->file_index] = ft_strdup(info->line_buf);
+	free(info->line_buf);
 	get_map(info);
 	// map_checker(info->map, info);
 	close(fd);
