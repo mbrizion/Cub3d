@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 22:28:30 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/09 03:35:48 by mbrizion         ###   ########.fr       */
+/*   Updated: 2020/09/16 03:46:48 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,18 +67,6 @@ void	move_init(t_game *game)
 	}
 }
 
-
-int		ft_start(t_game game)
-{
-	mlx_hook(game.ptr.win_ptr, DestroyNotify, StructureNotifyMask, close_window, 0);
-	mlx_hook(game.ptr.win_ptr, KeyPress, KeyPressMask, &keypress, &game);
-	mlx_hook(game.ptr.win_ptr, KeyRelease, KeyReleaseMask, &keyrelease, &game);
-	mlx_loop_hook(game.ptr.mlx_ptr, &loop, &game);
-	raycasting(&game);
-	mlx_loop(game.ptr.mlx_ptr);
-	return (1);
-}
-
 int 	main(int argc, char **argv)
 {
 	t_game game;
@@ -102,10 +90,5 @@ int 	main(int argc, char **argv)
 	mlx_loop_hook(game.ptr.mlx_ptr, &loop, &game);
 	raycasting(&game);
 	mlx_loop(game.ptr.mlx_ptr);
-	// game.music.pid = -1;
-	// game.music.pid = fork();
-	// printf("%d\n", game.music.pid);
-	// (game.music.pid == 0) ? system("mpg123 ./srcs_bonus/sounds/music.mp3") : 0;
-	// (game.music.pid != 0) ? ft_start(game) : 0;
 	return (0);
 }

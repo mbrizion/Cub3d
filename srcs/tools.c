@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 05:04:21 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/16 03:17:07 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/16 03:24:50 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int		get_rgb(char *str)
 	color += ft_atoi(tmp[0]) << 16;
 	color += ft_atoi(tmp[1]) << 8;
 	color += ft_atoi(tmp[2]);
+	i = 0;
 	while (i < 4)
 		free(tmp[i++]);
 	free(tmp);

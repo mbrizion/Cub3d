@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 23:19:18 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/16 02:34:44 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/16 03:33:08 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,10 @@ int		map_checker(t_info *info)
 		}
 		i++;
 	}
+	i = 0;
+	while (i < info->map_len)
+		free(tmp_map[i++]);
+	free(tmp_map);
 	if (!info->spawn_dir)
 		error(-2);
 	return (0);

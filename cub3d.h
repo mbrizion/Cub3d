@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 22:44:34 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/16 03:07:37 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/16 03:41:30 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,6 @@
 #include <stdio.h>
 #include <math.h>
 
-// # define KEY_ESC 53
-// # define KEY_W 13
-// # define KEY_S 1
-// # define KEY_A 0
-// # define KEY_D 2
-// # define KEY_LA 123
-// # define KEY_RA 124
 # define KEY_ESC 65307
 # define KEY_W 119
 # define KEY_S 115
@@ -48,11 +41,6 @@
 # define KeyPressMask 1L<<0
 # define KeyRelease 3
 # define KeyReleaseMask 1L<<1
-
-typedef struct s_music
-{
-	int pid;
-}				t_music;
 
 typedef struct s_sprite_pos
 {
@@ -191,7 +179,6 @@ typedef struct s_game
 	t_info	info;
 	t_move	move;
 	t_tex	tex;
-	t_music	music;
 	double		plan_x;
 	double		plan_y;
 	double		dirX;

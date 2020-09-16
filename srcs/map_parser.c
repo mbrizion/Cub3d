@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 03:37:38 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/16 03:07:41 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/16 03:25:26 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,13 +152,10 @@ int			is_spawn(char c)
 
 int			conv_map(t_info *info)
 {
-	char	**tmp;
 	int		i;
 	int		j;
 	int		k;
 
-	if (!(tmp = malloc(sizeof(char *) * info->file_len)))
-		error(-4);
 	i = info->map_start;
 	k = 0;
 	while (i < info->file_len - info->count)
