@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 22:28:30 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/16 03:46:48 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/16 05:25:39 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ void	move_init(t_game *game)
 	game->move.rot = 0;
 	game->move.v_rot = 0;
 	game->move.speed = 0.15;
-	if (north_south(game));
+	if (north_south(game))
+		;
 	else if (game->info.spawn_dir == 'E')
 	{
 		game->dirX = 0;
@@ -67,10 +68,16 @@ void	move_init(t_game *game)
 	}
 }
 
-int 	main(int argc, char **argv)
+void	ptr_init(t_game *game)
+{
+	game->ptr.buffer = 0;
+	game->ptr.mlx_ptr = mlx_init();
+}
+
+int		main(int argc, char **argv)
 {
 	t_game game;
-	
+
 	if (argc < 2)
 		return (0);
 	if (!(ft_strnstr(((argv[1]) + ft_strlen(argv[1]) - 4), ".cub", 4)))
@@ -78,17 +85,20 @@ int 	main(int argc, char **argv)
 	if (parser(&game.info, argv[1]) < 0)
 		return (-1);
 	move_init(&game);
-	game.ptr.mlx_ptr = mlx_init();
-	if ((game.ptr.win_ptr = mlx_new_window(game.ptr.mlx_ptr, game.info.res_x, game.info.res_y, "Cub3D")) == 0)
+	ptr_init(&game);
+	if ((game.ptr.win_ptr = mlx_new_window(game.ptr.mlx_ptr, game.info.res_x,
+	game.info.res_y, "Cub3D")) == 0)
 		return (-1);
+	load_tex(&game);
 	raycasting(&game);
 	if (argv[2] && ft_strnstr(argv[2], "--save", 6))
 		screenshot(&game);
-	mlx_hook(game.ptr.win_ptr, DestroyNotify, StructureNotifyMask, close_window, 0);
+	mlx_hook(game.ptr.win_ptr,
+	DestroyNotify, StructureNotifyMask, close_window, 0);
 	mlx_hook(game.ptr.win_ptr, KeyPress, KeyPressMask, &keypress, &game);
 	mlx_hook(game.ptr.win_ptr, KeyRelease, KeyReleaseMask, &keyrelease, &game);
 	mlx_loop_hook(game.ptr.mlx_ptr, &loop, &game);
-	raycasting(&game);
 	mlx_loop(game.ptr.mlx_ptr);
+	free_all(&game);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/03 22:38:26 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/16 03:46:17 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/16 05:14:38 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	free_all(t_game *game)
 	mlx_destroy_image(game->ptr.mlx_ptr, game->tex.text_e);
 	mlx_destroy_image(game->ptr.mlx_ptr, game->tex.text_w);
 	mlx_destroy_image(game->ptr.mlx_ptr, game->info.sprite.test_p);
-	// tex floor ciel
 	mlx_destroy_window(game->ptr.mlx_ptr, game->ptr.win_ptr);
 	while (i < game->info.map_len)
 		free(game->info.map[i++]);
