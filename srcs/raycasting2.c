@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 01:26:21 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/16 03:04:40 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/16 04:15:51 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ void	wall_texturing(t_ray *ray, t_game *game, int y, int x)
 	game->tex.tex_y = (y * 2 - game->info.res_y + ray->line_height)
 	* (game->tex.tex_h / 2) / ray->line_height;
 	game->tex.tex_y = game->tex.tex_y < 0 ? 0 : game->tex.tex_y;
-	game->tex.tex_y = game->tex.tex_y > game->tex.tex_h ? game->tex.tex_h : game->tex.tex_y;
+	game->tex.tex_y = game->tex.tex_y > game->tex.tex_h ? game->tex.tex_h
+	: game->tex.tex_y;
 	if (ray->side == 0)
 		ft_memcpy(&game->ptr.fpixel_add[(y * game->info.size_line + x
 		* (game->info.bpp / 8))], &game->tex.ftexel_s[(game->tex.tex_y *
