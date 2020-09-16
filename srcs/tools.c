@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 05:04:21 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/16 03:24:50 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/16 05:05:07 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,14 +83,18 @@ void	error(int error_id)
 		ft_printf_error("Error\nNo spawnpoint\n");
 	else if (error_id == -3)
 		ft_printf_error("Error\nMap error\n");
-	else if (error_id == -7)
-		ft_printf_error("Error\nFile name error\n");
 	else if (error_id == -4)
 		ft_printf_error("Error\nMalloc failed\n");
 	else if (error_id == -5)
 		ft_printf_error("Error\nWrong texture path\n");
 	else if (error_id == -6)
 		ft_printf_error("Error\nBad value for floor or cieling rgb\n");
+	else if (error_id == -7)
+		ft_printf_error("Error\nFile name error\n");
+	else if (error_id == -8)
+		ft_printf_error("Error\nResolution error\n");
+	else if (error_id == -9)
+		ft_printf_error("Error\nRGB not found\n");
 	exit(-1);
 }
 

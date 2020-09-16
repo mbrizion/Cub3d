@@ -1,12 +1,12 @@
   
-R 1280 720
+		R 1280 720
               NO ./pics/mount1.xpm
     EA ./pics/mountain.xpm
   SO ./pics/mount3.xpm
    WE ./pics/mount4.xpm
 
-F             255,170,85
-C         85,170,255
+ F             255,170,85
+     C         85,170,255
 
 S ./pics/sauron.xpm 
  

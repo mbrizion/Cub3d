@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 22:44:34 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/16 04:42:49 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/16 05:08:18 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -239,4 +239,5 @@ int		check_info(char *s);
 void	info_init(t_info *info);
 int		all_info_init(t_info *info);
 int		get_file_len(char *path, t_info *info);
+void	error_check(t_info *info);
 #endif

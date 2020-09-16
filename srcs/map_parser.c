@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 03:37:38 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/16 04:41:43 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/16 05:07:19 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ int			parser(t_info *info, char *path)
 	info->file[info->file_index] = ft_strdup(info->line_buf);
 	free(info->line_buf);
 	check_path(info);
+	error_check(info);
 	get_map(info);
 	conv_map(info);
 	map_checker(info);

@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/16 04:41:24 by user42            #+#    #+#             */
-/*   Updated: 2020/09/16 04:41:49 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/16 05:07:51 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,12 @@ int			get_file_len(char *path, t_info *info)
 	free(info->line_buf);
 	close(fd);
 	return (0);
+}
+
+void		error_check(t_info *info)
+{
+	if (!info->res_x || !info->res_y)
+		error(-8);
+	if (!info->floor_color || !info->cieling_color)
+		error(-9);
 }
