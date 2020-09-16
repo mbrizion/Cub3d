@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 23:19:18 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/16 03:33:08 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/16 04:13:44 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,42 @@ void	checker_part2(int i, int j, char **map)
 		error(-3);
 }
 
+void	get_map_only(t_info *info, char **tmp_map, int i)
+{
+	int j;
+
+	j = 0;
+	tmp_map[i] = ft_strdup(info->file[info->map_start + i]);
+	while (j < (int)ft_strlen(tmp_map[i]))
+	{
+		if (is_spawn(tmp_map[i][j]))
+			tmp_map[i][j] = '0';
+		j++;
+	}
+}
+
+void	check_map_loop(char **tmp_map, int i)
+{
+	int j;
+
+	j = 0;
+	while (j < (int)ft_strlen(tmp_map[i]))
+	{
+		if (tmp_map[i][j] == '0' || tmp_map[i][j] == '2')
+		{
+			checker_part1(i, j, tmp_map);
+			checker_part2(i, j, tmp_map);
+		}
+		j++;
+	}
+}
+
 int		map_checker(t_info *info)
 {
-	int i;
-	int j;
-	int correct_len;
-	char **tmp_map;
+	int		i;
+	int		j;
+	int		correct_len;
+	char	**tmp_map;
 
 	i = 0;
 	j = 0;
@@ -67,32 +97,10 @@ int		map_checker(t_info *info)
 		error(-4);
 	correct_len = info->file_len - info->count - info->map_start;
 	while (i < info->map_len)
-	{
-		j = 0;
-		tmp_map[i] = ft_strdup(info->file[info->map_start + i]);
-		while (j < (int)ft_strlen(tmp_map[i]))
-		{
-			if (is_spawn(tmp_map[i][j]))
-				tmp_map[i][j] = '0';
-			j++;
-		}
-		i++;
-	}
+		get_map_only(info, tmp_map, i++);
 	i = 0;
 	while (i < info->map_len)
-	{
-		j = 0;
-		while (j < (int)ft_strlen(tmp_map[i]))
-		{
-			if (tmp_map[i][j] == '0' || tmp_map[i][j] == '2')
-			{
-				checker_part1(i, j, tmp_map);
-				checker_part2(i, j, tmp_map);
-			}
-			j++;
-		}
-		i++;
-	}
+		check_map_loop(tmp_map, i++);
 	i = 0;
 	while (i < info->map_len)
 		free(tmp_map[i++]);
