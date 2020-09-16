@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 22:44:34 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/16 00:29:15 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/16 01:49:31 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,7 +215,7 @@ int		ft_printf_error(char *str, ...);
 size_t	strlen_spaces(const char *s);
 int		sprite_raycast(t_game *game, double *wall_dist);
 int		close_window(void);
-int		map_checker(int **map, t_info *info);
+int		map_checker(t_info *info);
 char	*ft_strdup_len(const char *s1, int len);
 int		screenshot(t_game *game);
 int		free_all(t_game *game);
@@ -237,4 +237,5 @@ void 	draw_sprite_loop(t_game *game, int y, int x);
 void    sprite_calcul1(t_game *game, t_list *sprite);
 void    sprite_calcul2(t_game *game);
 void	load_tex(t_game *game);
+int		is_spawn(char c);
 #endif

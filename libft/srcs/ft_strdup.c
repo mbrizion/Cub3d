@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jacktatoume <jacktatoume@student.42.fr>    +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 16:51:14 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/03/13 09:23:25 by jacktatoume      ###   ########.fr       */
+/*   Updated: 2020/09/16 02:09:14 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ char	*ft_strdup(const char *s1)
 	ft_bzero(cpy, slen);
 	while (slen--)
 		cpy[slen] = s1[slen];
+	
 	return (cpy);
 }
