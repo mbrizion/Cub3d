@@ -6,7 +6,7 @@
 #    By: user42 <user42@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/04 03:41:23 by mbrizion          #+#    #+#              #
-#    Updated: 2020/09/15 05:56:58 by user42           ###   ########.fr        #
+#    Updated: 2020/09/16 04:43:25 by user42           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ C_FILES			=	main.c \
 					parser_utils.c \
 					parser_utils2.c \
 					parser_utils3.c \
+					parser_utils4.c \
 					tools.c \
 					raycasting.c \
 					raycasting2.c \

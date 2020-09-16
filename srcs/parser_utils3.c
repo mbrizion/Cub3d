@@ -6,13 +6,13 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 04:07:50 by user42            #+#    #+#             */
-/*   Updated: 2020/09/12 04:14:32 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/16 04:44:16 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int		add_sprite(int i, int j, t_info *info)
+int			add_sprite(int i, int j, t_info *info)
 {
 	t_sprite_pos *sprite_pos;
 
@@ -24,7 +24,7 @@ int		add_sprite(int i, int j, t_info *info)
 	return (0);
 }
 
-void	get_res(t_info *info, char *line)
+void		get_res(t_info *info, char *line)
 {
 	int i;
 
@@ -47,4 +47,52 @@ void	get_res(t_info *info, char *line)
 		}
 		i++;
 	}
+}
+
+int			is_spawn(char c)
+{
+	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+		return (1);
+	return (0);
+}
+
+int			conv_map(t_info *info)
+{
+	int		i;
+	int		j;
+	int		k;
+
+	i = info->map_start;
+	k = 0;
+	while (i < info->file_len - info->count)
+	{
+		j = -1;
+		while (++j < (int)ft_strlen(info->file[i]))
+		{
+			if (info->file[i][j] != ' ' && !is_spawn(info->file[i][j]))
+				info->map[k][j] = info->file[i][j] - '0';
+			else if (info->file[i][j] == ' ')
+				info->map[k][j] = ' ';
+			else if (is_spawn(info->file[i][j]))
+				info->map[k][j] = 0;
+		}
+		i++;
+		k++;
+	}
+	info->map_len = k;
+	return (0);
+}
+
+void		check_path(t_info *info)
+{
+	if (!info->north_path)
+		error(-5);
+	if (!info->east_path)
+		error(-5);
+	if (!info->weast_path)
+		error(-5);
+	if (!info->south_path)
+		error(-5);
+	if (!info->sprite.sprite_path)
+		error(-5);
 }

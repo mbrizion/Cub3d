@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 22:44:34 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/16 04:03:52 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/16 04:42:49 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,6 +171,7 @@ typedef	struct s_info
 	int		buf;
 	int		count;
 	int		map_len;
+	int		save;
 }				t_info;
 
 typedef struct s_game
@@ -231,4 +232,11 @@ void    sprite_calcul1(t_game *game, t_list *sprite);
 void    sprite_calcul2(t_game *game);
 void	load_tex(t_game *game);
 int		is_spawn(char c);
+int		conv_map(t_info *info);
+void	check_path(t_info *info);
+int		identify_info(char *s, int j);
+int		check_info(char *s);
+void	info_init(t_info *info);
+int		all_info_init(t_info *info);
+int		get_file_len(char *path, t_info *info);
 #endif
