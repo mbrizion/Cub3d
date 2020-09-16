@@ -6,7 +6,7 @@
 #    By: user42 <user42@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/04 03:41:23 by mbrizion          #+#    #+#              #
-#    Updated: 2020/09/16 05:48:28 by user42           ###   ########.fr        #
+#    Updated: 2020/09/16 23:10:13 by user42           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ OBJS_BONUS 		= 	$(addprefix $(OB_DIR), $(C_FILES:.c=.o))
 CC				=	clang
 
 CFLAGS			=	-I./ -Wall -Wextra -Werror #-fsanitize=address
-CFLAGS_BONUS	=	-I./ -Wall -Wextra -Werror -fsanitize=address 
+CFLAGS_BONUS	=	-I./ -Wall -Wextra -Werror #-fsanitize=address 
 
 LIBS			=	libft/libft.a ft_printf_error/ft_printf_error.a
 

@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 22:44:34 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/16 05:31:26 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/17 01:36:56 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,84 +37,78 @@
 # define P 80
 # define C 67
 # define F 70
-# define DestroyNotify 17
-# define StructureNotifyMask 1L<<17
-# define KeyPress 2
-# define KeyPressMask 1L<<0
-# define KeyRelease 3
-# define KeyReleaseMask 1L<<1
 
-typedef struct s_sprite_pos
+typedef struct	s_sprite_pos
 {
 	double pos_x;
 	double pos_y;
 }				t_sprite_pos;
 
-typedef struct s_sprite
+typedef struct	s_sprite
 {
-	void 	*test_p;
-	char	*ftexel_p;
-	char 	*sprite_path;
-	int		spriteScreenX;
-	int		spriteHeight;
-	int		spriteWidth;
-	double	spriteX;
-	double	spriteY;
-	double	transformX;
-	double	transformY;
-	double	invDet;
-	int		drawStartX;
-	int		drawStartY;
-	int		drawEndX;
-	int		drawEndY;
-	int		texX;
-	int		texY;
-	int		d;
-	unsigned int color;
-	unsigned char *color_c;
-	double *wall_dist;
+	void			*test_p;
+	char			*ftexel_p;
+	char			*sprite_path;
+	int				sprite_screen_x;
+	int				sprite_height;
+	int				sprite_width;
+	double			sprite_x;
+	double			sprite_y;
+	double			transform_x;
+	double			transform_y;
+	double			invdet;
+	int				draw_s_x;
+	int				draw_s_y;
+	int				draw_e_x;
+	int				draw_e_y;
+	int				tex_x;
+	int				tex_y;
+	int				d;
+	unsigned int	color;
+	unsigned char	*color_c;
+	double			*wall_dist;
 }				t_sprite;
 
-typedef struct s_tex
+typedef struct	s_tex
 {
-	int tex_w;
-	int tex_h;
-	double wall_x;
-	int tex_x;
-	int tex_y;
-	int tex_len_size;
-	int tex_bpp;
-	int tex_endian;
-	void *text_n;
-	void *text_e;
-	void *text_s;
-	void *text_w;
-	void *text_f;
-	void *text_c;
-	void *ftexel_n;
-	void *ftexel_e;
-	void *ftexel_s;
-	void *ftexel_w;
-	void *ftexel_f;
-	void *ftexel_c;
+	int			tex_w;
+	int			tex_h;
+	double		wall_x;
+	int			tex_x;
+	int			tex_y;
+	int			tex_len_size;
+	int			tex_bpp;
+	int			tex_endian;
+	void		*text_n;
+	void		*text_e;
+	void		*text_s;
+	void		*text_w;
+	void		*text_f;
+	void		*text_c;
+	void		*ftexel_n;
+	void		*ftexel_e;
+	void		*ftexel_s;
+	void		*ftexel_w;
+	void		*ftexel_f;
+	void		*ftexel_c;
 }				t_tex;
 
-typedef struct s_ray
+typedef struct	s_ray
 {
-	int draw_start;
-	int draw_end;
+	int			draw_start;
+	int			draw_end;
 	int			hit;
 	int			map_x;
 	int			map_y;
-	double 		pos_x;
-	double 		pos_y;;
-	double 		side_dist_x;
-	double 		side_dist_y;
-	double 		delta_dist_x;
-	double 		delta_dist_y;
-	double 		step_x;
-	double 		step_y;
-	int 		side;
+	double		pos_x;
+	double		pos_y;
+	double		side_dist_x;
+	double		side_dist_y;
+	double		delta_dist_x;
+	double		delta_dist_y;
+	double		step_x;
+	double		step_y;
+	int			side;
 	double		len;
 	double		dir_x;
 	double		dir_y;
@@ -122,77 +116,78 @@ typedef struct s_ray
 	double		line_height;
 }				t_ray;
 
-typedef struct s_move
+typedef struct	s_move
 {
-	int	forward;
-	int	backward;
-	int	left;
-	int	right;
-	int up;
-	int down;
-	double	rot;
-	double	v_rot;
-	double	speed;
+	int			forward;
+	int			backward;
+	int			left;
+	int			right;
+	int			up;
+	int			down;
+	double		rot;
+	double		v_rot;
+	double		speed;
 }				t_move;
 
-typedef struct s_ptr
+typedef struct	s_ptr
 {
-	void *mlx_ptr;
-	void *win_ptr;
-	char *fpixel_add;
-	void *buffer;
+	void		*mlx_ptr;
+	void		*win_ptr;
+	char		*fpixel_add;
+	void		*buffer;
 }				t_ptr;
 
-typedef	struct s_info
+typedef	struct	s_info
 {
-	t_sprite sprite;
-	t_list	*sprite_lst;
-	double 	res_x;
-	double 	res_y;
+	t_sprite	sprite;
+	t_list		*sprite_lst;
+	double		res_x;
+	double		res_y;
 	double		pos_x;
 	double		pos_y;
-	char	spawn_dir;
-	char 	*north_path;
-	char 	*south_path;
-	char 	*weast_path;
-	char 	*east_path;
-	char	*floor_rgb;
-	char	*cieling_rgb;
-	int		**map;
-	int 	file_len;
-	int		len_line;
-	int 	rgb;
-	int		bpp;
-	int		size_line;
-	char	*floor_path;
-	char	*cieling_path;
-	char	*line_buf;
-	char	**file;
-	int		file_index;
-	int		map_start;
-	int		buf;
-	int		count;
-	int		map_len;
-	int		save;
+	char		spawn_dir;
+	char		*north_path;
+	char		*south_path;
+	char		*weast_path;
+	char		*east_path;
+	char		*floor_rgb;
+	char		*cieling_rgb;
+	int			**map;
+	int			file_len;
+	int			len_line;
+	int			rgb;
+	int			bpp;
+	int			size_line;
+	int			floor_color;
+	int			cieling_color;
+	char		*line_buf;
+	char		**file;
+	int			file_index;
+	int			map_start;
+	int			buf;
+	int			count;
+	int			map_len;
+	int			save;
+	char		*floor_path;
+	char		*cieling_path;
 }				t_info;
 
-typedef struct s_game
+typedef struct	s_game
 {
-	t_ptr 	ptr;
-	t_info	info;
-	t_move	move;
-	t_tex	tex;
-	double		plan_x;
-	double		plan_y;
-	double		dirX;
-	double		dirY;
-	int			fd;
-	int			tmp;
-	int			pad;
+	t_ptr			ptr;
+	t_info			info;
+	t_move			move;
+	t_tex			tex;
+	double			plan_x;
+	double			plan_y;
+	double			dir_x;
+	double			dir_y;
+	int				fd;
+	int				tmp;
+	int				pad;
 	unsigned int	filesize;
-	int			y;
+	int				y;
 }				t_game;
-
 
 int		parser(t_info *info, char *path);
 int		ft_nbrlen(int n);
@@ -242,4 +237,5 @@ void	info_init(t_info *info);
 int		all_info_init(t_info *info);
 int		get_file_len(char *path, t_info *info);
 void	error_check(t_info *info);
+void	sprite_tex(t_info *info, char *line, int i, int j);
 #endif

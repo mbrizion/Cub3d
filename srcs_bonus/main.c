@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 22:28:30 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/16 05:25:39 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/17 00:38:26 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,16 @@ int		north_south(t_game *game)
 {
 	if (game->info.spawn_dir == 'N')
 	{
-		game->dirX = -1;
-		game->dirY = 0;
+		game->dir_x = -1;
+		game->dir_y = 0;
 		game->plan_x = 0;
 		game->plan_y = 1;
 		return (1);
 	}
 	else if (game->info.spawn_dir == 'S')
 	{
-		game->dirX = 1;
-		game->dirY = 0;
+		game->dir_x = 1;
+		game->dir_y = 0;
 		game->plan_x = 0;
 		game->plan_y = -1;
 		return (1);
@@ -54,15 +54,15 @@ void	move_init(t_game *game)
 		;
 	else if (game->info.spawn_dir == 'E')
 	{
-		game->dirX = 0;
-		game->dirY = 1;
+		game->dir_x = 0;
+		game->dir_y = 1;
 		game->plan_x = 1;
 		game->plan_y = 0;
 	}
 	else
 	{
-		game->dirX = 0;
-		game->dirY = -1;
+		game->dir_x = 0;
+		game->dir_y = -1;
 		game->plan_x = -1;
 		game->plan_y = 0;
 	}
@@ -79,7 +79,7 @@ int		main(int argc, char **argv)
 	t_game game;
 
 	if (argc < 2)
-		return (0);
+		error(-10);
 	if (!(ft_strnstr(((argv[1]) + ft_strlen(argv[1]) - 4), ".cub", 4)))
 		error(-7);
 	if (parser(&game.info, argv[1]) < 0)
@@ -93,10 +93,9 @@ int		main(int argc, char **argv)
 	raycasting(&game);
 	if (argv[2] && ft_strnstr(argv[2], "--save", 6))
 		screenshot(&game);
-	mlx_hook(game.ptr.win_ptr,
-	DestroyNotify, StructureNotifyMask, close_window, 0);
-	mlx_hook(game.ptr.win_ptr, KeyPress, KeyPressMask, &keypress, &game);
-	mlx_hook(game.ptr.win_ptr, KeyRelease, KeyReleaseMask, &keyrelease, &game);
+	mlx_hook(game.ptr.win_ptr, 17, 1L << 17, close_window, 0);
+	mlx_hook(game.ptr.win_ptr, 2, 1L << 0, &keypress, &game);
+	mlx_hook(game.ptr.win_ptr, 3, 1L << 1, &keyrelease, &game);
 	mlx_loop_hook(game.ptr.mlx_ptr, &loop, &game);
 	mlx_loop(game.ptr.mlx_ptr);
 	free_all(&game);

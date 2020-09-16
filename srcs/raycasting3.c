@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 04:22:46 by user42            #+#    #+#             */
-/*   Updated: 2020/09/16 03:57:37 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/17 00:30:59 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ void	ray_init(t_ray *ray, t_game *game, int x)
 	ray->len = 0;
 	ray->pos_x = game->info.pos_x;
 	ray->pos_y = game->info.pos_y;
-	ray->dir_x = game->dirX + game->plan_x * ray->center;
-	ray->dir_y = game->dirY + game->plan_y * ray->center;
+	ray->dir_x = game->dir_x + game->plan_x * ray->center;
+	ray->dir_y = game->dir_y + game->plan_y * ray->center;
 	ray->map_x = (int)ray->pos_x;
 	ray->map_y = (int)ray->pos_y;
 	ray->delta_dist_x = sqrt(1 + (ray->dir_y * ray->dir_y) /

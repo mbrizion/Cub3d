@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 00:43:52 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/16 05:15:58 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/17 00:43:53 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ void	sprite_sorter(t_list *lst, t_game *game)
 
 int		for_the_norm(t_game *game, int x)
 {
-	game->info.sprite.texX =
-			(int)(256 * (x - (-game->info.sprite.spriteWidth / 2 +
-			game->info.sprite.spriteScreenX)) * game->tex.tex_w /
-			game->info.sprite.spriteWidth) / 256;
-	return (game->info.sprite.drawStartY);
+	game->info.sprite.tex_x =
+			(int)(256 * (x - (-game->info.sprite.sprite_width / 2 +
+			game->info.sprite.sprite_screen_x)) * game->tex.tex_w /
+			game->info.sprite.sprite_width) / 256;
+	return (game->info.sprite.draw_s_y);
 }
 
 int		sprite_raycast(t_game *game, double *wall_dist)
@@ -62,14 +62,14 @@ int		sprite_raycast(t_game *game, double *wall_dist)
 	{
 		sprite_calcul1(game, sprite);
 		sprite_calcul2(game);
-		x = game->info.sprite.drawStartX;
-		while (x < game->info.sprite.drawEndX)
+		x = game->info.sprite.draw_s_x;
+		while (x < game->info.sprite.draw_e_x)
 		{
 			y = for_the_norm(game, x);
-			if (game->info.sprite.transformY > 0 && x > 0 &&
-			x < game->info.res_x && game->info.sprite.transformY < wall_dist[x])
+			if (game->info.sprite.transform_y > 0 && x > 0 &&
+			x < game->info.res_x && game->info.sprite.transform_y < wall_dist[x])
 			{
-				while (y < game->info.sprite.drawEndY)
+				while (y < game->info.sprite.draw_e_y)
 					draw_sprite_loop(game, y++, x);
 			}
 			x++;
