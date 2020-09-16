@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 01:33:14 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/16 03:57:20 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/16 04:04:09 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,12 @@ void	load_tex(t_game *game)
 
 void	raycasting(t_game *game)
 {
-	int		y;
 	int		x;
 	int		endian;
 	t_ray	ray;
 
 	x = -1;
-	y = 0;
+	game->y = 0;
 	if (game->ptr.buffer)
 		mlx_destroy_image(game->ptr.mlx_ptr, game->ptr.buffer);
 	if (!(game->info.sprite.wall_dist = malloc(sizeof(double*)
@@ -90,7 +89,7 @@ void	raycasting(t_game *game)
 	{
 		ray_init(&ray, game, x);
 		init_side_dist(&ray);
-		raycasting2(game, &ray, x, y);
+		raycasting2(game, &ray, x, game->y);
 	}
 	sprite_raycast(game, game->info.sprite.wall_dist);
 	mlx_put_image_to_window(game->ptr.mlx_ptr, game->ptr.win_ptr,

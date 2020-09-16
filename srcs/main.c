@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 22:28:30 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/16 03:57:46 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/16 04:05:38 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,12 @@ void	move_init(t_game *game)
 	}
 }
 
+void	ptr_init(t_game *game)
+{
+	game->ptr.buffer = 0;
+	game->ptr.mlx_ptr = mlx_init();
+}
+
 int		main(int argc, char **argv)
 {
 	t_game game;
@@ -79,8 +85,7 @@ int		main(int argc, char **argv)
 	if (parser(&game.info, argv[1]) < 0)
 		return (-1);
 	move_init(&game);
-	game.ptr.buffer = 0;
-	game.ptr.mlx_ptr = mlx_init();
+	ptr_init(&game);
 	if ((game.ptr.win_ptr = mlx_new_window(game.ptr.mlx_ptr, game.info.res_x,
 	game.info.res_y, "Cub3D")) == 0)
 		return (-1);

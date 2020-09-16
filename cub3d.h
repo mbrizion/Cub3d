@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 22:44:34 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/16 03:41:30 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/16 04:03:52 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,6 +187,7 @@ typedef struct s_game
 	int			tmp;
 	int			pad;
 	unsigned int	filesize;
+	int			y;
 }				t_game;
 
 
