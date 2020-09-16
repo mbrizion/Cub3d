@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 01:33:14 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/12 04:23:53 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/16 03:03:26 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,27 +43,27 @@ void	load_tex(t_game *game)
 {
 	if (!(game->tex.text_n = mlx_xpm_file_to_image(game->ptr.mlx_ptr,
 	game->info.north_path, &game->tex.tex_w, &game->tex.tex_h)))
-		error(78);
+		error(N);
 	game->tex.ftexel_n = mlx_get_data_addr(game->tex.text_n,
 	&game->tex.tex_bpp, &game->tex.tex_len_size, &game->tex.tex_endian);
 	if (!(game->tex.text_s = mlx_xpm_file_to_image(game->ptr.mlx_ptr,
 	game->info.south_path, &game->tex.tex_w, &game->tex.tex_h)))
-		error(83);
+		error(S);
 	game->tex.ftexel_s = mlx_get_data_addr(game->tex.text_s,
 	&game->tex.tex_bpp, &game->tex.tex_len_size, &game->tex.tex_endian);
 	if (!(game->tex.text_w = mlx_xpm_file_to_image(game->ptr.mlx_ptr,
 	game->info.weast_path, &game->tex.tex_w, &game->tex.tex_h)))
-		error(87);
+		error(W);
 	game->tex.ftexel_w = mlx_get_data_addr(game->tex.text_w,
 	&game->tex.tex_bpp, &game->tex.tex_len_size, &game->tex.tex_endian);
 	if (!(game->tex.text_e = mlx_xpm_file_to_image(game->ptr.mlx_ptr,
 	game->info.east_path, &game->tex.tex_w, &game->tex.tex_h)))
-		error(69);
+		error(E);
 	game->tex.ftexel_e = mlx_get_data_addr(game->tex.text_e,
 	&game->tex.tex_bpp, &game->tex.tex_len_size, &game->tex.tex_endian);
 	if (!(game->info.sprite.test_p = mlx_xpm_file_to_image(game->ptr.mlx_ptr,
 	game->info.sprite.sprite_path, &game->tex.tex_w, &game->tex.tex_h)))
-		error(80);
+		error(P);
 	game->info.sprite.ftexel_p = mlx_get_data_addr(game->info.sprite.test_p,
 	&game->tex.tex_bpp, &game->tex.tex_len_size, &game->tex.tex_endian);
 }

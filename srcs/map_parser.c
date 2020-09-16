@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 03:37:38 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/16 01:35:54 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/16 03:07:41 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,6 +180,20 @@ int			conv_map(t_info *info)
 	return (0);
 }
 
+void		check_path(t_info *info)
+{
+	if (!info->north_path)
+		error (-5);
+	if (!info->east_path)
+		error (-5);
+	if (!info->weast_path)
+		error (-5);
+	if (!info->south_path)
+		error (-5);
+	if (!info->sprite.sprite_path)
+		error (-5);
+}
+
 int			parser(t_info *info, char *path)
 {
 	int		j;
@@ -230,6 +244,7 @@ int			parser(t_info *info, char *path)
 	}
 	info->file[info->file_index] = ft_strdup(info->line_buf);
 	free(info->line_buf);
+	check_path(info);
 	get_map(info);
 	conv_map(info);
 	map_checker(info);

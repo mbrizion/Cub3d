@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 22:44:34 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/16 01:49:31 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/16 03:07:37 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,11 @@
 # define ROUGE 0xAD4B4B
 # define JAUNE  0xD1C236
 # define BLACK 0x00FFFFFF
+# define N 78
+# define S 83
+# define E 69
+# define W 87
+# define P 80
 # define DestroyNotify 17
 # define StructureNotifyMask 1L<<17
 # define KeyPress 2

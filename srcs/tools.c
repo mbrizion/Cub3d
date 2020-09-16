@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 05:04:21 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/12 04:19:36 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/16 03:17:07 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,13 @@ int		get_rgb(char *str)
 
 	i = 0;
 	color = 0;
+	while (str[i] && !ft_isdigit(str[i]))
+		i++;
+	while (str[i++])
+	{
+		if (str[i] && (str[i] == ' ' || str[i] == '\t'))
+			error(-6);
+	}
 	tmp = ft_split(str, ',');
 	color += ft_atoi(tmp[0]) << 16;
 	color += ft_atoi(tmp[1]) << 8;
@@ -65,7 +72,10 @@ int		get_rgb(char *str)
 void	error(int error_id)
 {
 	if (error_id > 0)
-		ft_printf_error("Error\nTexture not found (%c)\n", (char)error_id);
+		if (error_id == 80)
+			ft_printf_error("Error\nTexture not found (Sprite)\n");
+		else
+			ft_printf_error("Error\nTexture not found (%c)\n", (char)error_id);
 	else if (error_id == -1)
 		ft_printf_error("Error\nMultiple spawnpoint\n");
 	else if (error_id == -2)
@@ -76,7 +86,11 @@ void	error(int error_id)
 		ft_printf_error("Error\nFile name error\n");
 	else if (error_id == -4)
 		ft_printf_error("Error\nMalloc failed\n");
-	exit(0);
+	else if (error_id == -5)
+		ft_printf_error("Error\nWrong texture path\n");
+	else if (error_id == -6)
+		ft_printf_error("Error\nBad value for floor or cieling rgb\n");
+	exit(-1);
 }
 
 int		close_window(void)
