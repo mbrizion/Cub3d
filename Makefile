@@ -44,12 +44,12 @@ OBJS_BONUS 		= 	$(addprefix $(OB_DIR), $(C_FILES:.c=.o))
 
 CC				=	clang
 
-CFLAGS			=	-I./ -Wall -Wextra -Werror #-fsanitize=address
+CFLAGS			=	-I./inc -Wall -Wextra -Werror #-fsanitize=address
 CFLAGS_BONUS	=	-I./ -Wall -Wextra -Werror #-fsanitize=address 
 
-LIBS			=	libft/libft.a ft_printf_error/ft_printf_error.a
+LIBS			=	libft/libft.a ft_printf_error/ft_printf_error.a minilibx-linux/libmlx_Linux.a
 
-LINUX_FLAGS 	=	-lmlx -lbsd -lXext -lX11 -lm 
+LINUX_FLAGS 	=	-lbsd -lXext -lX11 -lm 
 
 MAC_FLAGS 		= 	-lmlx -framework OpenGL -framework AppKit -lm
 
@@ -67,6 +67,7 @@ $(OB_DIR)%.o:	$(CB_DIR)%.c
 				@${CC} ${CFLAGS_BONUS} -c $< -o $@
 
 ${NAME}:		${OBJS}
+				@make -sC minilibx-linux
 				@make -sC libft
 				@make -sC ft_printf_error
 				@${CC} ${OBJS} ${LINUX_FLAGS} ${CFLAGS} ${LIBS} -o ${NAME}
@@ -76,11 +77,13 @@ clean:
 				@${RM} ${OBJS} 
 				@make clean -sC libft
 				@make clean -sC ft_printf_error
+				@make clean -sC minilibx-linux
 				@echo ${BLUE}[All clean]${END}
 
 bonus:			${OBJS_BONUS}
 				@make -sC libft
 				@make -sC ft_printf_error
+				@make -sC minilibx-linux
 				@${CC} ${OBJS_BONUS} ${LINUX_FLAGS} ${CFLAGS_BONUS} ${LIBS} -o ${NAME_BONUS}
 				@echo ${GREEN}[Comp.DONE]${END}
 

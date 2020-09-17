@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "../libft/libft.h"
+#include "libft.h"
 
 char		conv_identifier(const char *str, int index)
 {

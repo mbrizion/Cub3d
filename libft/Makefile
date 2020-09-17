@@ -68,7 +68,7 @@ OBJS		=	$(addprefix $(O_DIR), $(C_FILES:.c=.o))
 
 CC			=	gcc
 
-CFLAGS		=	-I./
+CFLAGS		=	-I../inc
 
 RM			=	rm -f
 
