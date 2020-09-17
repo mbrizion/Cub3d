@@ -6,13 +6,13 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 04:22:46 by user42            #+#    #+#             */
-/*   Updated: 2020/09/17 00:41:44 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/17 02:57:43 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 
-void init_side_dist(t_ray *ray)
+void	init_side_dist(t_ray *ray)
 {
 	if (ray->dir_x < 0)
 	{
@@ -36,7 +36,7 @@ void init_side_dist(t_ray *ray)
 	}
 }
 
-void ray_init(t_ray *ray, t_game *game, int x)
+void	ray_init(t_ray *ray, t_game *game, int x)
 {
 	ray->center = (2 * x / game->info.res_x) - 1;
 	ray->len = 0;
@@ -47,9 +47,9 @@ void ray_init(t_ray *ray, t_game *game, int x)
 	ray->map_x = (int)ray->pos_x;
 	ray->map_y = (int)ray->pos_y;
 	ray->delta_dist_x = sqrt(1 + (ray->dir_y * ray->dir_y) /
-									 (ray->dir_x * ray->dir_x));
+									(ray->dir_x * ray->dir_x));
 	ray->delta_dist_y = sqrt(1 + (ray->dir_x * ray->dir_x) /
-									 (ray->dir_y * ray->dir_y));
+									(ray->dir_y * ray->dir_y));
 	ray->hit = 0;
 	game->info.sprite.color = 0;
 }

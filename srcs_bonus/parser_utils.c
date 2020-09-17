@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 02:06:22 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/16 05:14:29 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/17 02:54:08 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,20 +92,11 @@ void		get_tex_path(t_info *info, char *line, char dir)
 	else if (dir == 'E')
 		east_tex(info, line, i, j);
 	else if (dir == 'P' && !info->sprite.sprite_path)
-	{
-		info->sprite.sprite_path = malloc(sizeof(char) * ((j - i) + 1));
-		ft_strlcpy(info->sprite.sprite_path, &line[i], ((j - i) + 1));
-	}
+		sprite_tex(info, line, i, j);
 	else if (dir == 'C')
-	{
-		info->cieling_path = malloc(sizeof(char) * ((j - i) + 1));
-		ft_strlcpy(info->cieling_path, &line[i], ((j - i) + 1));
-	}
+		cieling_tex(info, line, i, j);
 	else if (dir == 'F')
-	{
-		info->floor_path = malloc(sizeof(char) * ((j - i) + 1));
-		ft_strlcpy(info->floor_path, &line[i], ((j - i) + 1));
-	}
+		floor_tex(info, line, i, j);
 }
 
 int			identify_info(char *s, int j)

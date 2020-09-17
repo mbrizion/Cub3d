@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 03:37:38 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/16 05:27:32 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/17 02:44:02 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,13 +97,6 @@ int			parser(t_info *info, char *path)
 	get_map(info);
 	conv_map(info);
 	map_checker(info);
-	// printf("%s\n", info->floor_path);
-	// printf("%s\n", info->cieling_path);
-	// printf("%s\n", info->south_path);
-	// printf("%s\n", info->north_path);
-	// printf("%s\n", info->east_path);
-	// printf("%s\n", info->weast_path);
-	// printf("%s\n", info->sprite.sprite_path);
 	close(fd);
 	return (0);
 }

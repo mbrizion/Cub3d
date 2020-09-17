@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/16 04:41:24 by user42            #+#    #+#             */
-/*   Updated: 2020/09/16 05:21:54 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/17 02:56:26 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,4 @@ void		error_check(t_info *info)
 {
 	if (!info->res_x || !info->res_y)
 		error(-8);
-	// if (!info->floor_color || !info->cieling_color)
-	// 	error(-9);
 }

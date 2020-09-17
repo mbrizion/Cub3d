@@ -2,10 +2,10 @@
     EA ./pics/mountain.xpm
   SO ./pics/mount3.xpm
    WE ./pics/mount4.xpm
-   R 1280 720
+   R 0 0
 
-        F 22,   125,     22               
-        C 61,   93,  182                   
+        F   22,  1	25,22    	    
+        C 6	1,93, 1	82                   
                S ./pics/sauron.xpm               
 
 11111111111111111111111

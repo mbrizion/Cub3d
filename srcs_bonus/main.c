@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 22:28:30 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/17 00:38:26 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/17 02:59:30 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ int		main(int argc, char **argv)
 	game.info.res_y, "Cub3D")) == 0)
 		return (-1);
 	load_tex(&game);
+	load_tex2(&game);
 	raycasting(&game);
 	if (argv[2] && ft_strnstr(argv[2], "--save", 6))
 		screenshot(&game);

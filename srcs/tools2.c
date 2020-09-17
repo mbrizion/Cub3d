@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/16 05:47:30 by user42            #+#    #+#             */
-/*   Updated: 2020/09/17 01:35:49 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/17 01:39:54 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	error(int error_id)
 	exit(-1);
 }
 
-void		sprite_tex(t_info *info, char *line, int i, int j)
+void	sprite_tex(t_info *info, char *line, int i, int j)
 {
 	int k;
 

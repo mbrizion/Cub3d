@@ -6,19 +6,19 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/16 05:47:30 by user42            #+#    #+#             */
-/*   Updated: 2020/09/17 01:36:38 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/17 03:00:55 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 
-void	error2(int error_id)
+void		error2(int error_id)
 {
 	if (error_id == -10)
 		ft_printf_error("Error\nMissing map\n");
 }
 
-void	error(int error_id)
+void		error(int error_id)
 {
 	if (error_id > 0)
 		if (error_id == 80)
@@ -58,4 +58,30 @@ void		sprite_tex(t_info *info, char *line, int i, int j)
 	&& info->sprite.sprite_path[k] != '\t')
 		k++;
 	info->sprite.sprite_path[k] = '\0';
+}
+
+void		floor_tex(t_info *info, char *line, int i, int j)
+{
+	int k;
+
+	k = 0;
+	info->floor_path = malloc(sizeof(char) * ((j - i) + 1));
+	ft_strlcpy(info->floor_path, &line[i], ((j - i) + 1));
+	while (info->floor_path[k] && info->floor_path[k] != ' '
+	&& info->floor_path[k] != '\t')
+		k++;
+	info->floor_path[k] = '\0';
+}
+
+void		cieling_tex(t_info *info, char *line, int i, int j)
+{
+	int k;
+
+	k = 0;
+	info->cieling_path = malloc(sizeof(char) * ((j - i) + 1));
+	ft_strlcpy(info->cieling_path, &line[i], ((j - i) + 1));
+	while (info->cieling_path[k] && info->cieling_path[k] != ' '
+	&& info->cieling_path[k] != '\t')
+		k++;
+	info->cieling_path[k] = '\0';
 }

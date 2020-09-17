@@ -6,17 +6,17 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 22:44:34 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/17 01:36:56 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/17 02:59:55 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 
-#include "mlx.h"
-#include "libft/libft.h"
-#include <stdio.h>
-#include <math.h>
+# include "mlx.h"
+# include "libft/libft.h"
+# include <stdio.h>
+# include <math.h>
 
 # define KEY_ESC 65307
 # define KEY_W 119
@@ -189,53 +189,51 @@ typedef struct	s_game
 	int				y;
 }				t_game;
 
-int		parser(t_info *info, char *path);
-int		ft_nbrlen(int n);
-int		ft_atoi_cub(const char *str);
-char	*ft_strjoin_charset(char const *s1, char const *s2, char charset);
-int		check_map(t_info *info, char **map);
-void 	raycasting(t_game *game);
-void	raycasting2(t_game *game, t_ray *ray, int x, int y);
-void	color_pixel(int x, int y, int color, t_game *game);
-int 	keypress(int keycode, t_game *game);
-int 	keyrelease(int keycode, t_game *game);
-int		move(t_game *game);
-int		get_rgb(char *str);
-void 	error(int error_id);
-int		ft_printf_error(char *str, ...);
-size_t	strlen_spaces(const char *s);
-int		sprite_raycast(t_game *game, double *wall_dist);
-int		close_window(void);
-int		map_checker(t_info *info);
-char	*ft_strdup_len(const char *s1, int len);
-int		screenshot(t_game *game);
-int		free_all(t_game *game);
-int		check_pos(int x, int y, t_info *info, char c);
-char	**fill_map(char **map, t_info *info);
-int		add_sprite(int i, int j, t_info *info);
-int		get_map(t_info *info);
-void	get_res(t_info *info, char *line);
-void	north_tex(t_info *info, char *line, int i, int j);
-void	south_tex(t_info *info, char *line, int i, int j);
-void	weast_tex(t_info *info, char *line, int i, int j);
-void	east_tex(t_info *info, char *line, int i, int j);
-void	parser_loop(char *line, t_info *info, int j);
-void	get_tex_path(t_info *info, char *line, char dir);
-int		add_sprite(int i, int j, t_info *info);
-void	ray_init(t_ray *ray, t_game *game, int x);
-void	init_side_dist(t_ray *ray);
-void 	draw_sprite_loop(t_game *game, int y, int x);
-void    sprite_calcul1(t_game *game, t_list *sprite);
-void    sprite_calcul2(t_game *game);
-void	load_tex(t_game *game);
-int		is_spawn(char c);
-int		conv_map(t_info *info);
-void	check_path(t_info *info);
-int		identify_info(char *s, int j);
-int		check_info(char *s);
-void	info_init(t_info *info);
-int		all_info_init(t_info *info);
-int		get_file_len(char *path, t_info *info);
-void	error_check(t_info *info);
-void	sprite_tex(t_info *info, char *line, int i, int j);
+int				parser(t_info *info, char *path);
+int				ft_nbrlen(int n);
+int				check_map(t_info *info, char **map);
+void			raycasting(t_game *game);
+void			raycasting2(t_game *game, t_ray *ray, int x, int y);
+void			color_pixel(int x, int y, int color, t_game *game);
+int				keypress(int keycode, t_game *game);
+int				keyrelease(int keycode, t_game *game);
+int				move(t_game *game);
+int				get_rgb(char *str);
+void			error(int error_id);
+int				ft_printf_error(char *str, ...);
+int				sprite_raycast(t_game *game, double *wall_dist);
+int				close_window(void);
+int				map_checker(t_info *info);
+int				screenshot(t_game *game);
+int				free_all(t_game *game);
+int				check_pos(int x, int y, t_info *info, char c);
+char			*fill_map(char **map, t_info *info);
+int				get_map(t_info *info);
+void			get_res(t_info *info, char *line);
+void			north_tex(t_info *info, char *line, int i, int j);
+void			south_tex(t_info *info, char *line, int i, int j);
+void			weast_tex(t_info *info, char *line, int i, int j);
+void			east_tex(t_info *info, char *line, int i, int j);
+void			parser_loop(char *line, t_info *info, int j);
+void			get_tex_path(t_info *info, char *line, char dir);
+int				add_sprite(int i, int j, t_info *info);
+void			ray_init(t_ray *ray, t_game *game, int x);
+void			init_side_dist(t_ray *ray);
+void			draw_sprite_loop(t_game *game, int y, int x);
+void			sprite_calcul1(t_game *game, t_list *sprite);
+void			sprite_calcul2(t_game *game);
+void			load_tex(t_game *game);
+void			load_tex2(t_game *game);
+int				is_spawn(char c);
+int				conv_map(t_info *info);
+void			check_path(t_info *info);
+int				identify_info(char *s, int j);
+int				check_info(char *s);
+void			info_init(t_info *info);
+int				all_info_init(t_info *info);
+int				get_file_len(char *path, t_info *info);
+void			error_check(t_info *info);
+void			sprite_tex(t_info *info, char *line, int i, int j);
+void			cieling_tex(t_info *info, char *line, int i, int j);
+void			floor_tex(t_info *info, char *line, int i, int j);
 #endif

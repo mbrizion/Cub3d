@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 01:33:14 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/16 05:31:44 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/17 02:59:12 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,20 @@ void	color_pixel(int x, int y, int color, t_game *game)
 	game->info.bpp / 8 + 2] = color_c[2];
 }
 
+void	load_tex2(t_game *game)
+{
+	if (!(game->tex.text_c = mlx_xpm_file_to_image(game->ptr.mlx_ptr,
+	game->info.cieling_path, &game->tex.tex_w, &game->tex.tex_h)))
+		error(C);
+	game->tex.ftexel_c = mlx_get_data_addr(game->tex.text_c,
+	&game->tex.tex_bpp, &game->tex.tex_len_size, &game->tex.tex_endian);
+	if (!(game->tex.text_f = mlx_xpm_file_to_image(game->ptr.mlx_ptr,
+	game->info.floor_path, &game->tex.tex_w, &game->tex.tex_h)))
+		error(F);
+	game->tex.ftexel_f = mlx_get_data_addr(game->tex.text_f,
+	&game->tex.tex_bpp, &game->tex.tex_len_size, &game->tex.tex_endian);
+}
+
 void	load_tex(t_game *game)
 {
 	if (!(game->tex.text_n = mlx_xpm_file_to_image(game->ptr.mlx_ptr,
@@ -65,16 +79,6 @@ void	load_tex(t_game *game)
 	game->info.sprite.sprite_path, &game->tex.tex_w, &game->tex.tex_h)))
 		error(P);
 	game->info.sprite.ftexel_p = mlx_get_data_addr(game->info.sprite.test_p,
-	&game->tex.tex_bpp, &game->tex.tex_len_size, &game->tex.tex_endian);
-	if (!(game->tex.text_c = mlx_xpm_file_to_image(game->ptr.mlx_ptr,
-	game->info.cieling_path, &game->tex.tex_w, &game->tex.tex_h)))
-		error(C);
-	game->tex.ftexel_c = mlx_get_data_addr(game->tex.text_c,
-	&game->tex.tex_bpp, &game->tex.tex_len_size, &game->tex.tex_endian);
-	if (!(game->tex.text_f = mlx_xpm_file_to_image(game->ptr.mlx_ptr,
-	game->info.floor_path, &game->tex.tex_w, &game->tex.tex_h)))
-		error(F);
-	game->tex.ftexel_f = mlx_get_data_addr(game->tex.text_f,
 	&game->tex.tex_bpp, &game->tex.tex_len_size, &game->tex.tex_endian);
 }
 

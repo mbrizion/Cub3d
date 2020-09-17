@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 22:44:34 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/17 01:36:09 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/17 02:55:11 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,9 +187,6 @@ typedef struct	s_game
 
 int				parser(t_info *info, char *path);
 int				ft_nbrlen(int n);
-int				ft_atoi_cub(const char *str);
-char			*ft_strjoin_charset(char const *s1,
-				char const *s2, char charset);
 int				check_map(t_info *info, char **map);
 void			raycasting(t_game *game);
 void			raycasting2(t_game *game, t_ray *ray, int x, int y);
@@ -200,11 +197,9 @@ int				move(t_game *game);
 int				get_rgb(char *str);
 void			error(int error_id);
 int				ft_printf_error(char *str, ...);
-size_t			strlen_spaces(const char *s);
 int				sprite_raycast(t_game *game, double *wall_dist);
 int				close_window(void);
 int				map_checker(t_info *info);
-char			*ft_strdup_len(const char *s1, int len);
 int				screenshot(t_game *game);
 int				free_all(t_game *game);
 int				check_pos(int x, int y, t_info *info, char c);

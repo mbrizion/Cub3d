@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 02:06:22 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/17 01:34:46 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/17 01:40:15 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void		get_tex_path(t_info *info, char *line, char dir)
 	else if (dir == 'E')
 		east_tex(info, line, i, j);
 	else if (dir == 'P' && !info->sprite.sprite_path)
-		sprite_tex(info, line, i , j);
+		sprite_tex(info, line, i, j);
 }
 
 int			identify_info(char *s, int j)

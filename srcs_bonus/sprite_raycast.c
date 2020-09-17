@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 00:43:52 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/17 00:43:53 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/17 03:00:32 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ int		sprite_raycast(t_game *game, double *wall_dist)
 		while (x < game->info.sprite.draw_e_x)
 		{
 			y = for_the_norm(game, x);
-			if (game->info.sprite.transform_y > 0 && x > 0 &&
-			x < game->info.res_x && game->info.sprite.transform_y < wall_dist[x])
+			if (game->info.sprite.transform_y > 0 && x > 0 && x <
+			game->info.res_x && game->info.sprite.transform_y < wall_dist[x])
 			{
 				while (y < game->info.sprite.draw_e_y)
 					draw_sprite_loop(game, y++, x);
