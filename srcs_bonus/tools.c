@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 05:04:21 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/17 02:54:35 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/17 03:38:52 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,31 @@ int		get_rgb(char *str)
 int		close_window(void)
 {
 	exit(0);
+}
+
+void	floor_cieling_calcul(t_ray *ray, int y, t_game *game)
+{
+	if (ray->draw_end < 0)
+		ray->draw_end = game->info.res_y;
+	y = ray->draw_end;
+	if (ray->side == 0)
+	{
+		game->ray_fc.floor_xwall = ray->map_x;
+		game->ray_fc.floor_ywall = ray->map_y + game->tex.wall_x;
+	}
+	else if (ray->side == 1)
+	{
+		game->ray_fc.floor_xwall = ray->map_x + 1.0;
+		game->ray_fc.floor_ywall = ray->map_y + game->tex.wall_x;
+	}
+	else if (ray->side == 2)
+	{
+		game->ray_fc.floor_xwall = ray->map_x + game->tex.wall_x;
+		game->ray_fc.floor_ywall = ray->map_y;
+	}
+	else
+	{
+		game->ray_fc.floor_xwall = ray->map_x + game->tex.wall_x;
+		game->ray_fc.floor_ywall = ray->map_y + 1.0;
+	}
 }

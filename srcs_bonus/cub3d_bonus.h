@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 22:44:34 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/17 02:59:55 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/17 03:38:42 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,19 @@
 # define P 80
 # define C 67
 # define F 70
+
+typedef struct	s_ray_fc
+{
+	double	dist_player;
+	double	current_dist;
+	double	weight;
+	double	current_floorx;
+	double	current_floory;
+	double	floor_xwall;
+	double	floor_ywall;
+	int		floor_tex_y;
+	int		floor_tex_x;
+}				t_ray_fc;
 
 typedef struct	s_sprite_pos
 {
@@ -178,6 +191,7 @@ typedef struct	s_game
 	t_info			info;
 	t_move			move;
 	t_tex			tex;
+	t_ray_fc		ray_fc;
 	double			plan_x;
 	double			plan_y;
 	double			dir_x;
@@ -236,4 +250,5 @@ void			error_check(t_info *info);
 void			sprite_tex(t_info *info, char *line, int i, int j);
 void			cieling_tex(t_info *info, char *line, int i, int j);
 void			floor_tex(t_info *info, char *line, int i, int j);
+void			floor_cieling_calcul(t_ray *ray, int y, t_game *game);
 #endif

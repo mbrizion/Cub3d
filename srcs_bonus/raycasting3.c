@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 04:22:46 by user42            #+#    #+#             */
-/*   Updated: 2020/09/17 02:57:43 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/17 03:25:57 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,14 @@ void	ray_init(t_ray *ray, t_game *game, int x)
 	ray->delta_dist_y = sqrt(1 + (ray->dir_x * ray->dir_x) /
 									(ray->dir_y * ray->dir_y));
 	ray->hit = 0;
+	game->ray_fc.dist_player = 0;
+	game->ray_fc.current_dist = 0;
+	game->ray_fc.weight = 0;
+	game->ray_fc.current_floorx = 0;
+	game->ray_fc.current_floory = 0;
+	game->ray_fc.floor_xwall = 0;
+	game->ray_fc.floor_ywall = 0;
+	game->ray_fc.floor_tex_y = 0;
+	game->ray_fc.floor_tex_x = 0;
 	game->info.sprite.color = 0;
 }
