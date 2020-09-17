@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 05:00:04 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/17 00:42:07 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/18 01:19:27 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,6 @@ int		move(t_game *game)
 	}
 	game->move.right ? right(game) : 0;
 	game->move.left ? left(game) : 0;
-	raycasting(game);
+	raycasting(game, 0);
 	return (0);
 }

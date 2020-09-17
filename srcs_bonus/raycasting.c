@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 01:33:14 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/17 02:59:12 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/18 01:22:02 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	load_tex(t_game *game)
 	&game->tex.tex_bpp, &game->tex.tex_len_size, &game->tex.tex_endian);
 }
 
-void	raycasting(t_game *game)
+void	raycasting(t_game *game, int save)
 {
 	int		x;
 	int		endian;
@@ -106,7 +106,8 @@ void	raycasting(t_game *game)
 		raycasting2(game, &ray, x, game->y);
 	}
 	sprite_raycast(game, game->info.sprite.wall_dist);
-	mlx_put_image_to_window(game->ptr.mlx_ptr, game->ptr.win_ptr,
-	game->ptr.buffer, 0, 0);
+	if (!save)
+		mlx_put_image_to_window(game->ptr.mlx_ptr, game->ptr.win_ptr,
+		game->ptr.buffer, 0, 0);
 	free(game->info.sprite.wall_dist);
 }

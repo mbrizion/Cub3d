@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/04 05:05:44 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/16 05:14:33 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/18 01:25:19 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int			screenshot(t_game *game)
 {
 	unsigned char	header[54];
 
+	raycasting(game, 1);
 	game->pad = (4 - ((int)game->info.res_x * 3) % 4) % 4;
 	game->filesize = 54 + (3 * ((int)game->info.res_x + game->pad)
 	* (int)game->info.res_y);

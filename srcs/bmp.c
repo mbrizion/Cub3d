@@ -35,11 +35,15 @@ static int	fill_bmp(int fd, t_game *game)
 			color = (*(int*)(game->ptr.fpixel_add + ((x + (y *
 			(int)game->info.res_x)) * (game->info.bpp / 8))));
 			if (write(fd, &color, 3) < 0)
+			{
+				close(game->fd);
 				return (0);
+			}
 			x++;
 		}
 		y--;
 	}
+	close(game->fd);
 	return (1);
 }
 
@@ -47,6 +51,7 @@ int			screenshot(t_game *game)
 {
 	unsigned char	header[54];
 
+	raycasting(game, 1);
 	game->pad = (4 - ((int)game->info.res_x * 3) % 4) % 4;
 	game->filesize = 54 + (3 * ((int)game->info.res_x + game->pad)
 	* (int)game->info.res_y);
@@ -68,6 +73,5 @@ int			screenshot(t_game *game)
 	header[28] = (unsigned char)(24);
 	write(game->fd, header, 54);
 	fill_bmp(game->fd, game);
-	close(game->fd);
 	return (0);
 }

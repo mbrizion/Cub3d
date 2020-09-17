@@ -68,7 +68,7 @@ void	load_tex(t_game *game)
 	&game->tex.tex_bpp, &game->tex.tex_len_size, &game->tex.tex_endian);
 }
 
-void	raycasting(t_game *game)
+void	raycasting(t_game *game, int save)
 {
 	int		x;
 	int		endian;
@@ -92,7 +92,8 @@ void	raycasting(t_game *game)
 		raycasting2(game, &ray, x, game->y);
 	}
 	sprite_raycast(game, game->info.sprite.wall_dist);
-	mlx_put_image_to_window(game->ptr.mlx_ptr, game->ptr.win_ptr,
-	game->ptr.buffer, 0, 0);
+	if (!save)
+		mlx_put_image_to_window(game->ptr.mlx_ptr, game->ptr.win_ptr,
+		game->ptr.buffer, 0, 0);
 	free(game->info.sprite.wall_dist);
 }

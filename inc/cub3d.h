@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 22:44:34 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/17 02:55:11 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/18 01:16:26 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,7 +188,7 @@ typedef struct	s_game
 int				parser(t_info *info, char *path);
 int				ft_nbrlen(int n);
 int				check_map(t_info *info, char **map);
-void			raycasting(t_game *game);
+void			raycasting(t_game *game, int save);
 void			raycasting2(t_game *game, t_ray *ray, int x, int y);
 void			color_pixel(int x, int y, int color, t_game *game);
 int				keypress(int keycode, t_game *game);
@@ -229,4 +229,5 @@ int				all_info_init(t_info *info);
 int				get_file_len(char *path, t_info *info);
 void			error_check(t_info *info);
 void			sprite_tex(t_info *info, char *line, int i, int j);
+void			ptr_init(t_game *game);
 #endif

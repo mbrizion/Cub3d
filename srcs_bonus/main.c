@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 22:28:30 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/17 02:59:30 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/18 01:23:29 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,19 @@ void	move_init(t_game *game)
 	}
 }
 
-void	ptr_init(t_game *game)
+int		ray_loop(t_game *game)
 {
-	game->ptr.buffer = 0;
-	game->ptr.mlx_ptr = mlx_init();
+	if ((game->ptr.win_ptr = mlx_new_window(game->ptr.mlx_ptr, game->info.res_x,
+	game->info.res_y, "Cub3D")) == 0)
+		return (0);
+	raycasting(game, 0);
+	mlx_hook(game->ptr.win_ptr, 17, 1L << 17, close_window, 0);
+	mlx_hook(game->ptr.win_ptr, 2, 1L << 0, &keypress, game);
+	mlx_hook(game->ptr.win_ptr, 3, 1L << 1, &keyrelease, game);
+	mlx_loop_hook(game->ptr.mlx_ptr, &loop, game);
+	mlx_loop(game->ptr.mlx_ptr);
+	free_all(game);
+	return (1);
 }
 
 int		main(int argc, char **argv)
@@ -86,19 +95,12 @@ int		main(int argc, char **argv)
 		return (-1);
 	move_init(&game);
 	ptr_init(&game);
-	if ((game.ptr.win_ptr = mlx_new_window(game.ptr.mlx_ptr, game.info.res_x,
-	game.info.res_y, "Cub3D")) == 0)
-		return (-1);
 	load_tex(&game);
 	load_tex2(&game);
-	raycasting(&game);
 	if (argv[2] && ft_strnstr(argv[2], "--save", 6))
 		screenshot(&game);
-	mlx_hook(game.ptr.win_ptr, 17, 1L << 17, close_window, 0);
-	mlx_hook(game.ptr.win_ptr, 2, 1L << 0, &keypress, &game);
-	mlx_hook(game.ptr.win_ptr, 3, 1L << 1, &keyrelease, &game);
-	mlx_loop_hook(game.ptr.mlx_ptr, &loop, &game);
-	mlx_loop(game.ptr.mlx_ptr);
-	free_all(&game);
+	else
+		if (!ray_loop(&game))
+			return (-1);
 	return (0);
 }
