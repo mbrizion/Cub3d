@@ -45,7 +45,7 @@ OBJS_BONUS 		= 	$(addprefix $(OB_DIR), $(C_FILES:.c=.o))
 CC				=	clang
 
 CFLAGS			=	-I./inc -Wall -Wextra -Werror #-fsanitize=address
-CFLAGS_BONUS	=	-I./ -Wall -Wextra -Werror #-fsanitize=address 
+CFLAGS_BONUS	=	-I./inc -Wall -Wextra -Werror #-fsanitize=address 
 
 LIBS			=	libft/libft.a ft_printf_error/ft_printf_error.a minilibx-linux/libmlx_Linux.a
 

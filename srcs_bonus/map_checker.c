@@ -80,6 +80,11 @@ void	check_map_loop(char **tmp_map, int i)
 			checker_part1(i, j, tmp_map);
 			checker_part2(i, j, tmp_map);
 		}
+		else if (tmp_map[i][j] != '1' && tmp_map[i][j] != 'N'
+		&& tmp_map[i][j] != 'S' && tmp_map[i][j] != 'E' && tmp_map[i][j] != 'W'
+		&& tmp_map[i][j] != '0' && tmp_map[i][j] != '2' && tmp_map[i][j] != ' '
+		&& tmp_map[i][j] != '\t')
+			error(-3);
 		j++;
 	}
 }
