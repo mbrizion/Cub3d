@@ -67,3 +67,8 @@ int		keyrelease(int keycode, t_game *game)
 	}
 	return (0);
 }
+
+int		close_window(void)
+{
+	exit(0);
+}

@@ -83,7 +83,7 @@ int		get_rgb(char *str)
 			buf[j++] = str[i];
 	buf[j] = '\0';
 	tmp = ft_split(buf, ',');
-	if(!(check_tmp(tmp)))
+	if (!(check_tmp(tmp)))
 		free_rgb(tmp, buf);
 	color += ft_atoi(tmp[0]) << 16;
 	color += ft_atoi(tmp[1]) << 8;
