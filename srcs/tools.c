@@ -34,6 +34,37 @@ int		ft_nbrlen(int n)
 	return (len);
 }
 
+int		check_tmp(char **s)
+{
+	int i;
+
+	i = 0;
+	if (s[0])
+		i += 1;
+	if (s[1])
+		i += 1;
+	if (s[2])
+		i += 1;
+	if (i != 3)
+		return (0);
+	return (1);
+}
+
+void	free_rgb(char **tmp, char *buf)
+{
+	int i;
+	int a;
+
+	i = 0;
+	a = check_tmp(tmp);
+	while (i < 3)
+		free(tmp[i++]);
+	free(tmp);
+	free(buf);
+	if (!a)
+		error(-9);
+}
+
 int		get_rgb(char *str)
 {
 	char	**tmp;
@@ -52,14 +83,12 @@ int		get_rgb(char *str)
 			buf[j++] = str[i];
 	buf[j] = '\0';
 	tmp = ft_split(buf, ',');
+	if(!(check_tmp(tmp)))
+		free_rgb(tmp, buf);
 	color += ft_atoi(tmp[0]) << 16;
 	color += ft_atoi(tmp[1]) << 8;
 	color += ft_atoi(tmp[2]);
-	i = 0;
-	while (i < 4)
-		free(tmp[i++]);
-	free(tmp);
-	free(buf);
+	free_rgb(tmp, buf);
 	return (color);
 }
 
