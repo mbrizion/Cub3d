@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/04 05:05:44 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/18 01:25:19 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/18 02:14:17 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,15 @@ static int	fill_bmp(int fd, t_game *game)
 			color = (*(int*)(game->ptr.fpixel_add + ((x + (y *
 			(int)game->info.res_x)) * (game->info.bpp / 8))));
 			if (write(fd, &color, 3) < 0)
+			{
+				close(game->fd);
 				return (0);
+			}
 			x++;
 		}
 		y--;
 	}
+	close(game->fd);
 	return (1);
 }
 
@@ -69,6 +73,5 @@ int			screenshot(t_game *game)
 	header[28] = (unsigned char)(24);
 	write(game->fd, header, 54);
 	fill_bmp(game->fd, game);
-	close(game->fd);
 	return (0);
 }
