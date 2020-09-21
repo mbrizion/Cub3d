@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 22:28:30 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/18 02:13:52 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/18 01:23:29 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,8 @@ int		main(int argc, char **argv)
 	load_tex2(&game);
 	if (argv[2] && ft_strnstr(argv[2], "--save", 6))
 		screenshot(&game);
-	else if (!ray_loop(&game))
-		return (-1);
+	else
+		if (!ray_loop(&game))
+			return (-1);
 	return (0);
 }
