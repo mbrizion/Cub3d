@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 04:07:50 by user42            #+#    #+#             */
-/*   Updated: 2020/09/24 01:42:56 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/24 01:54:46 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void		assign_res(char **tmp, t_info *info)
 		error2(-12);
 	info->res_x = ft_atoi(tmp[0]);
 	info->res_y = ft_atoi(tmp[1]);
+	info->res_x = info->res_x > info->w ? info->w : info->res_x;
+	info->res_y = info->res_y > info->h ? info->h : info->res_y;
 	free(tmp[0]);
 	free(tmp[1]);
 	free(tmp);

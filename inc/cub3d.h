@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 22:44:34 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/24 00:33:13 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/24 01:51:55 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,8 +166,8 @@ typedef	struct	s_info
 	int			count;
 	int			map_len;
 	int			save;
-	int			*w;
-	int			*h;
+	int			w;
+	int			h;
 }				t_info;
 
 typedef struct	s_game
@@ -189,7 +189,7 @@ typedef struct	s_game
 	int				img_size;
 }				t_game;
 
-int				parser(t_info *info, char *path);
+int				parser(t_info *info, char *path, t_ptr *ptr);
 int				ft_nbrlen(int n);
 int				check_map(t_info *info, char **map);
 void			raycasting(t_game *game, int save);
