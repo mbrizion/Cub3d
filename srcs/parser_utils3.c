@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 04:07:50 by user42            #+#    #+#             */
-/*   Updated: 2020/09/24 01:00:30 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/24 01:42:56 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,8 @@ int			add_sprite(int i, int j, t_info *info)
 	return (0);
 }
 
-void		get_res(t_info *info, char *line)
+void		assign_res(char **tmp, t_info *info)
 {
-	int		i;
-	char	**tmp;
-
-	i = 1;
-	if (info->res_x || info->res_y)
-		error2(-11);
-	while (line[i] && (line [i] == ' ' || line[i] == '\t' || line[i] == 'R'))
-		i++;
-	tmp = ft_split(&line[i], ' ');
 	if (ft_strlen(tmp[0]) > 6)
 		error2(-12);
 	if (ft_strlen(tmp[1]) > 6)
@@ -44,6 +35,20 @@ void		get_res(t_info *info, char *line)
 	free(tmp[0]);
 	free(tmp[1]);
 	free(tmp);
+}
+
+void		get_res(t_info *info, char *line)
+{
+	int		i;
+	char	**tmp;
+
+	i = 1;
+	if (info->res_x || info->res_y)
+		error2(-11);
+	while (line[i] && (line[i] == ' ' || line[i] == '\t' || line[i] == 'R'))
+		i++;
+	tmp = ft_split(&line[i], ' ');
+	assign_res(tmp, info);
 	if (info->res_x < 0)
 		error(-8);
 	else if (info->res_x > 0 && info->res_x < 100)
