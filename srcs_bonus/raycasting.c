@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 01:33:14 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/18 01:22:02 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/22 01:50:43 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,11 +84,10 @@ void	load_tex(t_game *game)
 
 void	raycasting(t_game *game, int save)
 {
-	int		x;
 	int		endian;
 	t_ray	ray;
 
-	x = -1;
+	game->x = 0;
 	game->y = 0;
 	if (game->ptr.buffer)
 		mlx_destroy_image(game->ptr.mlx_ptr, game->ptr.buffer);
@@ -99,11 +98,11 @@ void	raycasting(t_game *game, int save)
 	game->info.res_x, game->info.res_y);
 	game->ptr.fpixel_add = mlx_get_data_addr(game->ptr.buffer, &game->info.bpp,
 	&game->info.size_line, &endian);
-	while (++x < game->info.res_x)
+	while (game->x < game->info.res_x)
 	{
-		ray_init(&ray, game, x);
+		ray_init(&ray, game, game->x);
 		init_side_dist(&ray);
-		raycasting2(game, &ray, x, game->y);
+		raycasting2(game, &ray, game->x++, game->y);
 	}
 	sprite_raycast(game, game->info.sprite.wall_dist);
 	if (!save)

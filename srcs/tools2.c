@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/16 05:47:30 by user42            #+#    #+#             */
-/*   Updated: 2020/09/17 01:39:54 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/23 03:32:24 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@ void	error2(int error_id)
 {
 	if (error_id == -10)
 		ft_printf_error("Error\nMissing map\n");
+	else if (error_id == -11)
+		ft_printf_error("Error\nDouble key\n");
+	exit(-1);
 }
 
 void	error(int error_id)
@@ -28,7 +31,7 @@ void	error(int error_id)
 	else if (error_id == -1)
 		ft_printf_error("Error\nMultiple spawnpoint\n");
 	else if (error_id == -2)
-		ft_printf_error("Error\nNo spawnpoint\n");
+		ft_printf_error("Error\nNo spawnpoint or no map\n");
 	else if (error_id == -3)
 		ft_printf_error("Error\nMap error\n");
 	else if (error_id == -4)
@@ -47,13 +50,17 @@ void	error(int error_id)
 	exit(-1);
 }
 
-void	sprite_tex(t_info *info, char *line, int i, int j)
+void	sprite_tex(t_info *info, char *line, int j)
 {
 	int k;
 
 	k = 0;
-	info->sprite.sprite_path = malloc(sizeof(char) * ((j - i) + 1));
-	ft_strlcpy(info->sprite.sprite_path, &line[i], ((j - i) + 1));
+	if (info->sprite.sprite_path)
+		error2(-11);
+	while (line[j] && (line[j] == ' ' || line[j] == '\t'))
+		j++;
+	info->sprite.sprite_path = malloc(sizeof(char) * ft_strlen(&line[j]) + 1);
+	ft_strlcpy(info->sprite.sprite_path, &line[j], ft_strlen(&line[j]) + 1);
 	while (info->sprite.sprite_path[k] && info->sprite.sprite_path[k] != ' '
 	&& info->sprite.sprite_path[k] != '\t')
 		k++;

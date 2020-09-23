@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 22:28:30 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/18 01:16:05 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/22 01:43:19 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int		ray_loop(t_game *game)
 	mlx_hook(game->ptr.win_ptr, 3, 1L << 1, &keyrelease, game);
 	mlx_loop_hook(game->ptr.mlx_ptr, &loop, game);
 	mlx_loop(game->ptr.mlx_ptr);
-	free_all(game);
+	free_all(game, 0);
 	return (1);
 }
 
@@ -97,9 +97,11 @@ int		main(int argc, char **argv)
 	ptr_init(&game);
 	load_tex(&game);
 	if (argv[2] && ft_strnstr(argv[2], "--save", 6))
+	{
 		screenshot(&game);
-	else
-		if (!ray_loop(&game))
-			return (-1);
+		free_all(&game, 1);
+	}
+	else if (!ray_loop(&game))
+		return (-1);
 	return (0);
 }

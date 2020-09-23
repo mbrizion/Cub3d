@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keypress.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jacktatoume <jacktatoume@student.42.fr>    +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 01:20:20 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/04/12 20:29:38 by jacktatoume      ###   ########.fr       */
+/*   Updated: 2020/09/22 00:25:10 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		keypress(int keycode, t_game *game)
 {
 	if (keycode == KEY_ESC)
 	{
-		free_all(game);
+		free_all(game, 0);
 		exit(0);
 	}
 	else if (keycode == KEY_W)
@@ -44,7 +44,7 @@ int		keyrelease(int keycode, t_game *game)
 {
 	if (keycode == KEY_ESC)
 	{
-		free_all(game);
+		free_all(game, 0);
 		exit(0);
 	}
 	else if (keycode == KEY_W)

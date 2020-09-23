@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 22:44:34 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/18 01:16:26 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/23 03:26:16 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,6 +183,8 @@ typedef struct	s_game
 	int				pad;
 	unsigned int	filesize;
 	int				y;
+	int				x;
+	int				img_size;
 }				t_game;
 
 int				parser(t_info *info, char *path);
@@ -196,22 +198,21 @@ int				keyrelease(int keycode, t_game *game);
 int				move(t_game *game);
 int				get_rgb(char *str);
 void			error(int error_id);
+void			error2(int error_id);
 int				ft_printf_error(char *str, ...);
 int				sprite_raycast(t_game *game, double *wall_dist);
 int				close_window(void);
 int				map_checker(t_info *info);
 int				screenshot(t_game *game);
-int				free_all(t_game *game);
-int				check_pos(int x, int y, t_info *info, char c);
+int				free_all(t_game *game, int save);
 char			**fill_map(char **map, t_info *info);
 int				add_sprite(int i, int j, t_info *info);
 int				get_map(t_info *info);
 void			get_res(t_info *info, char *line);
-void			north_tex(t_info *info, char *line, int i, int j);
-void			south_tex(t_info *info, char *line, int i, int j);
-void			weast_tex(t_info *info, char *line, int i, int j);
-void			east_tex(t_info *info, char *line, int i, int j);
-void			parser_loop(char *line, t_info *info, int j);
+void			north_tex(t_info *info, char *line, int j);
+void			south_tex(t_info *info, char *line, int j);
+void			weast_tex(t_info *info, char *line, int j);
+void			east_tex(t_info *info, char *line, int j);
 void			get_tex_path(t_info *info, char *line, char dir);
 void			ray_init(t_ray *ray, t_game *game, int x);
 void			init_side_dist(t_ray *ray);
@@ -222,12 +223,9 @@ void			load_tex(t_game *game);
 int				is_spawn(char c);
 int				conv_map(t_info *info);
 void			check_path(t_info *info);
-int				identify_info(char *s, int j);
-int				check_info(char *s);
 void			info_init(t_info *info);
 int				all_info_init(t_info *info);
-int				get_file_len(char *path, t_info *info);
-void			error_check(t_info *info);
-void			sprite_tex(t_info *info, char *line, int i, int j);
+void			sprite_tex(t_info *info, char *line, int j);
 void			ptr_init(t_game *game);
+void			check_info(t_info *info);
 #endif

@@ -6,25 +6,11 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 01:33:14 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/16 04:04:09 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/23 01:20:06 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	free_rt_tools(t_game *game)
-{
-	if (game->tex.text_s && game->tex.text_n
-	&& game->tex.text_w && game->tex.text_e && game->info.sprite.test_p)
-	{
-		free(game->info.sprite.wall_dist);
-		mlx_destroy_image(game->ptr.mlx_ptr, game->tex.text_s);
-		mlx_destroy_image(game->ptr.mlx_ptr, game->tex.text_n);
-		mlx_destroy_image(game->ptr.mlx_ptr, game->tex.text_e);
-		mlx_destroy_image(game->ptr.mlx_ptr, game->tex.text_w);
-		mlx_destroy_image(game->ptr.mlx_ptr, game->info.sprite.test_p);
-	}
-}
 
 void	color_pixel(int x, int y, int color, t_game *game)
 {
@@ -70,11 +56,10 @@ void	load_tex(t_game *game)
 
 void	raycasting(t_game *game, int save)
 {
-	int		x;
 	int		endian;
 	t_ray	ray;
 
-	x = -1;
+	game->x = 0;
 	game->y = 0;
 	if (game->ptr.buffer)
 		mlx_destroy_image(game->ptr.mlx_ptr, game->ptr.buffer);
@@ -85,11 +70,11 @@ void	raycasting(t_game *game, int save)
 	game->info.res_x, game->info.res_y);
 	game->ptr.fpixel_add = mlx_get_data_addr(game->ptr.buffer, &game->info.bpp,
 	&game->info.size_line, &endian);
-	while (++x < game->info.res_x)
+	while (game->x < game->info.res_x)
 	{
-		ray_init(&ray, game, x);
+		ray_init(&ray, game, game->x);
 		init_side_dist(&ray);
-		raycasting2(game, &ray, x, game->y);
+		raycasting2(game, &ray, game->x++, game->y);
 	}
 	sprite_raycast(game, game->info.sprite.wall_dist);
 	if (!save)

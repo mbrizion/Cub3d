@@ -6,69 +6,101 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/04 05:05:44 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/18 01:25:19 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/22 04:22:40 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 
-void		conv_char(unsigned char *start, int size)
+void	*reverse(char *str, int len, int size_line)
 {
-	start[0] = (unsigned char)(size);
-	start[1] = (unsigned char)(size >> 8);
-	start[2] = (unsigned char)(size >> 16);
-	start[3] = (unsigned char)(size >> 24);
-}
+	int				i;
+	unsigned char	*tmp;
 
-static int	fill_bmp(int fd, t_game *game)
-{
-	int	x;
-	int	y;
-	int	color;
-
-	y = (int)game->info.res_y;
-	while (y > 0)
+	tmp = malloc(sizeof(unsigned char) * size_line);
+	len--;
+	i = 0;
+	while (i < len - i)
 	{
-		x = 0;
-		while (x < (int)game->info.res_x)
-		{
-			color = (*(int*)(game->ptr.fpixel_add + ((x + (y *
-			(int)game->info.res_x)) * (game->info.bpp / 8))));
-			if (write(fd, &color, 3) < 0)
-				return (0);
-			x++;
-		}
-		y--;
+		ft_memcpy(tmp, str + i * size_line, size_line);
+		ft_memcpy(str + i * size_line, str + (len * size_line - i * size_line),
+		size_line);
+		ft_memcpy(str + (len * size_line - i * size_line), tmp, size_line);
+		i++;
 	}
-	return (1);
+	free(tmp);
+	return (str);
 }
 
-int			screenshot(t_game *game)
+void	basic(unsigned char *header, unsigned int filesize)
 {
+	header[0] = 'B';
+	header[1] = 'M';
+	header[2] = filesize;
+	header[3] = filesize >> 8;
+	header[4] = filesize >> 16;
+	header[5] = filesize >> 24;
+	header[10] = 54;
+	header[11] = 54 >> 8;
+	header[12] = 54 >> 16;
+	header[13] = 54 >> 24;
+}
+
+void	header_content(unsigned char *header, t_game *game)
+{
+	header[14] = 40;
+	header[15] = 40 >> 8;
+	header[16] = 40 >> 16;
+	header[17] = 40 >> 24;
+	header[18] = (int)game->info.res_x;
+	header[19] = (int)game->info.res_x >> 8;
+	header[20] = (int)game->info.res_x >> 16;
+	header[21] = (int)game->info.res_x >> 24;
+	header[22] = (int)game->info.res_y;
+	header[23] = (int)game->info.res_y >> 8;
+	header[24] = (int)game->info.res_y >> 16;
+	header[25] = (int)game->info.res_y >> 24;
+	header[26] = 1;
+	header[27] = 1 >> 8;
+	header[28] = game->info.bpp;
+	header[29] = game->info.bpp >> 8;
+}
+
+int		write_header(unsigned char *header, t_game *game)
+{
+	int		fd;
+	void	*buffer;
+
+	if ((buffer = malloc(sizeof(unsigned char) * game->img_size)) == 0)
+		return (-1);
+	buffer = ft_memcpy(buffer, game->ptr.fpixel_add, game->img_size);
+	buffer = reverse(buffer, (size_t)game->info.res_y, game->info.size_line);
+	if ((fd = open("screenshot.bmp", O_WRONLY)) == -1)
+		return (-1);
+	write(fd, header, 54);
+	write(fd, buffer, game->img_size);
+	free(buffer);
+	close(fd);
+	return (0);
+}
+
+int		screenshot(t_game *game)
+{
+	int				fd;
 	unsigned char	header[54];
 
 	raycasting(game, 1);
-	game->pad = (4 - ((int)game->info.res_x * 3) % 4) % 4;
-	game->filesize = 54 + (3 * ((int)game->info.res_x + game->pad)
-	* (int)game->info.res_y);
 	ft_bzero(header, 54);
-	if ((game->fd = open("screenshot.bmp", O_TRUNC)) < 0)
-		;
-	if ((game->fd = open("screenshot.bmp", O_WRONLY | O_CREAT)) < 0)
-		return (0);
-	header[0] = (unsigned char)('B');
-	header[1] = (unsigned char)('M');
-	conv_char(header + 2, game->filesize);
-	header[10] = (unsigned char)(54);
-	header[14] = (unsigned char)(40);
-	game->tmp = game->info.res_x;
-	conv_char(header + 18, game->tmp);
-	game->tmp = game->info.res_y;
-	conv_char(header + 22, game->tmp);
-	header[27] = (unsigned char)(1);
-	header[28] = (unsigned char)(24);
-	write(game->fd, header, 54);
-	fill_bmp(game->fd, game);
-	close(game->fd);
-	return (0);
+	if ((fd = open("screenshot.bmp", O_CREAT, S_IRWXU)) == -1)
+		return (-1);
+	close(fd);
+	if ((fd = open("screenshot.bmp", O_TRUNC)) == -1)
+		return (-1);
+	close(fd);
+	game->img_size = (int)game->info.res_x *
+	(int)game->info.res_y * (game->info.bpp / 8);
+	game->filesize = game->img_size + 54;
+	basic(header, game->filesize);
+	header_content(header, game);
+	return (write_header(header, game));
 }

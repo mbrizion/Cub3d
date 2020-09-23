@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 23:19:18 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/16 04:13:44 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/23 03:09:26 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,14 +93,12 @@ int		map_checker(t_info *info)
 {
 	int		i;
 	int		j;
-	int		correct_len;
 	char	**tmp_map;
 
 	i = 0;
 	j = 0;
 	if (!(tmp_map = malloc(sizeof(char *) * info->map_len)))
 		error(-4);
-	correct_len = info->file_len - info->count - info->map_start;
 	while (i < info->map_len)
 		get_map_only(info, tmp_map, i++);
 	i = 0;

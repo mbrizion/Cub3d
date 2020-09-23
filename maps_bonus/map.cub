@@ -2,7 +2,7 @@
     EA     ./pics/mount1.xpm
   SO                  ./pics/mount3.xpm
    WE 			./pics/mount4.xpm
-   R 1280 720
+   R 800 600
 
         F                               ./pics/stone_floor.xpm      
 

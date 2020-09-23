@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 22:44:34 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/18 01:18:41 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/22 04:23:04 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,6 +201,8 @@ typedef struct	s_game
 	int				pad;
 	unsigned int	filesize;
 	int				y;
+	int				x;
+	int				img_size;
 }				t_game;
 
 int				parser(t_info *info, char *path);
@@ -219,7 +221,7 @@ int				sprite_raycast(t_game *game, double *wall_dist);
 int				close_window(void);
 int				map_checker(t_info *info);
 int				screenshot(t_game *game);
-int				free_all(t_game *game);
+int				free_all(t_game *game, int save);
 int				check_pos(int x, int y, t_info *info, char c);
 char			*fill_map(char **map, t_info *info);
 int				get_map(t_info *info);

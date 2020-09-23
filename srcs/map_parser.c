@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 03:37:38 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/16 05:07:19 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/23 03:25:50 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,59 +18,82 @@ int			empty_line(t_info *info)
 
 	i = 0;
 	while (info->line_buf[i++])
+	{
 		if (info->line_buf[i] && info->line_buf[i] != '\t'
 		&& info->line_buf[i] != ' ')
 		{
-			info->file[info->file_index++] = ft_strdup(info->line_buf);
+			info->file[info->file_index] = ft_strdup(info->line_buf);
+			info->file_index++;
+			info->file_len++;
+			free(info->line_buf);
 			return (1);
 		}
-	info->count++;
+	}
+	free(info->line_buf);
 	return (0);
 }
 
-void		inner_loop(t_info *info)
+int			identify_info(char *s, int j, t_info *info)
 {
+	if (s[j] && !ft_strncmp("R", &s[j], 1))
+		get_res(info, s);
+	else if (s[j] && !ft_strncmp("NO", &s[j], 2))
+		get_tex_path(info, s, 'N');
+	else if (s[j] && !ft_strncmp("SO", &s[j], 2))
+		get_tex_path(info, s, 'S');
+	else if (s[j] && !ft_strncmp("WE", &s[j], 2))
+		get_tex_path(info, s, 'W');
+	else if (s[j] && !ft_strncmp("EA", &s[j], 2))
+		get_tex_path(info, s, 'E');
+	else if (s[j] && !ft_strncmp("S", &s[j], 1)
+	&& ft_strncmp("SO", &s[j], 2))
+		get_tex_path(info, s, 'P');
+	else if (s[j] && !ft_strncmp("C", &s[j], 1))
+		info->cieling_color = get_rgb(&s[j]);
+	else if (s[j] && !ft_strncmp("F", &s[j], 1))
+		info->floor_color = get_rgb(&s[j]);
+	return (0);
+}
+
+void		get_info(t_info *info)
+{
+	int i;
 	int j;
 
+	i = 0;
 	j = 0;
-	while (info->line_buf[j] && !all_info_init(info))
+	while (i < 8)
 	{
-		if (check_info(info->line_buf) && !info->sprite.sprite_path)
+		j = 0;
+		while (j < (int)ft_strlen(info->file[i]))
 		{
-			while (info->line_buf[j] &&
-			(info->line_buf[j] == ' ' || info->line_buf[j] == '\t'))
-				j++;
-			parser_loop(info->line_buf, info, j);
-		}
-		else if (info->line_buf[j] != '\n')
-		{
-			info->len_line = info->len_line < (int)ft_strlen(info->line_buf)
-			? (int)ft_strlen(info->line_buf) : info->len_line;
-			break ;
-		}
-		if (info->line_buf[j])
+			if (info->file[i][j] && info->file[i][j] != '\t'
+			&& info->file[i][j] != ' ')
+				identify_info(info->file[i], j, info);
 			j++;
+		}
+		i++;
 	}
 }
 
-void		parser_info_init(t_info *info)
+int			get_file_len(char *path, t_info *info)
 {
-	info->line_buf = 0;
-	info->file_index = 0;
-	info->count = 0;
-	info->buf = 1;
-}
+	int		fd;
+	int		ret;
+	char	*buf;
 
-void		gnl_loop(t_info *info, int i)
-{
-	empty_line(info);
-	inner_loop(info);
-	if (all_info_init(info) && info->buf)
+	ret = 1;
+	buf = 0;
+	if ((fd = open(path, O_RDONLY)) < 0)
+		return (-1);
+	while ((ret = get_next_line(fd, &buf) > 0))
 	{
-		info->buf = 0;
-		info->map_start = i - info->count + 1;
+		info->file_len++;
+		free(buf);
 	}
-	free(info->line_buf);
+	free(buf);
+	close(fd);
+	return (0);
 }
 
 int			parser(t_info *info, char *path)
@@ -85,15 +108,16 @@ int			parser(t_info *info, char *path)
 		return (-1);
 	if (!(info->file = malloc(sizeof(char *) * info->file_len)))
 		error(-4);
-	parser_info_init(info);
 	ret = 1;
 	i = 0;
+	info->file_len = 0;
 	while ((ret = get_next_line(fd, &info->line_buf) > 0))
-		gnl_loop(info, i++);
+		empty_line(info);
 	info->file[info->file_index] = ft_strdup(info->line_buf);
 	free(info->line_buf);
-	check_path(info);
-	error_check(info);
+	get_info(info);
+	check_info(info);
+	info->map_start = 8;
 	get_map(info);
 	conv_map(info);
 	map_checker(info);

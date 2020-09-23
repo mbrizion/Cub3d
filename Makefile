@@ -6,36 +6,36 @@
 #    By: user42 <user42@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/04 03:41:23 by mbrizion          #+#    #+#              #
-#    Updated: 2020/09/18 01:15:35 by user42           ###   ########.fr        #
+#    Updated: 2020/09/23 03:09:41 by user42           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME			=	Cub3D
-NAME_BONUS		=	Cub3D_BONUS
+NAME			=	cub3D
+NAME_BONUS		=	cub3D_BONUS
 
 C_DIR			=	srcs/
 O_DIR			=	objs/
 CB_DIR			=	srcs_bonus/
 OB_DIR			=	objs_bonus/
 
-C_FILES			=	main.c \
-					map_parser.c \
-					parser_utils.c \
-					parser_utils2.c \
-					parser_utils3.c \
-					parser_utils4.c \
-					tools.c \
-					tools2.c \
-					tools3.c \
-					raycasting.c \
-					raycasting2.c \
-					raycasting3.c \
-					move.c \
-					keypress.c \
-					sprite_raycast.c \
-					sprite_raycast_utils.c \
-					map_checker.c \
-					bmp.c \
+C_FILES			=	main.c					\
+					map_parser.c			\
+					parser_utils.c			\
+					parser_utils2.c 		\
+					parser_utils3.c		 	\
+					parser_utils4.c 		\
+					tools.c					\
+					tools2.c				\
+					tools3.c				\
+					raycasting.c			\
+					raycasting2.c			\
+					raycasting3.c			\
+					move.c					\
+					keypress.c				\
+					sprite_raycast.c		\
+					sprite_raycast_utils.c	\
+					map_checker.c			\
+					bmp.c 					\
 					free_all.c
 
 SRCS 			= 	$(addprefix $(C_DIR), $(C_FILES))

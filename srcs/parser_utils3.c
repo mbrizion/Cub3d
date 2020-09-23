@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 04:07:50 by user42            #+#    #+#             */
-/*   Updated: 2020/09/17 01:25:45 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/23 03:08:49 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void		get_res(t_info *info, char *line)
 	int i;
 
 	i = 1;
+	if (info->res_x || info->res_y)
+		error2(-11);
 	while (line[i])
 	{
 		if (line[i] && ft_isdigit(line[i]) && info->res_x == 0)
@@ -64,7 +66,7 @@ int			conv_map(t_info *info)
 
 	i = info->map_start;
 	k = 0;
-	while (i < info->file_len - info->count)
+	while (i < info->file_len - info->map_start)
 	{
 		j = -1;
 		while (++j < (int)ft_strlen(info->file[i]))
@@ -79,20 +81,5 @@ int			conv_map(t_info *info)
 		i++;
 		k++;
 	}
-	info->map_len = k;
 	return (0);
-}
-
-void		check_path(t_info *info)
-{
-	if (!info->north_path)
-		error(-5);
-	if (!info->east_path)
-		error(-5);
-	if (!info->weast_path)
-		error(-5);
-	if (!info->south_path)
-		error(-5);
-	if (!info->sprite.sprite_path)
-		error(-5);
 }
