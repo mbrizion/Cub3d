@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 22:28:30 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/22 01:43:19 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/24 00:45:10 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,15 +87,17 @@ int		main(int argc, char **argv)
 {
 	t_game game;
 
-	if (argc < 2)
+	if (argc < 2 || argc > 3)
 		error(-10);
 	if (!(ft_strnstr(((argv[1]) + ft_strlen(argv[1]) - 4), ".cub", 4)))
 		error(-7);
+	ptr_init(&game);
 	if (parser(&game.info, argv[1]) < 0)
 		return (-1);
 	move_init(&game);
-	ptr_init(&game);
 	load_tex(&game);
+	if (argv[2] && !ft_strnstr(argv[2], "--save", 6))
+		error(-13);
 	if (argv[2] && ft_strnstr(argv[2], "--save", 6))
 	{
 		screenshot(&game);

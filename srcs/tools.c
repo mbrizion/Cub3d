@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 05:04:21 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/22 05:07:09 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/24 01:26:58 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,15 @@ int		check_tmp(char **s)
 
 	i = 0;
 	if (s[0])
+	{
 		i += 1;
-	if (s[1])
-		i += 1;
-	if (s[2])
-		i += 1;
+		if (s[1])
+		{
+			i += 1;
+			if (s[2])
+				i += 1;
+		}
+	}
 	if (i != 3)
 		return (0);
 	return (1);
@@ -52,30 +56,52 @@ int		check_tmp(char **s)
 
 void	free_rgb(char **tmp, char *buf)
 {
-	int i;
-	int a;
-
-	i = 0;
-	a = check_tmp(tmp);
-	while (i < 3)
-		free(tmp[i++]);
+	free(tmp[0]);
+	free(tmp[1]);
+	free(tmp[2]);
 	free(tmp);
-	free(buf);
-	if (!a)
+	error(-9);
+}
+
+int		get_color(char **tmp)
+{
+	int color;
+	int j;
+
+	color = 0;
+	j = 0;
+	color = ft_atoi(tmp[0]);
+	free(tmp[0]);
+	if (color < 0 || color > 255)
 		error(-9);
+	color = color << 16;
+	j = ft_atoi(tmp[1]);
+	free(tmp[1]);
+	if (j < 0 || j > 255)
+		error(-9);
+	color += j << 8;
+	j = ft_atoi(tmp[2]);
+	free(tmp[2]);
+	if (j < 0 || j > 255)
+		error(-9);
+	color += j;
+	return (color);
 }
 
 int		get_rgb(char *str)
 {
 	char	**tmp;
-	int		color;
 	int		i;
 	char	*buf;
 	int		j;
 
-	color = 0;
 	i = 1;
 	j = 0;
+	while (str[i] && !ft_isdigit(str[i]))
+		i++;
+	if (!str[i])
+		error(-9);
+	i = 1;
 	if (!(buf = malloc(sizeof(char) * ft_strlen(str))))
 		return (-1);
 	while (str[i++])
@@ -83,16 +109,10 @@ int		get_rgb(char *str)
 			buf[j++] = str[i];
 	buf[j] = '\0';
 	tmp = ft_split(buf, ',');
+	free (buf);
 	if (!(check_tmp(tmp)))
 		free_rgb(tmp, buf);
-	color += ft_atoi(tmp[0]) << 16;
-	color += ft_atoi(tmp[1]) << 8;
-	color += ft_atoi(tmp[2]);
-	free_rgb(tmp, buf);
-	return (color);
-}
-
-int		close_window(void)
-{
-	exit(0);
+	j = get_color(tmp);
+	free(tmp);
+	return (j);
 }

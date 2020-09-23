@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 12:24:01 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/04 04:10:39 by mbrizion         ###   ########.fr       */
+/*   Updated: 2020/09/24 00:46:54 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int			ft_printf_error(const char *str, ...)
 	va_start(ap, str);
 	if (!(ft_strchr(str, '%')))
 	{
-		ft_putstr_fd((char*)str, 1);
+		ft_putstr_fd((char*)str, 2);
 		return ((int)ft_strlen(str));
 	}
 	if (!(toprint = toprint_init()))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 12:27:19 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/04 04:10:22 by mbrizion         ###   ########.fr       */
+/*   Updated: 2020/09/24 01:16:14 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,4 @@ t_toprint		*conv_c(const char *str, va_list ap, t_toprint *toprint);
 int				conv_locator(const char *str,
 				t_convert *conv, va_list ap, t_toprint *toprint);
 int				prec_assign(const char *str, int index, char c);
-
 #endif

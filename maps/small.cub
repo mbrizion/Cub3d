@@ -5,13 +5,13 @@
   SO  									./pics/mount3.xpm   
    WE ./pics/mount4.xpm
    
-   R 860 420
+   R     1280 720
 
              
 
 
 
-C 						85,170,255
+C 						0,0,0
 
 
 

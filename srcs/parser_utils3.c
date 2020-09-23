@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 04:07:50 by user42            #+#    #+#             */
-/*   Updated: 2020/09/23 03:08:49 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/24 01:00:30 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,29 +26,32 @@ int			add_sprite(int i, int j, t_info *info)
 
 void		get_res(t_info *info, char *line)
 {
-	int i;
+	int		i;
+	char	**tmp;
 
 	i = 1;
 	if (info->res_x || info->res_y)
 		error2(-11);
-	while (line[i])
-	{
-		if (line[i] && ft_isdigit(line[i]) && info->res_x == 0)
-		{
-			info->res_x = ft_atoi(&line[i]);
-			i += ft_nbrlen((int)info->res_x);
-			info->res_x = info->res_x > 2560 ? 2560 : info->res_x;
-			info->res_x = info->res_x < 400 ? 400 : info->res_x;
-		}
-		if (line[i] && ft_isdigit(line[i]) && info->res_y == 0)
-		{
-			info->res_y = ft_atoi(&line[i]);
-			info->res_y = info->res_y > 1440 ? 1440 : info->res_y;
-			info->res_y = info->res_y < 200 ? 200 : info->res_y;
-			break ;
-		}
+	while (line[i] && (line [i] == ' ' || line[i] == '\t' || line[i] == 'R'))
 		i++;
-	}
+	tmp = ft_split(&line[i], ' ');
+	if (ft_strlen(tmp[0]) > 6)
+		error2(-12);
+	if (ft_strlen(tmp[1]) > 6)
+		error2(-12);
+	info->res_x = ft_atoi(tmp[0]);
+	info->res_y = ft_atoi(tmp[1]);
+	free(tmp[0]);
+	free(tmp[1]);
+	free(tmp);
+	if (info->res_x < 0)
+		error(-8);
+	else if (info->res_x > 0 && info->res_x < 100)
+		info->res_x = 400;
+	if (info->res_y < 0)
+		error(-8);
+	else if (info->res_y > 0 && info->res_y < 100)
+		info->res_y = 200;
 }
 
 int			is_spawn(char c)

@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/16 05:47:30 by user42            #+#    #+#             */
-/*   Updated: 2020/09/23 03:32:24 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/24 00:45:22 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,16 @@
 void	error2(int error_id)
 {
 	if (error_id == -10)
-		ft_printf_error("Error\nMissing map\n");
+		ft_printf_error("Error\nMissing or too many args\n");
 	else if (error_id == -11)
 		ft_printf_error("Error\nDouble key\n");
+	else if (error_id == -12)
+	{
+		ft_printf_error("Error\nOverflow protection");
+		ft_printf_error(", even NASA doesn't have this screen resolution\n");
+	}
+	else if (error_id == -13)
+		ft_printf_error("Error\ninvalid option, only --save available\n");
 	exit(-1);
 }
 
@@ -45,7 +52,7 @@ void	error(int error_id)
 	else if (error_id == -8)
 		ft_printf_error("Error\nResolution error\n");
 	else if (error_id == -9)
-		ft_printf_error("Error\nRGB not found\n");
+		ft_printf_error("Error\nRGB not found or invalid\n");
 	error2(error_id);
 	exit(-1);
 }

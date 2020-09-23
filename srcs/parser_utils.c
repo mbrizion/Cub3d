@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 02:06:22 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/23 03:26:02 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/23 23:33:22 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,6 @@ void		check_info(t_info *info)
 	if (!info->north_path || !info->south_path || !info->east_path
 	|| !info->weast_path || !info->sprite.sprite_path)
 		error(-5);
-	if (!info->cieling_color || !info->floor_color)
-		error(-9);
 	if (!info->res_x || !info->res_y)
 		error(-8);
 }

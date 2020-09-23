@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 01:20:20 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/22 00:25:10 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/23 23:54:32 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,9 @@ int		keyrelease(int keycode, t_game *game)
 		game->move.v_rot = 0;
 	}
 	return (0);
+}
+
+int		close_window(void)
+{
+	exit(0);
 }
