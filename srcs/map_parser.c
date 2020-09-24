@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 03:37:38 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/24 01:52:59 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/24 02:27:58 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int			parser(t_info *info, char *path, t_ptr *ptr)
 	info_init(info);
 	get_file_len(path, info, ptr);
 	if ((fd = open(path, O_RDONLY)) < 0)
-		return (-1);
+		error2(-14);
 	if (!(info->file = malloc(sizeof(char *) * info->file_len)))
 		error(-4);
 	ret = 1;

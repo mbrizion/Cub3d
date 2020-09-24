@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/16 05:47:30 by user42            #+#    #+#             */
-/*   Updated: 2020/09/24 00:45:22 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/24 02:29:08 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	error2(int error_id)
 	}
 	else if (error_id == -13)
 		ft_printf_error("Error\ninvalid option, only --save available\n");
+	else if (error_id == -14)
+		ft_printf_error("Error\nFile not found\n");
 	exit(-1);
 }
 
