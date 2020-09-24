@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 04:07:50 by user42            #+#    #+#             */
-/*   Updated: 2020/09/24 03:37:10 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/24 05:25:39 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ void		get_res(t_info *info, char *line)
 		error2(-11);
 	while (line[i] && (line[i] == ' ' || line[i] == '\t' || line[i] == 'R'))
 		i++;
+	if (!line[i])
+		error(-8);
 	tmp = ft_split(&line[i], ' ');
 	assign_res(tmp, info);
 	if (info->res_x < 0)
