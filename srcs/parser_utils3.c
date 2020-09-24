@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 04:07:50 by user42            #+#    #+#             */
-/*   Updated: 2020/09/24 01:54:46 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/24 03:37:10 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,13 @@ int			add_sprite(int i, int j, t_info *info)
 
 void		assign_res(char **tmp, t_info *info)
 {
+	int i;
+
+	i = 0;
+	while (tmp[i])
+		i++;
+	if (i > 2)
+		error(-8);
 	if (ft_strlen(tmp[0]) > 6)
 		error2(-12);
 	if (ft_strlen(tmp[1]) > 6)

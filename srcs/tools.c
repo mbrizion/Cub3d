@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 05:04:21 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/24 01:40:34 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/24 02:55:38 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int		check_tmp(char **s)
 	return (1);
 }
 
-void	free_rgb(char **tmp, char *buf)
+void	free_rgb(char **tmp)
 {
 	free(tmp[0]);
 	free(tmp[1]);
@@ -111,7 +111,7 @@ int		get_rgb(char *str)
 	tmp = ft_split(buf, ',');
 	free(buf);
 	if (!(check_tmp(tmp)))
-		free_rgb(tmp, buf);
+		free_rgb(tmp);
 	j = get_color(tmp);
 	free(tmp);
 	return (j);

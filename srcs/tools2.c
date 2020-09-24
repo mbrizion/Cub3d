@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/16 05:47:30 by user42            #+#    #+#             */
-/*   Updated: 2020/09/24 02:29:08 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/24 04:54:53 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,12 @@ void	sprite_tex(t_info *info, char *line, int j)
 	&& info->sprite.sprite_path[k] != '\t')
 		k++;
 	info->sprite.sprite_path[k] = '\0';
+}
+
+void	copy_file(t_info *info)
+{
+	info->file[info->file_index] = ft_strdup(info->line_buf);
+	info->file_index++;
+	info->file_len++;
+	free(info->line_buf);
 }

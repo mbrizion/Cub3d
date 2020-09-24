@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 23:19:18 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/23 03:09:26 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/24 04:42:57 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,9 @@ void	get_map_only(t_info *info, char **tmp_map, int i)
 	int j;
 
 	j = 0;
-	tmp_map[i] = ft_strdup(info->file[info->map_start + i]);
+	tmp_map[i] = malloc(sizeof(char *) * info->map_len);
+	ft_bzero(tmp_map[i], info->map_len);
+	ft_strlcpy(tmp_map[i], info->file[info->map_start + i], ft_strlen(info->file[info->map_start + i]) + 1);
 	while (j < (int)ft_strlen(tmp_map[i]))
 	{
 		if (is_spawn(tmp_map[i][j]))

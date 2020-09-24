@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/05 02:06:22 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/23 23:33:22 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/24 04:19:37 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int			check_pos(int x, int y, t_info *info, char c)
 
 int			get_map_loop(t_info *info, int i, int j)
 {
+	info->map_len = (int)ft_strlen(info->file[info->map_start]) > info->map_len
+	? (int)ft_strlen(info->file[info->map_start]) : info->map_len;
 	if (info->file[info->map_start][j] == '2')
 	{
 		if (add_sprite(i, j, info) < 0)

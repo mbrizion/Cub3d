@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 22:44:34 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/24 01:51:55 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/24 03:25:43 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -230,4 +230,5 @@ int				all_info_init(t_info *info);
 void			sprite_tex(t_info *info, char *line, int j);
 void			ptr_init(t_game *game);
 void			check_info(t_info *info);
+void			copy_file(t_info *info);
 #endif

@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 03:37:38 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/24 02:27:58 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/24 04:55:39 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,28 @@ int			empty_line(t_info *info)
 	int i;
 
 	i = 0;
-	while (info->line_buf[i++])
+	while (info->line_buf[i])
 	{
-		if (info->line_buf[i] && info->line_buf[i] != '\t'
-		&& info->line_buf[i] != ' ')
+		if (info->file_len < 8)
 		{
-			info->file[info->file_index] = ft_strdup(info->line_buf);
-			info->file_index++;
-			info->file_len++;
-			free(info->line_buf);
+			if (info->line_buf[i] && info->line_buf[i] != '\t'
+			&& info->line_buf[i] != ' ')
+			{
+				copy_file(info);
+				return (1);
+			}
+		}
+		else
+		{
+			copy_file(info);
 			return (1);
 		}
+		i++;
+	}
+	if (info->file_len > 8 && i == 0)
+	{
+		copy_file(info);
+		return (1);
 	}
 	free(info->line_buf);
 	return (0);

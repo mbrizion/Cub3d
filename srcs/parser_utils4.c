@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/16 04:41:24 by user42            #+#    #+#             */
-/*   Updated: 2020/09/23 02:53:32 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/24 04:10:28 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void		info_init(t_info *info)
 {
 	info->file_len = 0;
+	info->map_len = 0;
 	info->len_line = 0;
 	info->spawn_dir = '\0';
 	info->res_x = 0;
