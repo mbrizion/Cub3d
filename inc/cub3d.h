@@ -35,6 +35,7 @@
 # define E 69
 # define W 87
 # define P 80
+# define ERROR 2
 
 typedef struct	s_sprite_pos
 {
@@ -230,5 +231,5 @@ int				all_info_init(t_info *info);
 void			sprite_tex(t_info *info, char *line, int j);
 void			ptr_init(t_game *game);
 void			check_info(t_info *info);
-void			copy_file(t_info *info);
+int				copy_file(t_info *info);
 #endif

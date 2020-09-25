@@ -37,6 +37,7 @@
 # define P 80
 # define C 67
 # define F 70
+# define ERROR 2
 
 typedef struct	s_ray_fc
 {

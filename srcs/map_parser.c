@@ -24,22 +24,15 @@ int			empty_line(t_info *info)
 			if (info->line_buf[i] && info->line_buf[i] != '\t'
 			&& info->line_buf[i] != ' ')
 			{
-				copy_file(info);
-				return (1);
+				return (copy_file(info));
 			}
 		}
 		else
-		{
-			copy_file(info);
-			return (1);
-		}
+			return (copy_file(info));
 		i++;
 	}
 	if (info->file_len > 8 && i == 0)
-	{
-		copy_file(info);
-		return (1);
-	}
+		return (copy_file(info));
 	free(info->line_buf);
 	return (0);
 }

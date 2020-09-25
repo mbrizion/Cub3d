@@ -48,7 +48,7 @@ CC				=	clang
 CFLAGS			=	-I./inc -Wall -Wextra -Werror #-fsanitize=address
 CFLAGS_BONUS	=	-I./inc -Wall -Wextra -Werror #-fsanitize=address 
 
-LIBS			=	libft/libft.a ft_printf_error/ft_printf_error.a minilibx-linux/libmlx_Linux.a
+LIBS			=	libft/libft.a minilibx-linux/libmlx_Linux.a
 
 LINUX_FLAGS 	=	-lbsd -lXext -lX11 -lm 
 
@@ -68,22 +68,19 @@ $(OB_DIR)%.o:	$(CB_DIR)%.c
 				@${CC} ${CFLAGS_BONUS} -c $< -o $@
 
 ${NAME}:		${OBJS}
-				@make -sC minilibx-linux
 				@make -sC libft
-				@make -sC ft_printf_error
+				@make -sC minilibx-linux
 				@${CC} ${OBJS} ${LINUX_FLAGS} ${CFLAGS} ${LIBS} -o ${NAME}
 				@echo ${GREEN}[Comp.DONE]${END}
 
 clean:
 				@${RM} ${OBJS} 
 				@make clean -sC libft
-				@make clean -sC ft_printf_error
 				@make clean -sC minilibx-linux
 				@echo ${BLUE}[All clean]${END}
 
 bonus:			${OBJS_BONUS}
 				@make -sC libft
-				@make -sC ft_printf_error
 				@make -sC minilibx-linux
 				@${CC} ${OBJS_BONUS} ${LINUX_FLAGS} ${CFLAGS_BONUS} ${LIBS} -o ${NAME_BONUS}
 				@echo ${GREEN}[Comp.DONE]${END}
@@ -91,7 +88,6 @@ bonus:			${OBJS_BONUS}
 fclean:			clean
 				@${RM} ${NAME} ${NAME_BONUS}
 				@make fclean -sC libft
-				@make fclean -sC ft_printf_error
 				@rm -rf objs objs_bonus screenshot.bmp
 
 re:				fclean all

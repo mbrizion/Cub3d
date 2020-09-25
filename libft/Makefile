@@ -66,7 +66,7 @@ C_FILES		= 	ft_isprint.c \
 SRCS		=	$(addprefix $(C_DIR), $(C_FILES))
 OBJS		=	$(addprefix $(O_DIR), $(C_FILES:.c=.o))
 
-CC			=	gcc
+CC			=	clang
 
 CFLAGS		=	-I../inc
 

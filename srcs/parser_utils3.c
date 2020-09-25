@@ -27,10 +27,17 @@ int			add_sprite(int i, int j, t_info *info)
 void		assign_res(char **tmp, t_info *info)
 {
 	int i;
+	int j;
 
 	i = 0;
 	while (tmp[i])
+	{
+		j = 0;
+		while (tmp[j++])
+			if (!ft_isdigit(tmp[i][j]))
+				error(-8);
 		i++;
+	}
 	if (i > 2)
 		error(-8);
 	if (ft_strlen(tmp[0]) > 6)

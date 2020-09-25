@@ -15,18 +15,19 @@
 void	error2(int error_id)
 {
 	if (error_id == -10)
-		ft_printf_error("Error\nMissing or too many args\n");
+		ft_putstr_fd("Error\nMissing or too many args\n", ERROR);
 	else if (error_id == -11)
-		ft_printf_error("Error\nDouble key\n");
+		ft_putstr_fd("Error\nDouble key\n", ERROR);
 	else if (error_id == -12)
 	{
-		ft_printf_error("Error\nOverflow protection");
-		ft_printf_error(", even NASA doesn't have this screen resolution\n");
+		ft_putstr_fd("Error\nOverflow protection", ERROR);
+		ft_putstr_fd(", even NASA doesn't have ", ERROR);
+		ft_putstr_fd("this screen resolution\n", ERROR);
 	}
 	else if (error_id == -13)
-		ft_printf_error("Error\ninvalid option, only --save available\n");
+		ft_putstr_fd("Error\ninvalid option, only --save available\n", ERROR);
 	else if (error_id == -14)
-		ft_printf_error("Error\nFile not found\n");
+		ft_putstr_fd("Error\nFile not found\n", ERROR);
 	exit(-1);
 }
 
@@ -34,27 +35,27 @@ void	error(int error_id)
 {
 	if (error_id > 0)
 		if (error_id == 80)
-			ft_printf_error("Error\nTexture not found (Sprite)\n");
+			ft_putstr_fd("Error\nTexture not found (Sprite)\n", ERROR);
 		else
-			ft_printf_error("Error\nTexture not found (%c)\n", (char)error_id);
+			ft_putstr_fd("Error\nTexture not found\n", ERROR);
 	else if (error_id == -1)
-		ft_printf_error("Error\nMultiple spawnpoint\n");
+		ft_putstr_fd("Error\nMultiple spawnpoint\n", ERROR);
 	else if (error_id == -2)
-		ft_printf_error("Error\nNo spawnpoint or no map\n");
+		ft_putstr_fd("Error\nNo spawnpoint or no map\n", ERROR);
 	else if (error_id == -3)
-		ft_printf_error("Error\nMap error\n");
+		ft_putstr_fd("Error\nMap error\n", ERROR);
 	else if (error_id == -4)
-		ft_printf_error("Error\nMalloc failed\n");
+		ft_putstr_fd("Error\nMalloc failed\n", ERROR);
 	else if (error_id == -5)
-		ft_printf_error("Error\nWrong texture path\n");
+		ft_putstr_fd("Error\nWrong texture path\n", ERROR);
 	else if (error_id == -6)
-		ft_printf_error("Error\nBad value for floor or cieling rgb\n");
+		ft_putstr_fd("Error\nBad value for floor or cieling rgb\n", ERROR);
 	else if (error_id == -7)
-		ft_printf_error("Error\nFile name error\n");
+		ft_putstr_fd("Error\nFile name error\n", ERROR);
 	else if (error_id == -8)
-		ft_printf_error("Error\nResolution error\n");
+		ft_putstr_fd("Error\nResolution error\n", ERROR);
 	else if (error_id == -9)
-		ft_printf_error("Error\nRGB not found or invalid\n");
+		ft_putstr_fd("Error\nRGB not found or invalid\n", ERROR);
 	error2(error_id);
 	exit(-1);
 }
@@ -78,10 +79,11 @@ void	sprite_tex(t_info *info, char *line, int j)
 	info->sprite.sprite_path[k] = '\0';
 }
 
-void	copy_file(t_info *info)
+int		copy_file(t_info *info)
 {
 	info->file[info->file_index] = ft_strdup(info->line_buf);
 	info->file_index++;
 	info->file_len++;
 	free(info->line_buf);
+	return (1);
 }

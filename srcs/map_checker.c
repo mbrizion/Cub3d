@@ -61,7 +61,8 @@ void	get_map_only(t_info *info, char **tmp_map, int i)
 	j = 0;
 	tmp_map[i] = malloc(sizeof(char *) * info->map_len);
 	ft_bzero(tmp_map[i], info->map_len);
-	ft_strlcpy(tmp_map[i], info->file[info->map_start + i], ft_strlen(info->file[info->map_start + i]) + 1);
+	ft_strlcpy(tmp_map[i], info->file[info->map_start + i],
+	ft_strlen(info->file[info->map_start + i]) + 1);
 	while (j < (int)ft_strlen(tmp_map[i]))
 	{
 		if (is_spawn(tmp_map[i][j]))
