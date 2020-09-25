@@ -66,6 +66,8 @@ void	sprite_tex(t_info *info, char *line, int j)
 	k = 0;
 	if (info->sprite.sprite_path)
 		error2(-11);
+	if (line[j] && line[j] != ' ')
+		error(-5);
 	while (line[j] && (line[j] == ' ' || line[j] == '\t'))
 		j++;
 	info->sprite.sprite_path = malloc(sizeof(char) * ft_strlen(&line[j]) + 1);

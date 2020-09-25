@@ -82,7 +82,7 @@ void		get_tex_path(t_info *info, char *line, char dir)
 	i = 2;
 	while (line[i] && (line[i] == ' ' || line[i] == '\t'))
 		i++;
-	j = i + 2;
+	j = dir == 'P' ? i + 1 : i + 2;
 	if (dir == 'N')
 		north_tex(info, line, j);
 	else if (dir == 'S')

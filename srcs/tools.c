@@ -97,9 +97,9 @@ int		get_rgb(char *str)
 
 	i = 1;
 	j = 0;
-	while (str[i] && !ft_isdigit(str[i]))
+	while (str[i] && !ft_isdigit(str[i]) && !ft_isalpha(str[i]))
 		i++;
-	if (!str[i])
+	if (!str[i] || ft_isalpha(str[i]))
 		error(-9);
 	i = 1;
 	if (!(buf = malloc(sizeof(char) * ft_strlen(str))))
