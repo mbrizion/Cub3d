@@ -92,24 +92,20 @@ int		get_rgb(char *str)
 {
 	char	**tmp;
 	int		i;
-	char	*buf;
 	int		j;
 
 	i = 1;
 	j = 0;
 	while (str[i] && !ft_isdigit(str[i]) && !ft_isalpha(str[i]))
 		i++;
-	if (!str[i] || ft_isalpha(str[i]))
-		error(-9);
+	while (str[i])
+	{
+		if (ft_isalpha(str[i]) && str[i] != ',')
+			error(-9);
+		i++;
+	}
 	i = 1;
-	if (!(buf = malloc(sizeof(char) * ft_strlen(str))))
-		return (-1);
-	while (str[i++])
-		if (str[i] && str[i] != ' ' && str[i] != '\t')
-			buf[j++] = str[i];
-	buf[j] = '\0';
-	tmp = ft_split(buf, ',');
-	free(buf);
+	tmp = ft_split(str, ',');
 	if (!(check_tmp(tmp)))
 		free_rgb(tmp);
 	j = get_color(tmp);
