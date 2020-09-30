@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbrizion <mbrizion@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 13:07:40 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/08 02:19:37 by mbrizion         ###   ########.fr       */
+/*   Updated: 2020/09/30 10:42:36 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,5 @@ t_list			*ft_lstmap(t_list *lst, void *(*f)(void *),
 				void (*del)(void *));
 void			ft_lstswap(t_list *a, t_list *b);
 int				get_next_line(int fd, char **line);
-size_t			ft_strlen(const char *s);
-char			*ft_strjoin(char const *s1, char const *s2);
-char			*ft_substr(char const *s, unsigned int start, size_t len);
-void			*ft_memchr(const void *s, int c, size_t n);
-char			*ft_strchr(const char *s, int c);
-size_t			ft_strlcpy(char *dst, const char *s, size_t dstlen);
 
 #endif
