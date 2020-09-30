@@ -56,9 +56,11 @@ int		check_tmp(char **s)
 
 void	free_rgb(char **tmp)
 {
-	free(tmp[0]);
-	free(tmp[1]);
-	free(tmp[2]);
+	int i;
+
+	i = 0;
+	while (tmp[i])
+		free(tmp[i++]);
 	free(tmp);
 	error(-9);
 }
@@ -91,24 +93,27 @@ int		get_color(char **tmp)
 int		get_rgb(char *str)
 {
 	char	**tmp;
+	char	**buf;
 	int		i;
 	int		j;
 
-	i = 1;
 	j = 0;
-	while (str[i] && !ft_isdigit(str[i]) && !ft_isalpha(str[i]))
-		i++;
-	while (str[i])
+	buf = ft_split(str, ' ');
+	while (buf[j])
+		j++;
+	if (j != 2)
 	{
-		if (ft_isalpha(str[i]) && str[i] != ',')
-			error(-9);
-		i++;
+		free_buf(buf);
+		error(-9);
 	}
-	i = 1;
-	tmp = ft_split(str, ',');
+	tmp = ft_split(buf[1], ',');
+	i = -1;
+	while (tmp[++i])
+		for_the_norm(tmp, i);
 	if (!(check_tmp(tmp)))
 		free_rgb(tmp);
 	j = get_color(tmp);
+	free_buf(buf);
 	free(tmp);
 	return (j);
 }

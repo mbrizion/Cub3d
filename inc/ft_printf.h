@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 12:27:19 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/30 10:41:14 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/24 01:16:14 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ typedef struct	s_flags
 }				t_flags;
 
 int				ft_printf_error(const char *str, ...);
-t_toprint		*toprint_init(void);
 t_convert		*conv_init(void);
+t_toprint		*toprint_init(void);
 t_flags			*flags_init(const char *str, char spec, int index, va_list ap);
 t_toprint		*conv_c(const char *str, va_list ap, t_toprint *toprint);
 int				conv_locator(const char *str,

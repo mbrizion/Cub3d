@@ -30,8 +30,8 @@ void		info_init(t_info *info)
 	info->cieling_rgb = 0;
 	info->sprite.sprite_path = 0;
 	info->sprite_lst = 0;
-	info->floor_color = 0;
-	info->cieling_color = 0;
+	info->floor_color = -1;
+	info->cieling_color = -1;
 	info->file_index = 0;
 }
 
@@ -39,8 +39,8 @@ int			all_info_init(t_info *info)
 {
 	if (info->res_x && info->res_y && info->north_path
 	&& info->south_path && info->east_path
-	&& info->weast_path && info->floor_color
-	&& info->cieling_color && info->sprite.sprite_path)
+	&& info->weast_path && info->floor_color != -1
+	&& info->cieling_color != -1 && info->sprite.sprite_path)
 		return (1);
 	return (0);
 }

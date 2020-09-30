@@ -102,4 +102,6 @@ void		check_info(t_info *info)
 		error(-5);
 	if (!info->res_x || !info->res_y)
 		error(-8);
+	if (info->cieling_color == -1 || info->floor_color == -1)
+		error(-9);
 }

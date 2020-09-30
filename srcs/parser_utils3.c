@@ -29,44 +29,45 @@ void		assign_res(char **tmp, t_info *info)
 	int i;
 	int j;
 
-	i = 0;
+	i = 1;
 	while (tmp[i])
 	{
 		j = 0;
-		while (tmp[j++])
-			if (!ft_isdigit(tmp[i][j]))
+		while (tmp[i][j])
+			if (!ft_isdigit(tmp[i][j++]) && tmp[i][j++] != '\t')
 				error(-8);
 		i++;
 	}
-	if (i > 2)
-		error(-8);
-	if (ft_strlen(tmp[0]) > 6)
-		error2(-12);
 	if (ft_strlen(tmp[1]) > 6)
 		error2(-12);
-	info->res_x = ft_atoi(tmp[0]);
-	info->res_y = ft_atoi(tmp[1]);
+	if (ft_strlen(tmp[2]) > 6)
+		error2(-12);
+	info->res_x = ft_atoi(tmp[1]);
+	info->res_y = ft_atoi(tmp[2]);
 	info->res_x = info->res_x > info->w ? info->w : info->res_x;
 	info->res_y = info->res_y > info->h ? info->h : info->res_y;
-	free(tmp[0]);
-	free(tmp[1]);
-	free(tmp);
+	free_buf(tmp);
 }
 
 void		get_res(t_info *info, char *line)
 {
 	int		i;
-	char	**tmp;
+	int		j;
+	char	**buf;
 
 	i = 1;
+	j = 0;
 	if (info->res_x || info->res_y)
 		error2(-11);
-	while (line[i] && (line[i] == ' ' || line[i] == '\t' || line[i] == 'R'))
-		i++;
-	if (!line[i])
+	buf = ft_split(line, ' ');
+	while (buf[j])
+		j++;
+	if (j != 3)
+	{
+		free_buf(buf);
 		error(-8);
-	tmp = ft_split(&line[i], ' ');
-	assign_res(tmp, info);
+	}
+	assign_res(buf, info);
 	if (info->res_x < 0)
 		error(-8);
 	else if (info->res_x > 0 && info->res_x < 100)

@@ -1,20 +1,22 @@
              S ./pics/sauron.xpm
-			 
-			   NO ./pics/mount1.xpm
+             
+               NO ./pics/mount1.xpm
+
     EA      ./pics/mountain.xpm
   SO ./pics/mount3.xpm
+
    WE ./pics/mount4.xpm 
    R 840 480
-					
-        F 22,fff125,22     
+                    
+        F 22,125,22     
 
 
 
 
- 
 
-	
-        C 61,   93,  182     
+
+    
+        C 61,93,182     
 
 
 

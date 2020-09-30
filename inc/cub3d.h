@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 22:44:34 by mbrizion          #+#    #+#             */
-/*   Updated: 2020/09/30 10:41:05 by user42           ###   ########.fr       */
+/*   Updated: 2020/09/24 03:25:43 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,8 +191,8 @@ typedef struct	s_game
 }				t_game;
 
 int				parser(t_info *info, char *path, t_ptr *ptr);
-int				check_map(t_info *info, char **map);
 int				ft_nbrlen(int n);
+int				check_map(t_info *info, char **map);
 void			raycasting(t_game *game, int save);
 void			raycasting2(t_game *game, t_ray *ray, int x, int y);
 void			color_pixel(int x, int y, int color, t_game *game);
@@ -232,4 +232,6 @@ void			sprite_tex(t_info *info, char *line, int j);
 void			ptr_init(t_game *game);
 void			check_info(t_info *info);
 int				copy_file(t_info *info);
+void			free_buf(char **buf);
+void			for_the_norm(char **tmp, int i);
 #endif

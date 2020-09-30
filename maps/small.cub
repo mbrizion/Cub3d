@@ -1,23 +1,23 @@
-              S 						./pics/sauron.xpm
-			  EA ./pics/mount1.xpm	
-              NO ./pics/mountain.xpm	
+              S                    ./pics/sauron.xpm
+                          EA ./pics/mount1.xpm        
+              NO ./pics/mountain.xpm        
 
-  SO  									./pics/mount3.xpm   
+  SO                                                                          ./pics/mount3.xpm   
    WE ./pics/mount4.xpm
    
-   R     1280 720
+   R     800 400                                               
 
              
 
+                        
+
+C                            0,0,0      
 
 
-C 						0,0,0
 
 
 
-
-
-F 255,170,85
+F                  255,170,85
 1111111111
 1000000001
 1000000201

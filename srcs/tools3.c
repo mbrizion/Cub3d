@@ -17,3 +17,23 @@ void	ptr_init(t_game *game)
 	game->ptr.buffer = 0;
 	game->ptr.mlx_ptr = mlx_init();
 }
+
+void	free_buf(char **buf)
+{
+	int i;
+
+	i = 0;
+	while (buf[i])
+		free(buf[i++]);
+	free(buf);
+}
+
+void	for_the_norm(char **tmp, int i)
+{
+	int j;
+
+	j = 0;
+	while (tmp[i][j++])
+		if (ft_isalpha(tmp[i][j]))
+			error(-9);
+}
